@@ -28,10 +28,6 @@ replay_pid*
 /Backend/mvnw/*
 Backend/mvnw
 Backend/mvnw.cmd
-Frontend/package-lock.json
-Frontend/package.json
 Frontend/.eslintrc.cjs
 Frontend/vite.config.ts
-Frontend/tsconfig.node.json
-Frontend/tsconfig.json
 Frontend/src/vite-env.d.ts
