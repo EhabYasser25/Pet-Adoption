@@ -1,6 +1,6 @@
 package com.example.Backend.repository;
 
-import com.example.Backend.DAO.Admin;
+import com.example.Backend.model.Admin;
 
 import java.sql.SQLException;
 

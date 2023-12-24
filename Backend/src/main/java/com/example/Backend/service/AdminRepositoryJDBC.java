@@ -1,6 +1,6 @@
 package com.example.Backend.service;
 
-import com.example.Backend.DAO.Admin;
+import com.example.Backend.model.Admin;
 import com.example.Backend.config.DatabaseConnection;
 import com.example.Backend.repository.AdminRepository;
 

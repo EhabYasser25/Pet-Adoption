@@ -1,4 +1,4 @@
-package com.example.Backend.DAO;
+package com.example.Backend.model;
 
 public class Admin {
     private String username;

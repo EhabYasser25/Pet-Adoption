@@ -1,6 +1,6 @@
 package com.example.Backend.service;
 
-import com.example.Backend.DAO.User;
+import com.example.Backend.model.User;
 import com.example.Backend.config.DatabaseConnection;
 import com.example.Backend.repository.UserRepository;
 
@@ -41,5 +41,4 @@ public class UserRepositoryJDBC implements UserRepository {
         return null;
     }
 
-    // Other CRUD methods...
 }

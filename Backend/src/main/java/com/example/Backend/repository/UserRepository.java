@@ -1,6 +1,6 @@
 package com.example.Backend.repository;
 
-import com.example.Backend.DAO.User;
+import com.example.Backend.model.User;
 
 import java.sql.SQLException;
 

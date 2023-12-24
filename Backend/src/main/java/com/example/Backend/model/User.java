@@ -1,4 +1,4 @@
-package com.example.Backend.DAO;
+package com.example.Backend.model;
 
 import com.example.Backend.emum.Role;
 import lombok.Data;
