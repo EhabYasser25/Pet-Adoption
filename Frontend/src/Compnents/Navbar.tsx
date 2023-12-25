@@ -1,5 +1,5 @@
 import {NavLink} from "react-bootstrap";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import React from "react";
 
 const Navbar = () => {
@@ -9,8 +9,9 @@ const Navbar = () => {
     <nav className="navbar">
         <h1>  <span className="paw-print">🐾</span>Paws and claws</h1>
         <div className="links">
-            <NavLink onClick={()=>navigate("/")}>Home</NavLink>
-            <NavLink onClick={()=>navigate("/user/applications")}> Applications </NavLink>
+            <Link to="/signin">   About</Link>
+            <Link to="/">Home</Link>
+            <Link to="/user/applications"> Applications </Link>
             <span style={{ color: "white" }}>{userName}</span>
             <NavLink>
                 <i
