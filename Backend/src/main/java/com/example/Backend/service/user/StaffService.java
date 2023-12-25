@@ -1,4 +1,4 @@
-package com.example.Backend.service;
+package com.example.Backend.service.user;
 
 import com.example.Backend.DAO.user.StaffDAO;
 import com.example.Backend.model.user.Staff;

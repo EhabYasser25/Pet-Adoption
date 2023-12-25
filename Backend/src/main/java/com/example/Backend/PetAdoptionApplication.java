@@ -1,9 +1,11 @@
 package com.example.Backend;
 
+import com.example.Backend.model.user.Admin;
 import com.example.Backend.model.user.Staff;
 import com.example.Backend.model.user.User;
-import com.example.Backend.service.StaffService;
-import com.example.Backend.service.UserService;
+import com.example.Backend.service.user.AdminService;
+import com.example.Backend.service.user.StaffService;
+import com.example.Backend.service.user.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,6 +30,11 @@ public class PetAdoptionApplication {
 			StaffService staffService = ctx.getBean(StaffService.class);
 			Staff staff = staffService.getById(3);
 			System.out.println(staff);
+
+			AdminService adminService = ctx.getBean(AdminService.class);
+			Admin admin = adminService.getByUsername("User");
+			System.out.println(admin);
+
 		};
 	}
 

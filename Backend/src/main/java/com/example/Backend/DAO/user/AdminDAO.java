@@ -1,31 +1,29 @@
 package com.example.Backend.DAO.user;
 
-import com.example.Backend.mapper.user.StaffRowMapper;
-import com.example.Backend.mapper.user.UserRowMapper;
-import com.example.Backend.model.user.Staff;
-import com.example.Backend.model.user.User;
+import com.example.Backend.mapper.user.AdminRowMapper;
+import com.example.Backend.model.user.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class StaffDAO {
+public class AdminDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private StaffRowMapper staffRowMapper;
+    private AdminRowMapper adminRowMapper;
 
-    public Staff getById(int id) {
+    public Admin getByUsername(String username) {
         try {
-            Staff result = this.jdbcTemplate.queryForObject(
-                    "SELECT * FROM staff WHERE user_id = ?", staffRowMapper, id);
+            Admin result = this.jdbcTemplate.queryForObject(
+                    "SELECT * FROM admin WHERE username = ?", adminRowMapper, username);
             System.out.println(result);
             return result;
         } catch (EmptyResultDataAccessException e) {
             // Handle case where user is not found
-            System.out.println("User not found with ID: " + id);
+            System.out.println("User not found with username: " + username);
             return null;
         }
     }
