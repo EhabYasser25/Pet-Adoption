@@ -1,5 +1,5 @@
 import {useState} from "react";
-import Navbar from "../Compnents/admin/navbar.tsx";
+import Navbar from "../Compnents/Navbar.tsx";
 
 const UserHomePage = () => {
     const speciesOptions = [
