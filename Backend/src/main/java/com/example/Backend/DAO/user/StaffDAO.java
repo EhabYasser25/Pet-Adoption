@@ -25,7 +25,7 @@ public class StaffDAO {
             return result;
         } catch (EmptyResultDataAccessException e) {
             // Handle case where user is not found
-            System.out.println("User not found with ID: " + id);
+            System.out.println("Staff not found with ID: " + id);
             return null;
         }
     }

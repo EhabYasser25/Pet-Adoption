@@ -1,8 +1,12 @@
 package com.example.Backend;
 
+import com.example.Backend.model.pet.Pet;
+import com.example.Backend.model.pet.PetType;
 import com.example.Backend.model.user.Admin;
 import com.example.Backend.model.user.Staff;
 import com.example.Backend.model.user.User;
+import com.example.Backend.service.pet.PetService;
+import com.example.Backend.service.pet.PetTypeService;
 import com.example.Backend.service.user.AdminService;
 import com.example.Backend.service.user.StaffService;
 import com.example.Backend.service.user.UserService;
@@ -35,6 +39,13 @@ public class PetAdoptionApplication {
 			Admin admin = adminService.getByUsername("User");
 			System.out.println(admin);
 
+			PetTypeService petTypeService = ctx.getBean(PetTypeService.class);
+			PetType petType = petTypeService.getById(1);
+			System.out.println(petType);
+
+			PetService petService = ctx.getBean(PetService.class);
+			Pet pet = petService.getById(1);
+			System.out.println(pet);
 		};
 	}
 

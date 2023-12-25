@@ -23,7 +23,7 @@ public class AdminDAO {
             return result;
         } catch (EmptyResultDataAccessException e) {
             // Handle case where user is not found
-            System.out.println("User not found with username: " + username);
+            System.out.println("Admin not found with username: " + username);
             return null;
         }
     }
