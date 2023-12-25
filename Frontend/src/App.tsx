@@ -2,9 +2,9 @@ import { Container } from "react-bootstrap";
 import "./App.css";
 import SignIn from "./Pages/SignIn";
 import UserHomePage from "./Pages/UserHomePage";
-import Applications from "./Pages/Applications"; // Assuming this is a .tsx file
-import { Routes, Route } from 'react-router-dom';
-import HomePage from "./Pages/admin/home-page"; // Assuming this is a .tsx file
+import Applications from "./Pages/Applications.tsx";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import React from "react";
 
 function App() {
     return (
@@ -17,14 +17,31 @@ function App() {
                 marginRight: 0,
             }}
         >
-            <Routes>
-                <Route path="/" element={<UserHomePage/>}></Route>
-                <Route path="/signin" element={<SignIn />}></Route>
-                <Route path="/user/applications" element={<Applications/>}></Route>
-                <Route path="/admin/dashboard" element={<HomePage />}></Route>
-            </Routes>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<UserHomePage/>}></Route>
+                    <Route path="/signin" element={<SignIn />}></Route>
+                    <Route path="user/applications" element={<Applications/>}></Route>
+                </Routes>
+            </Router>
         </Container>
     );
 }
 
 export default App;
+
+    // You can manage user authentication state here if needed
+  // const [loggedIn, setLoggedIn] = useState(false);
+
+//   return (
+//       <div className="App">
+//           <Navbar />
+//           <div className="content">
+//               <UserHomePage />
+//           </div>
+//       </div>
+//   );
+// };
+//
+// export default App;
+
