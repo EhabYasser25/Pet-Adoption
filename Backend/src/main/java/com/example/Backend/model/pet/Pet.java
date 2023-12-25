@@ -1,37 +1,41 @@
 package com.example.Backend.model.pet;
 
 import com.example.Backend.emum.Gender;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-//import javax.xml.crypto.Data;
 import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
 
 @Data
 @Builder
-@NoArgsConstructor
+@AllArgsConstructor
 public class Pet {
     private int id;
     private int typeId;
     private String name;
     private Date birthDate;
     private Gender gender;
-    private boolean vaccination;
+    private boolean isSterilized;
+    private boolean isVaccinated;
+    private boolean isHouseTrained;
+
     private Blob image; // TODO change if needed
     private Timestamp releaseTimeStamp;
 
     public Pet(int id, int typeId, String name, Date birthDate,
-               Gender gender, boolean vaccination, Blob image, Timestamp releaseTimeStamp) {
+               Gender gender, boolean isVaccinated, Blob image, Timestamp releaseTimeStamp, boolean isSterilized, boolean isHouseTrained) {
         this.id = id;
         this.typeId = typeId;
         this.name = name;
         this.birthDate = birthDate;
         this.gender = gender;
-        this.vaccination = vaccination;
+        this.isVaccinated = isVaccinated;
         this.image = image;
         this.releaseTimeStamp = releaseTimeStamp;
+        this.isSterilized = isSterilized;
+        this.isHouseTrained = isHouseTrained;
     }
 
     public int getId() {
@@ -75,11 +79,11 @@ public class Pet {
     }
 
     public boolean isVaccination() {
-        return vaccination;
+        return isVaccinated;
     }
 
     public void setVaccination(boolean vaccination) {
-        this.vaccination = vaccination;
+        this.isVaccinated = vaccination;
     }
 
     public Blob getImage() {

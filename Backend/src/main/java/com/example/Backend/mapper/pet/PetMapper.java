@@ -18,9 +18,11 @@ public class PetMapper implements RowMapper<Pet> {
                 rs.getString("name"),
                 rs.getDate("birthdate"),
                 Gender.valueOf(rs.getString("gender")), // Assuming 'Gender' is an Enum in your Pet class
-                rs.getBoolean("vaccination"),
+                rs.getBoolean("is_vaccinated"),
                 rs.getBlob("image"),
-                rs.getTimestamp("release_time_stamp")
+                rs.getTimestamp("release_time_stamp"),
+                rs.getBoolean("is_sterilized"),
+                rs.getBoolean("is_house_trained")
 
         );
     }
