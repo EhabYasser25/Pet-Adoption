@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import './shelter-list.css';
-import './shetler.css'
 import '../../DTO/shelter-type'
 import Shelter from './shelter';
 
@@ -11,11 +10,11 @@ const SheltersList = () => {
             name: 'That is large dummy shelter name and yet not large enough',
             address: '123 Main St, City A and yet another dummy large address and still not enough',
         }, {
-          id: '2',
+          id: '1',
           name: 'That is large dummy shelter name and yet not large enough',
           address: '123 Main St, City A and yet another dummy large address and still not enough',
         }, {
-          id: '3',
+          id: '1',
           name: 'That is large dummy shelter name and yet not large enough',
           address: '123 Main St, City A and yet another dummy large address and still not enough',
         }, {

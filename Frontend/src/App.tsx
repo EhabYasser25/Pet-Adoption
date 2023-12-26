@@ -1,9 +1,10 @@
 import { Container } from "react-bootstrap";
-import SignIn from "./Pages/SignIn.tsx";
-import UserHomePage from "./Pages/UserHomePage.tsx";
-import Applications from "./Pages/Applications.tsx"; // Assuming this is a .tsx file
+import "./App.css";
+import SignIn from "./Pages/SignIn";
+import UserHomePage from "./Pages/UserHomePage";
+import Applications from "./Pages/Applications"; // Assuming this is a .tsx file
 import { Routes, Route } from 'react-router-dom';
-import HomePage from "./Pages/admin/home-page.tsx"; // Assuming this is a .tsx file
+import HomePage from "./Pages/admin/AdminHomePage"; // Assuming this is a .tsx file
 
 function App() {
     return (
