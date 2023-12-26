@@ -1,10 +1,14 @@
 import {useState} from "react";
-import Navbar from "../Compnents/admin/navbar.tsx";
+import Navbar from "../Compnents/Navbar.tsx";
 
 const UserHomePage = () => {
     const speciesOptions = [
         { value: 'dog', label: 'Dog' },
         { value: 'cat', label: 'Cat' },
+        { value: 'cet', label: 'Cet' },
+        { value: 'Dat', label: 'Cat' },
+
+
         // Add more options as needed
     ];
     const locationOptions = [
@@ -65,9 +69,9 @@ const UserHomePage = () => {
                 </div>
             </div>
             <div className="shortcut-buttons-container">
-                <button className="shortcut-buttons" onClick={() => handleSearch()}>	🐶</button>
+                {/* <button className="shortcut-buttons" onClick={() => handleSearch()}>	🐶</button>
                 <button className="shortcut-buttons" onClick={() => handleSearch()}>&#128008;</button>
-                <button className="shortcut-buttons" onClick={() => handleSearch()}>&#128038;</button>
+                <button className="shortcut-buttons" onClick={() => handleSearch()}>&#128038;</button> */}
 
             </div>
         </div>
