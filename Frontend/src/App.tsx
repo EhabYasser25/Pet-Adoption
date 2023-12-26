@@ -4,7 +4,7 @@ import SignIn from "./Pages/SignIn";
 import UserHomePage from "./Pages/UserHomePage";
 import Applications from "./Pages/Applications"; // Assuming this is a .tsx file
 import { Routes, Route } from 'react-router-dom';
-import HomePage from "./Pages/admin/AdminHomePage"; // Assuming this is a .tsx file
+import HomePage from "./Pages/admin/home-page"; // Assuming this is a .tsx file
 
 function App() {
     return (

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './shelter-list.css';
+import './shetler.css'
 import '../../DTO/shelter-type'
 import Shelter from './shelter';
 

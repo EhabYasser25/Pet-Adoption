@@ -1,7 +1,7 @@
 import { SetStateAction, useState } from 'react';
 import { FaHome, FaPaw } from 'react-icons/fa';
-import './AdminHomePage.css';
-import NavBar from '../../Compnents/admin/navbar-admin';
+import './home-page.css';
+import NavBar from '../../Compnents/admin/navbar';
 import AddShelterForm from '../../Compnents/admin/add-shelter-form';
 import SheltersList from '../../Compnents/admin/shelter-list';
 
