@@ -1,4 +1,4 @@
-.navbar-admin {
+.admin-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,16 +7,16 @@
   padding: 0 20px;
 }
 
-.navbar-right {
+.admin-navbar-right {
   display: flex;
   align-items: center;
 }
 
-.signed-in-as {
+.admin-signed-in-as {
   margin-right: 20px; /* Or whatever spacing you prefer */
 }
 
-.sign-out-button {
+.admin-sign-out-button {
   padding: 10px 15px;
   cursor: pointer;
   background-color: #626c6d; /* Red color for sign out to indicate action */
@@ -26,6 +26,6 @@
   font-size: 16px;
 }
 
-.sign-out-button:hover {
+.admin-sign-out-button:hover {
   background-color: hsl(206, 15%, 72%); /* Darker red on hover */
 }

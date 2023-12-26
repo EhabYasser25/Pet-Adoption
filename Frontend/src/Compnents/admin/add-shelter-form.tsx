@@ -23,8 +23,8 @@ const AddShelterForm = () => {
   };
 
   return (
-    <form className="add-shelter-form" onSubmit={handleSubmit}>
-      <div className="form-group">
+    <form className="admin-add-shelter-form" onSubmit={handleSubmit}>
+      <div className="admin-form-group">
         <label htmlFor="name">Shelter Name</label>
         <input
           type="text"
@@ -34,7 +34,7 @@ const AddShelterForm = () => {
           onChange={handleChange}
         />
       </div>
-      <div className="form-group">
+      <div className="admin-form-group">
         <label htmlFor="address">Shelter Address</label>
         <input
           type="text"
@@ -44,7 +44,7 @@ const AddShelterForm = () => {
           onChange={handleChange}
         />
       </div>
-      <div className="form-group">
+      <div className="admin-form-group">
         <label htmlFor="country">Country</label>
         <select
           id="country"
@@ -54,12 +54,12 @@ const AddShelterForm = () => {
         >
           {/* List countries or use a library/package to populate this */}
           <option value="">Select Country</option>
-          <option value="USA">Country 1</option>
-          <option value="Canada">Country 2</option>
+          <option value="Country 1">Country 1</option>
+          <option value="Country 2">Country 2</option>
           {/* Add more countries */}
         </select>
       </div>
-      <div className="form-group">
+      <div className="admin-form-group">
         <label htmlFor="city">City</label>
         <input
           type="text"
@@ -69,7 +69,7 @@ const AddShelterForm = () => {
           onChange={handleChange}
         />
       </div>
-      <button type="submit">Add Shelter</button>
+      <button className="admin-button" type="submit">Add Shelter</button>
     </form>
   );
 };

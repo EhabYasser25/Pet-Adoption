@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import './NavBar.css'; // Make sure you have the CSS file for styling
 
-const NavBar = () => {
+const NavBarAdmin = () => {
   const navigate = useNavigate();
   const adminName = "Admin Name"; // Replace with dynamic admin name if needed
 
@@ -14,12 +14,12 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="navbar-admin">
+    <nav className="admin-navbar">
       <h1>Admin Dashboard</h1>
-      <div className="navbar-right">
-        <span className="signed-in-as">Signed in as {adminName}</span>
+      <div className="admin-navbar-right">
+        <span className="admin-signed-in-as">Signed in as {adminName}</span>
         {/* Sign out button */}
-        <button onClick={handleSignOut} className="sign-out-button">
+        <button onClick={handleSignOut} className="admin-sign-out-button">
           Sign Out
         </button>
       </div>
@@ -27,4 +27,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default NavBarAdmin;

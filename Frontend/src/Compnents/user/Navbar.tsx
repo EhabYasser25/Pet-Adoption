@@ -1,6 +1,7 @@
 import {NavLink} from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
 import React from "react";
+import '../../Pages/user/UserHomeStyle.css'
 
 const Navbar = () => {
     const navigate = useNavigate();

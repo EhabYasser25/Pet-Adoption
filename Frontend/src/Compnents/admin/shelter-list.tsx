@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './shelter-list.css';
 import './shetler.css'
 import '../../DTO/shelter-type'
-import Shelter from './shelter';
+import AdminShelter from './shelter';
 
 const SheltersList = () => {
     const [shelters, setShelters] = useState<ShelterType[]>([
@@ -95,16 +95,16 @@ const SheltersList = () => {
 
  return (
     <div>
-      <div className="shelters-grid">
+      <div className="admin-shelters-grid">
         {currentShelters.map((shelter, index) => (
-          <Shelter
+          <AdminShelter
             key={`${shelter.id}-${index}`} // Unique key for each shelter
             {...shelter}
           />
         ))}
       </div>
 
-      <div className="pagination">
+      <div className="admin-pagination">
         {pageNumbers.map(number => (
           <button
             key={number}

@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import "./App.css";
 import SignIn from "./Pages/SignIn";
-import UserHomePage from "./Pages/UserHomePage";
+import UserHomePage from "./Pages/user/UserHomePage.tsx";
 import Applications from "./Pages/Applications.tsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from "./Pages/admin/home-page.tsx";

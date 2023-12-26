@@ -1,58 +1,57 @@
-.shelters-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin: 20px;
-  }
-  
-  .shelter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    transition: background-color 0.3s ease;
-    /* cursor: pointer; */
-  }
-  
-  .shelter:hover {
-    background-color: #f7f7f7;
-  }
-  
-  .shelter h3 {
-    margin: 0;
-    font-size: 1.5em; /* You can adjust the size as needed */
-  }
-  
-  .shelter p {
-    margin: 0;
-    color: #666;
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .pagination button {
-    border: 1px solid hwb(225 65% 8%);
-    padding: 5px 10px;
-    margin-right: 5px;
-    cursor: pointer;
-  }
-  
-  .pagination button:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .pagination button.active {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .pagination button:last-child {
-    margin-right: 0;
-  }
-  
+.admin-shelters-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px;
+}
+
+.admin-shelter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+  /* cursor: pointer; */
+}
+
+.admin-shelter:hover {
+  background-color: #f7f7f7;
+}
+
+.admin-shelter h3 {
+  margin: 0;
+  font-size: 1.5em; /* You can adjust the size as needed */
+}
+
+.admin-shelter p {
+  margin: 0;
+  color: #666;
+}
+
+.admin-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.admin-pagination button {
+  border: 1px solid hwb(225 65% 8%);
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.admin-pagination button:hover {
+  background-color: #f0f0f0;
+}
+
+.admin-pagination button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.admin-pagination button:last-child {
+  margin-right: 0;
+}

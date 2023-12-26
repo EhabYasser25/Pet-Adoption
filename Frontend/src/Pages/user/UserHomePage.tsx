@@ -1,5 +1,6 @@
 import {useState} from "react";
-import Navbar from "../Compnents/Navbar.tsx";
+import Navbar from "../../Compnents/user/Navbar.tsx";
+import './UserHomeStyle.css'
 
 const UserHomePage = () => {
     const speciesOptions = [
@@ -7,8 +8,6 @@ const UserHomePage = () => {
         { value: 'cat', label: 'Cat' },
         { value: 'cet', label: 'Cet' },
         { value: 'Dat', label: 'Cat' },
-
-
         // Add more options as needed
     ];
     const locationOptions = [

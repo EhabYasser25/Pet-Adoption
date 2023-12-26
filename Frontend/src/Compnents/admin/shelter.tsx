@@ -5,24 +5,24 @@ import { FaTrash } from "react-icons/fa";
 
 
 const Shelter = ({ id, name, address }: ShelterType) => (
-  <div className="shelter">
-    <div className="shelter-name">
+  <div className="admin-shelter">
+    <div className="admin-shelter-name">
       <p>{name}</p>
     </div>
-    <div className="shelter-address">
+    <div className="admin-shelter-address">
       <p>{address}</p>
     </div>
-    <div className="shelter-icon">
+    <div className="admin-shelter-icon">
       {/* Link with IoIosPeople icon */}
       <Link to={`/admin/employees/${id}`}>
         <IoIosPeople style={{ fontSize: '30px', cursor: 'pointer' }} />
       </Link>
     </div>
-    <div className="shelter-icon">
+    <div className="admin-shelter-icon">
       {/* FaPen icon */}
       <FaPen style={{ fontSize: '20px', cursor: 'pointer', color: 'blue'}} />
     </div>
-    <div className="shelter-icon">
+    <div className="admin-shelter-icon">
       {/* FaPen icon */}
       <FaTrash style={{ fontSize: '20px', cursor: 'pointer', color: 'red'}} />
     </div>
