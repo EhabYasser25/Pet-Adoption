@@ -64,7 +64,7 @@ export function SignIn() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "100vh",
+            minHeight: "100vh",
             backgroundSize: "cover",
             backgroundPosition: "center",
         }}
