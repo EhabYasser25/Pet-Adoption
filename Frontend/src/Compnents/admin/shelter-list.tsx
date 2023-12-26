@@ -11,11 +11,11 @@ const SheltersList = () => {
             name: 'That is large dummy shelter name and yet not large enough',
             address: '123 Main St, City A and yet another dummy large address and still not enough',
         }, {
-          id: '1',
+          id: '2',
           name: 'That is large dummy shelter name and yet not large enough',
           address: '123 Main St, City A and yet another dummy large address and still not enough',
         }, {
-          id: '1',
+          id: '3',
           name: 'That is large dummy shelter name and yet not large enough',
           address: '123 Main St, City A and yet another dummy large address and still not enough',
         }, {
