@@ -1,6 +1,7 @@
 import { NavLink } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React from "react";
+import "./navbar.css"
 
 const Navbar = () => {
   const userName = "mariam gerges";
@@ -21,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar-user">
       <h1>
         <span className="paw-print">🐾</span>Paws and claws
       </h1>
