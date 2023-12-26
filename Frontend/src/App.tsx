@@ -4,6 +4,7 @@ import SignIn from "./Pages/SignIn";
 import UserHomePage from "./Pages/UserHomePage";
 import Applications from "./Pages/Applications.tsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from "./Pages/admin/home-page.tsx";
 // import React from "react";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/" element={<UserHomePage/>}></Route>
                     <Route path="/signin" element={<SignIn />}></Route>
                     <Route path="user/applications" element={<Applications/>}></Route>
+                    <Route path="/admin/dashboard" element={<HomePage />}></Route>
                 </Routes>
             </Router>
         </Container>
