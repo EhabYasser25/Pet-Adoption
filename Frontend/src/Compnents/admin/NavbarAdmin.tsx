@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './NavBar.css'; // Make sure you have the CSS file for styling
+import './NavBarAdmin.css'; // Make sure you have the CSS file for styling
 
 const NavBarAdmin = () => {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import { SetStateAction, useState } from 'react';
 import { FaHome, FaPaw } from 'react-icons/fa';
-import './home-page.css';
-import NavBarAdmin from '../../Compnents/admin/navbar.tsx';
-import AddShelterForm from '../../Compnents/admin/add-shelter-form';
-import SheltersList from '../../Compnents/admin/shelter-list';
+import './AdminHomePage.css';
+import NavBarAdmin from '../../Compnents/admin/NavbarAdmin.tsx';
+import AddShelterForm from '../../Compnents/admin/AddShelterForm.tsx';
+import SheltersList from '../../Compnents/admin/ShelterList.tsx';
 
 // Define a type for the valid section keys
 type Section = 'shelters' | 'addShelter';
@@ -30,10 +30,10 @@ const HomePage = () => {
   const placeholderText = `Search by ${searchBy}...`;
 
   return (
-    <div className="homepage">
+    <div className="admin-homepage">
       <NavBarAdmin />
 
-      <div className="search-bar">
+      <div className="amdin-search-bar">
         <input type="text" placeholder={placeholderText} />
         <select value={searchBy} onChange={handleSearchByChange}>
           <option value="shelter name">Shelter name</option>
@@ -42,19 +42,19 @@ const HomePage = () => {
         </select>
       </div>
 
-      <div className="main-content">
-        <aside className="sidebar">
+      <div className="admin-main-content">
+        <aside className="amdin-sidebar">
           <ul>
             <li onClick={() => setActiveSection('shelters')}>
-              <FaHome className="icon" /> Shelters
+              <FaHome className="admin-icon" /> Shelters
             </li>
             <li onClick={() => setActiveSection('addShelter')}>
-              <FaPaw className="icon" /> Add Shelter
+              <FaPaw className="admin-icon" /> Add Shelter
             </li>
           </ul>
         </aside>
 
-        <section className="content">
+        <section className="admin-content">
           {/* TypeScript now understands that activeSection can only be a key from sectionsData */}
           {sectionsData[activeSection]}
         </section>

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { IoIosPeople } from 'react-icons/io';
 import { FaPen } from 'react-icons/fa';
 import { FaTrash } from "react-icons/fa";
+import './Shelter.css';
 
 
 const Shelter = ({ id, name, address }: ShelterType) => (

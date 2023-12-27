@@ -4,7 +4,7 @@ import SignIn from "./Pages/SignIn";
 import UserHomePage from "./Pages/user/UserHomePage.tsx";
 import Applications from "./Pages/Applications.tsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from "./Pages/admin/home-page.tsx";
+import HomePage from "./Pages/admin/AdminHomePage.tsx";
 // import React from "react";
 
 function App() {

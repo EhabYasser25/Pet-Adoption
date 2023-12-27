@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './add-shelter-form.css';
+import './AddShelterForm.css';
 
 const AddShelterForm = () => {
   const [shelter, setShelter] = useState({

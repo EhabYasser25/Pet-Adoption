@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import './shelter-list.css';
-import './shetler.css'
+import './ShelterList.css';
+import './Shelter.css'
 import '../../DTO/shelter-type'
-import AdminShelter from './shelter';
+import AdminShelter from './Shelter';
 
 const SheltersList = () => {
     const [shelters, setShelters] = useState<ShelterType[]>([
