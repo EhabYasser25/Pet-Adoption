@@ -11,6 +11,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,10 +46,13 @@ public class RegistrationController {
                 .status(HttpStatus.BAD_REQUEST).body(ErrorCode.EMAIL_ALREADY_EXIST.getError());
          }
 
-        System.out.println(ex.getMessage());
-        System.out.println(ex.getCause().toString());
-        System.out.println(ex.getStackTrace().toString().toString());
-        return ResponseEntity
-            .status(HttpStatus.INTERNAL_SERVER_ERROR).body(ErrorCode.UNHANDLED_EXCEPTION.getError());    }
+        if (ex instanceof UsernameNotFoundException || ex instanceof BadCredentialsException){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ErrorCode.LOGIN_FAILED.getError());
+        }
 
-    }
+        System.out.println(ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR).body(ErrorDTO.builder().code(101).message(ex.getMessage()).build());    }
+
+}
