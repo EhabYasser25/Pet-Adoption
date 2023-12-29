@@ -1,12 +1,20 @@
 package com.example.Backend.model.user;
 
+import com.example.Backend.emum.Gender;
 import com.example.Backend.emum.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 
 // TODO make lombok workkkkkk :( it seems like the problem is within the pom.xml file...
@@ -14,7 +22,7 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class User implements UserDetails {
     @Id
     private int id;
     private String firstName;
@@ -25,131 +33,38 @@ public class User {
     private String password;
     private String email;
     private String phoneNo;
-    private String gender;
-    private Date birthdate;
-    private String locationCity;
-    private String locationCountry;
+    private Gender gender;
+    private LocalDate birthdate;
     private Role role;
 
-    public User(int id, String firstName, String middleName, String lastName, String username,
-                String password, String email, String phoneNo, String gender, java.sql.Date birthdate, String locationCity,
-                String locationCountry, Role role) { // @AllArgsConstructor
-        this.id = id;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phoneNo = phoneNo;
-        this.gender = gender;
-        this.birthdate = birthdate;
-        this.locationCity = locationCity;
-        this.locationCountry = locationCountry;
-        this.role = role;
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getFirstName() {
-        return firstName;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public String getMiddleName() {
-        return middleName;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
+    @Override
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Date getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public String getLocationCity() {
-        return locationCity;
-    }
-
-    public void setLocationCity(String locationCity) {
-        this.locationCity = locationCity;
-    }
-
-    public String getLocationCountry() {
-        return locationCountry;
-    }
-
-    public void setLocationCountry(String locationCountry) {
-        this.locationCountry = locationCountry;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 }

@@ -1,32 +1,62 @@
 package com.example.Backend.model.user;
 
+import com.example.Backend.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
-public class Admin {
-    private String userName;
+public class Admin implements UserDetails {
+    private String username;
     private String password;
 
     public Admin (String userName, String password) {
-        this.userName = userName;
+        this.username = userName;
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
-    }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(Roles.ADMIN.name()));
     }
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setPassword(String password) {

@@ -2,8 +2,11 @@ package com.example.Backend.DAO.user;
 
 import com.example.Backend.mapper.user.AdminRowMapper;
 import com.example.Backend.model.user.Admin;
+import com.example.Backend.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -15,16 +18,40 @@ public class AdminDAO {
     @Autowired
     private AdminRowMapper adminRowMapper;
 
+    public Admin getById(int id) {
+        try {
+            BeanPropertyRowMapper<Admin> rowMapper = new BeanPropertyRowMapper<>(Admin.class);
+            Admin admin = this.jdbcTemplate.queryForObject(
+                    "SELECT * FROM admin WHERE id = ?", rowMapper, id);
+            return admin;
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("Admin not found with ID: " + id);
+            return null;
+        }
+    }
+
     public Admin getByUsername(String username) {
         try {
-            Admin result = this.jdbcTemplate.queryForObject(
-                    "SELECT * FROM admin WHERE username = ?", adminRowMapper, username);
-            System.out.println(result);
-            return result;
+            String query = "SELECT * FROM admin WHERE username = ? ";
+            BeanPropertyRowMapper<Admin> rowMapper = new BeanPropertyRowMapper<>(Admin.class);
+            Admin admin = this.jdbcTemplate.queryForObject(query, rowMapper, username);
+            return admin;
         } catch (EmptyResultDataAccessException e) {
-            // Handle case where user is not found
-            System.out.println("Admin not found with username: " + username);
+            System.out.println("Admin not found with username : " + username);
             return null;
+        }
+    }
+
+    public boolean insertAdmin(Admin admin) {
+        try {
+            String insertQuery = "INSERT INTO admin (username, password) VALUES (?, ?)";
+            int rowsAffected = jdbcTemplate.update(insertQuery, admin.getUsername(), admin.getPassword());
+
+            return rowsAffected > 0;
+        } catch (DataAccessException e) {
+            // Handle database-related exceptions
+            e.printStackTrace();
+            return false;
         }
     }
 }

@@ -1,9 +1,11 @@
 package com.example.Backend.DTO.registrationAndAuth;
 
+import com.example.Backend.emum.Gender;
 import com.example.Backend.enums.Genders;
 import com.example.Backend.validator.Birthdate;
 import com.example.Backend.validator.StrongPassword;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
@@ -20,19 +22,23 @@ public class RegistrationRequestDTO {
     @StrongPassword
     private String password;
 
-    @NotNull (message = "please provide a username ")
+    @NotBlank (message = "please provide a username ")
     private String username;
 
-    @NotNull (message = "please provide a firstname")
-    private String firstname;
+    @NotBlank(message = "please provide a firstname")
+    private String firstName;
 
+    @NotBlank(message = "please provide your last name")
     private String lastName;
+
+    private String middleName;
 
     @Birthdate
     private LocalDate birthdate;
 
-    private Genders gender;
+    private Gender gender;
 
-
+    @NotBlank (message =  "please provide your phone number")
+    private String phoneNo;
 
 }

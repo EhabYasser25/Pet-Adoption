@@ -14,7 +14,7 @@
 	<name>Pet-Adoption</name>
 	<description>Simple Pet Adoption Web Applicatioon</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>19</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -25,12 +25,30 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven-plugin -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.30</version>
+			<artifactId>lombok-maven-plugin</artifactId>
+			<version>1.18.20.0</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>2.16.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.16.1</version>
+		</dependency>
+
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

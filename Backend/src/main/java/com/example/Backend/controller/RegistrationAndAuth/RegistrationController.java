@@ -1,10 +1,10 @@
 package com.example.Backend.controller.RegistrationAndAuth;
 
 
-import com.example.Backend.DTO.Response;
 import com.example.Backend.DTO.registrationAndAuth.RegistrationRequestDTO;
-import com.example.Backend.enums.StatusCode;
+import com.example.Backend.Error.GlobalException;
 import com.example.Backend.service.registrationAndAuth.UserRegistrationService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +21,12 @@ public class RegistrationController {
     UserRegistrationService userRegistrationService;
 
     @PostMapping("/register")
-    public ResponseEntity<Response<Object>> register(@Valid @RequestBody RegistrationRequestDTO request)  {
+    public ResponseEntity<String> register(@Valid @RequestBody RegistrationRequestDTO request) throws JsonProcessingException, GlobalException {
 
-
-        // string JWT = userRegistrationService.registerUser()
-        String jwt = "";
+        String JWT = userRegistrationService.registerUser(request);
 
         return ResponseEntity
-                .ok(StatusCode.SUCCESSFUL_REGISTRATION_OR_LOGIN.getResponse(jwt));
+                .ok(JWT);
     }
 
 

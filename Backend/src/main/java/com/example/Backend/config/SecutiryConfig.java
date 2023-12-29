@@ -5,6 +5,7 @@ import com.example.Backend.service.registrationAndAuth.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -40,14 +41,15 @@ public class SecutiryConfig {
                 }))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers(
-                                "/auth/**" ,
-                                "/config/**" ,
-                                "/test/**")
-                        .permitAll()
-                        .requestMatchers("/user/**").hasAuthority(Roles.USER.name())
-                        .requestMatchers("/admin/**").hasAuthority(Roles.ADMIN.name())
-                        .requestMatchers("/staff/**").hasAuthority(Roles.STAFF.name())
+                        .anyRequest().permitAll()
+//                        .requestMatchers(
+//                                "/auth/**" ,
+//                                "/config/**" ,
+//                                "/test/**")
+//                        .permitAll()
+//                        .requestMatchers("/user/**").hasAuthority(Roles.USER.name())
+//                        .requestMatchers("/admin/**").hasAuthority(Roles.ADMIN.name())
+//                        .requestMatchers("/staff/**").hasAuthority(Roles.STAFF.name())
                 )
                 .sessionManagement((session) -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -77,5 +79,7 @@ public class SecutiryConfig {
         authenticationProvider.setPasswordEncoder(passwordEncoder);
         return new ProviderManager(authenticationProvider);
     }
+
+
 
 }

@@ -18,11 +18,11 @@ public class LoginController {
     @Autowired
     AuthenticationService loginService;
     @PostMapping("/login")
-    public ResponseEntity<Response<Object>> login(@Valid @RequestBody LoginRequestDTO request)  {
+    public ResponseEntity<String> login(@Valid @RequestBody LoginRequestDTO request)  {
 
-        String jwt = loginService.authenticate(request.getUsernameOrEmail(), request.getPassword());
+        String JWT = loginService.authenticate(request.getUsernameOrEmail(), request.getPassword());
 
         return ResponseEntity
-                .ok(StatusCode.SUCCESSFUL_REGISTRATION_OR_LOGIN.getResponse(jwt));
+                .ok(JWT);
     }
 }

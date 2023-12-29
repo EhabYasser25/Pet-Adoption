@@ -1,15 +1,16 @@
 package com.example.Backend.enums;
 
-
+import com.example.Backend.DTO.ErrorDTO;
 import com.example.Backend.DTO.Response;
 import lombok.Getter;
 
 @Getter
 public enum StatusCode {
 
-    EMAIL_ALREADY_EXIST(10, "Email already exists"),
-    USERNAME_ALREADY_EXIST(10, "Username already exists"),
-    SUCCESSFUL_REGISTRATION_OR_LOGIN(13, "Registration sucessful");
+    EMAIL_ALREADY_EXIST(10, "Email already exists"), // conflict 409
+    USERNAME_ALREADY_EXIST(11, "Username already exists"), // conflict 409
+    REGISTRATION_FAILED (12, "Unable to register user"); // 500 internal service error
+//    SUCCESSFUL_REGISTRATION_OR_LOGIN(13, "Registration successful");
 
     private final int code;
     private final String message;
@@ -19,12 +20,7 @@ public enum StatusCode {
         this.message = message;
     }
 
-    public Response<Void> getResponse() {
-        return new Response<>(code,message,null);
-    }
-
-    public  Response<Object> getResponse(Object data) {
-        return new Response<>(code,message,data);
+    public ErrorDTO getError(){
+        return new ErrorDTO (code,message);
     }
 }
-
