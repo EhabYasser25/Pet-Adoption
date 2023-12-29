@@ -1,7 +1,6 @@
-package com.example.Backend.enums;
+package com.example.Backend.emum;
 
 import com.example.Backend.DTO.ErrorDTO;
-import com.example.Backend.DTO.Response;
 import lombok.Getter;
 
 @Getter

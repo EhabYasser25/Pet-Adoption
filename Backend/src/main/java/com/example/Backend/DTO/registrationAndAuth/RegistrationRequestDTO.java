@@ -1,12 +1,10 @@
 package com.example.Backend.DTO.registrationAndAuth;
 
 import com.example.Backend.emum.Gender;
-import com.example.Backend.enums.Genders;
 import com.example.Backend.validator.Birthdate;
 import com.example.Backend.validator.StrongPassword;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 

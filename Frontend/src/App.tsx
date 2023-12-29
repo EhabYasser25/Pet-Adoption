@@ -4,7 +4,7 @@ import SignIn from "./Pages/SignIn";
 import UserHomePage from "./Pages/user/UserHomePage.tsx";
 import Applications from "./Pages/Applications.tsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from "./Pages/admin/AdminHomePage.tsx";
+import AdminHomePage from "./Pages/admin/AdminHomePage.tsx";
 // import React from "react";
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
                     <Route path="/" element={<UserHomePage/>}></Route>
                     <Route path="/signin" element={<SignIn />}></Route>
                     <Route path="user/applications" element={<Applications/>}></Route>
-                    <Route path="/admin/dashboard" element={<HomePage />}></Route>
+                    <Route path="/admin/dashboard" element={<AdminHomePage />}></Route>
                 </Routes>
             </Router>
         </Container>
@@ -31,19 +31,3 @@ function App() {
 }
 
 export default App;
-
-    // You can manage user authentication state here if needed
-  // const [loggedIn, setLoggedIn] = useState(false);
-
-//   return (
-//       <div className="App">
-//           <Navbar />
-//           <div className="content">
-//               <UserHomePage />
-//           </div>
-//       </div>
-//   );
-// };
-//
-// export default App;
-

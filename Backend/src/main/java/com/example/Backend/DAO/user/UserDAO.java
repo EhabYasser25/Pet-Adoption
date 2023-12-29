@@ -1,7 +1,6 @@
 package com.example.Backend.DAO.user;
 
 
-import com.example.Backend.enums.Roles;
 import com.example.Backend.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

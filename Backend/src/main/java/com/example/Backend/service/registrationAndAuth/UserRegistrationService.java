@@ -5,7 +5,7 @@ import com.example.Backend.DAO.user.UserDAO;
 import com.example.Backend.DTO.registrationAndAuth.RegistrationRequestDTO;
 import com.example.Backend.Error.GlobalException;
 import com.example.Backend.emum.Role;
-import com.example.Backend.enums.StatusCode;
+import com.example.Backend.emum.StatusCode;
 import com.example.Backend.model.user.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

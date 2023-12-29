@@ -1,7 +1,6 @@
 package com.example.Backend.model.user;
 
-import com.example.Backend.enums.Roles;
-import lombok.AllArgsConstructor;
+import com.example.Backend.emum.Role;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +26,7 @@ public class Admin implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(Roles.ADMIN.name()));
+        return List.of(new SimpleGrantedAuthority(Role.ADMIN.name()));
     }
 
     public String getPassword() {

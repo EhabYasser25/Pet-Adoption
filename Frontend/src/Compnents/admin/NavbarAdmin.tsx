@@ -15,7 +15,7 @@ const NavBarAdmin = () => {
 
   return (
     <nav className="admin-navbar">
-      <h1>Admin Dashboard</h1>
+        <h1>  <span className="paw-print">🐾</span>Admin Dashboard</h1>
       <div className="admin-navbar-right">
         <span className="admin-signed-in-as">Signed in as {adminName}</span>
         {/* Sign out button */}

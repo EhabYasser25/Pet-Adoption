@@ -3,7 +3,6 @@ package com.example.Backend.controller.RegistrationAndAuth;
 
 import com.example.Backend.DTO.Response;
 import com.example.Backend.DTO.registrationAndAuth.LoginRequestDTO;
-import com.example.Backend.enums.StatusCode;
 import com.example.Backend.service.registrationAndAuth.AuthenticationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
