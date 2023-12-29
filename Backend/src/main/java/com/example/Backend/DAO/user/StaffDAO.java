@@ -69,4 +69,37 @@ public class StaffDAO {
         }
     }
 
+    public boolean updateStaffMember(User updatedUser) {
+        try {
+            int userId = updatedUser.getId();
+            // Fetch the User object from the database
+            User user = userDAO.getById(userId);
+            if (user == null) {
+                System.out.println("User not found with ID: " + userId);
+                return false;
+            }
+
+            user.setEmail(updatedUser.getEmail());
+            user.setGender(updatedUser.getGender());
+            user.setFirstName(updatedUser.getFirstName());
+            user.setMiddleName(updatedUser.getMiddleName());
+            user.setLastName(updatedUser.getLastName());
+            user.setFullName(updatedUser.getFullName());
+            user.setPhoneNo(updatedUser.getPhoneNo());
+            user.setUsername(updatedUser.getUsername());
+            user.setBirthdate(updatedUser.getBirthdate());
+
+            // Update the User object in the database
+            return userDAO.updateUser(user);
+
+        } catch (DataAccessException e) {
+            int userId = updatedUser.getId();
+            System.out.println("Error updating staff member with user ID: " + userId);
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
 }

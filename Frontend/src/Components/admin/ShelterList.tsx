@@ -59,7 +59,7 @@ const SheltersList = () => {
             {...shelter}
             onEdit={updateShelterInList}
             onDelete={handleDeleteShelter} // Pass the delete function to AdminShelter
-         />
+          />
         ))}
       </div>
 

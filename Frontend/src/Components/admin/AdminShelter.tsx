@@ -51,7 +51,7 @@ const AdminShelter: React.FC<AdminShelterProps> = ({ id, name, address, location
         if (response.data) {
           console.log('Shelter deleted successfully');
           alert('Shelter deleted successfully');
-          onDelete(id); // Call only if deletion is successful
+          onDelete(id); 
         } else {
           console.log('Failed to delete shelter');
           alert('Failed to delete shelter');

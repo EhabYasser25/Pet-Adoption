@@ -82,4 +82,27 @@ public class UserDAO {
             return false;
         }
     }
+
+    public boolean updateUser(User user) {
+        try {
+            String sql = "UPDATE user SET first_name = ?, middle_name = ?, last_name = ?, username = ?, password = ?, email = ?, phone_no = ?, birthdate = ? WHERE id = ?";
+
+            int rowsAffected = jdbcTemplate.update(sql,
+                    user.getFirstName(),
+                    user.getMiddleName(),
+                    user.getLastName(),
+                    user.getUsername(),
+                    user.getPassword(),
+                    user.getEmail(), // TODO check regex
+                    user.getPhoneNo(),
+                    user.getBirthdate(),
+                    user.getId());
+
+            return rowsAffected > 0;
+        } catch (DataAccessException e) {
+            System.out.println("Error updating user with ID: " + user.getId());
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
