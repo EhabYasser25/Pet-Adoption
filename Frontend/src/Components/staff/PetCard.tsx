@@ -1,9 +1,9 @@
 import {Card} from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import {PetInterface} from "../../Pages/staff/StaffHomaPage";
+import {PetDTO} from "../../Controller/DTO/pets/PetDTO";
 
-const PetCard = ({ pet }: { pet: PetInterface }) => {
+const PetCard = ({ pet }: { pet: PetDTO }) => {
   // Function to format the date in a more readable format
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString();
@@ -26,7 +26,7 @@ const PetCard = ({ pet }: { pet: PetInterface }) => {
           />
         </Col>
         {/* Pet details */}
-        <Col md={10}>
+        <Col md={9}>
           <Card.Body style={{ overflowY: 'auto', maxHeight: '20vh' }}>
             <Card.Title><h1>{pet.name}</h1></Card.Title>
             <Card.Text><strong>Species:</strong> {pet.specie}</Card.Text>
