@@ -36,7 +36,7 @@ const AdminShelter: React.FC<AdminShelterProps> = ({ id, name, address, location
     const handleSave = async (updatedShelter: ShelterType) => {
       try {
         const response = await httpRequest('POST', `/admin/modify-shelter`, updatedShelter);
-        console.log('Update Response:', response);
+        console.log('Update Response:', response.data);
         onEdit(updatedShelter); // Call the passed onEdit function with the updated shelter
         setShowEditModal(false)
       } catch (error) {

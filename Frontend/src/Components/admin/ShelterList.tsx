@@ -5,25 +5,33 @@ import '../../DTO/shelter-type'
 import AdminShelter from './AdminShelter';
 import { httpRequest } from '../../Controller/HttpProxy';
 
-const SheltersList = () => {
+interface SheltersListProps {
+  searchQuery: string;
+  searchBy: string;
+}
+
+const SheltersList: React.FC<SheltersListProps> = ({ searchQuery, searchBy }) => {
   const [shelters, setShelters] = useState<ShelterType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const sheltersPerPage = 13;
 
   useEffect(() => {
-    // Fetch shelters
+    console.log(searchBy)
+    console.log(searchQuery)
+    // Define the function to fetch shelters based on search criteria
     const fetchShelters = async () => {
-      const response = await httpRequest("GET", '/admin/shelters').then ((response) => {
-        setShelters(response.data);
-      }).catch((error) => {
-        console.log(error)
-      })
+      let endpoint = '/admin/shelters';
+      if (searchQuery) {
+        endpoint += `?searchBy=${encodeURIComponent(searchBy)}&searchQuery=${encodeURIComponent(searchQuery)}`;
+      }
       
+      const response = await httpRequest("GET", endpoint);
+      // Assuming your API returns an array of shelters
+      setShelters(response.data);
     };
 
     fetchShelters();
-  }, []);
-
+  }, [searchQuery, searchBy]); // Re-fetch when search parameters change
   const updateShelterInList = (updatedShelter: ShelterType) => {
     setShelters(prevShelters =>
       prevShelters.map(shelter =>

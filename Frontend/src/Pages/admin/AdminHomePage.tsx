@@ -8,23 +8,35 @@ import NavBarAdmin from "../../Components/admin/NavbarAdmin";
 // Define a type for the valid section keys
 type Section = 'shelters' | 'addShelter';
 
-// Define a type for the sections data with the above keys
-type SectionsData = {
-  [key in Section]: JSX.Element;
-};
-
-// Define your sectionsData with the corresponding type
-const sectionsData: SectionsData = {
-  shelters: <SheltersList/>,
-  addShelter: <AddShelterForm />,
+// Define a function to return the sections with props
+const getSectionComponent = (section: Section, searchQuery: string, searchBy: string) => {
+  switch (section) {
+    case 'shelters':
+      return <SheltersList searchQuery={searchQuery} searchBy={searchBy} />;
+    case 'addShelter':
+      return <AddShelterForm />;
+    default:
+      return null;
+  }
 };
 
 const AdminHomePage = () => {
   // Use the Section type for the activeSection state
   const [activeSection, setActiveSection] = useState<Section>('shelters');
   const [searchBy, setSearchBy] = useState('shelter name'); // Default search by Shelter
+  const [searchQuery, setSearchQuery] = useState('');
+  const [inputValue, setInputValue] = useState(''); // State to hold the input value
+
   const handleSearchByChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     setSearchBy(event.target.value);
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSearch = () => {
+    setSearchQuery(inputValue);
   };
 
   const placeholderText = `Search by ${searchBy}...`;
@@ -34,12 +46,18 @@ const AdminHomePage = () => {
       <NavBarAdmin />
 
       <div className="amdin-search-bar">
-        <input type="text" placeholder={placeholderText} />
+        <input
+          type="text"
+          placeholder={placeholderText}
+          value={inputValue}
+          onChange={handleInputChange}
+        />
         <select value={searchBy} onChange={handleSearchByChange} className="admin-search-dropdown-list">
           <option value="shelter name">Shelter name</option>
-          <option value="helter address">Shelter address</option>
-          {/* Add more options as needed */}
+          <option value="shelter country">Shelter country</option>
+          <option value="shelter city">Shelter city</option>
         </select>
+        <button onClick={handleSearch}>Search</button>
       </div>
 
       <div className="admin-main-content">
@@ -55,8 +73,7 @@ const AdminHomePage = () => {
         </aside>
 
         <section className="admin-content">
-          {/* TypeScript now understands that activeSection can only be a key from sectionsData */}
-          {sectionsData[activeSection]}
+          {getSectionComponent(activeSection, searchQuery, searchBy)}
         </section>
       </div>
     </div>
