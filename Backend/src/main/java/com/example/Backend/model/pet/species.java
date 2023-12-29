@@ -4,35 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class species {
+
+    @Id
     private int id;
+
     private String species;
-
-
-    public species(int id, String species, String breed) {
-        this.id = id;
-        this.species = species;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getSpecies() {
-        return species;
-    }
-
-    public void setSpecies(String species) {
-        this.species = species;
-    }
-
 }
