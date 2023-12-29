@@ -5,10 +5,10 @@ import "react-phone-number-input/style.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays, faEnvelope, faFileSignature, faGlobe, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
-import { httpRequest } from "./Controller/HttpProxy";
-import {clearCurrentSession, setJwtToken} from "./CurrentSession";
-import { RegistrationRequestDTO } from "./Controller/DTO/authentication/RegistrationRequestDTO";
-import { GenericResponseDTO } from "./Controller/DTO/GenericResponseDTO";
+import { httpRequest } from "../Controller/HttpProxy";
+import {clearCurrentSession, setJwtToken} from "../CurrentSession";
+import { RegistrationRequestDTO } from "../Controller/DTO/authentication/RegistrationRequestDTO";
+import { GenericResponseDTO } from "../Controller/DTO/GenericResponseDTO";
 
 export function SignUp() {
   const [validated, setValidated] = useState(false);
@@ -93,7 +93,7 @@ export function SignUp() {
       })
       .catch((error) => {
         console.log(error)
-        alert("The email or password you entered is incorrect. Please re-check your credentials and try again.")
+        alert()
       })
   };
 

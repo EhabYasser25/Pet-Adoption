@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import "./App.css";
 import SignIn from "./Pages/SignIn";
+import SignUp from "./Pages/SignUp";
 import UserHomePage from "./Pages/user/UserHomePage.tsx";
 import Applications from "./Pages/Applications.tsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -22,6 +23,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<UserHomePage/>}></Route>
                     <Route path="/signin" element={<SignIn />}></Route>
+                    <Route path="/signup" element={<SignUp />}></Route>
                     <Route path="user/applications" element={<Applications/>}></Route>
                     <Route path="/admin/dashboard" element={<AdminHomePage />}></Route>
                 </Routes>

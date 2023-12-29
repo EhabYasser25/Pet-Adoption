@@ -47,20 +47,6 @@ export const setJwtToken = (jwtToken: string) => {
   window.sessionStorage.setItem("jwtToken", jwtToken)
 }
 
-// export const storeUserData = (userDTO: UserDTO) => {
-//   window.sessionStorage.setItem("id", userDTO.id.toString())
-//   window.sessionStorage.setItem("name", userDTO.name)
-//   window.sessionStorage.setItem("email", userDTO.email)
-//   window.sessionStorage.setItem("phone", userDTO.phone)
-//   window.sessionStorage.setItem("address", userDTO.address)
-//   window.sessionStorage.setItem("balance", userDTO.balance.toString())
-//   window.sessionStorage.setItem("nationalID", userDTO.nationalID)
-//   window.sessionStorage.setItem("dateJoined", userDTO.dateJoined)
-//   window.sessionStorage.setItem("sellerDescription", userDTO.sellerDescription)
-//   window.sessionStorage.setItem("vatRegistrationNumber", userDTO.vatRegistrationNumber)
-//   window.sessionStorage.setItem("jwtToken", userDTO.token)
-// }
-
 export const clearCurrentSession = () => {
   window.sessionStorage.clear();
 };
