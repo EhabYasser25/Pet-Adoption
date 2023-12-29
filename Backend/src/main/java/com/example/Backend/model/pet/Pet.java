@@ -22,7 +22,7 @@ public class Pet {
     private boolean isHouseTrained;
 
     private String image;
-    private Timestamp releaseTimeStamp;=
+    private Timestamp releaseTimeStamp;
 
     List<Attachment> attachments;
     private String breed;
