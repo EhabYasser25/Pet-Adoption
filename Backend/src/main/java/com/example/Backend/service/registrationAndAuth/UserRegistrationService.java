@@ -4,8 +4,9 @@ package com.example.Backend.service.registrationAndAuth;
 import com.example.Backend.DAO.user.UserDAO;
 import com.example.Backend.DTO.registrationAndAuth.RegistrationRequestDTO;
 import com.example.Backend.Error.GlobalException;
+import com.example.Backend.config.JWTUtilities;
+import com.example.Backend.enums.ErrorCode;
 import com.example.Backend.enums.Role;
-import com.example.Backend.enums.StatusCode;
 import com.example.Backend.model.user.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,13 +20,16 @@ import org.springframework.stereotype.Service;
 public class UserRegistrationService {
 
     @Autowired
-    AuthenticationService authenticationService;
-
-    @Autowired
     UserDAO userDAO;
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
+
+    @Autowired
+    JWTUtilities jwtUtilities;
 
     public String registerUser(RegistrationRequestDTO registrationRequest) throws JsonProcessingException, GlobalException {
 
@@ -33,10 +37,10 @@ public class UserRegistrationService {
         User user = get_user(registrationRequest);
         user.setRole(Role.USER);
         if (!userDAO.insertUser(user)){
-            throw new GlobalException(StatusCode.REGISTRATION_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new GlobalException(ErrorCode.REGISTRATION_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return authenticationService.authenticate(registrationRequest.getUsername(),registrationRequest.getPassword());
+        return jwtUtilities.generateToken(userDetailsService.loadUserByUsername(registrationRequest.getUsername()));
 
     }
 
@@ -44,12 +48,12 @@ public class UserRegistrationService {
 
         // check if email already exists
         if (userDAO.existsByEmail(registrationRequest.getEmail())){
-            throw new GlobalException(StatusCode.EMAIL_ALREADY_EXIST, HttpStatus.CONFLICT);
+            throw new GlobalException(ErrorCode.EMAIL_ALREADY_EXIST, HttpStatus.CONFLICT);
         }
 
         // check if username already exists
         if (userDAO.existsByUsername(registrationRequest.getUsername())){
-            throw new GlobalException(StatusCode.USERNAME_ALREADY_EXIST, HttpStatus.CONFLICT);
+            throw new GlobalException(ErrorCode.USERNAME_ALREADY_EXIST, HttpStatus.CONFLICT);
         }
     }
 

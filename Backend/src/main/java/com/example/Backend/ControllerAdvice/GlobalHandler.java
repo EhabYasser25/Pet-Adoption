@@ -12,7 +12,7 @@ public class GlobalHandler {
 
     @ExceptionHandler(GlobalException.class)
     public ResponseEntity<ErrorDTO> customizedException(GlobalException ex){
-        ErrorDTO error = ex.getStatusCode().getError();
+        ErrorDTO error = ex.getErrorCode().getError();
         System.out.println("heyyyyy");
         return ResponseEntity
                 .status(ex.getHttpStatus()).body(error);    }
