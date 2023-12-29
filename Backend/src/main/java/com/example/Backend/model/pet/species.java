@@ -12,8 +12,5 @@ import org.springframework.data.annotation.Id;
 @AllArgsConstructor
 public class species {
 
-    @Id
-    private int id;
-
     private String species;
 }
