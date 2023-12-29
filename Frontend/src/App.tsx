@@ -38,6 +38,9 @@ function App() {
                     <Route path="user/applications" element={<Applications/>}></Route>
                     <Route path="/admin/dashboard" element={<AdminHomePage />}></Route>
                     <Route path="/staff/dashboard" element={<StaffHomePage />}></Route>
+                    <Route path="/staff/add/pet" element={<AddPetForm />}></Route>
+                    <Route path="/staff/edit/pet" element={<EditPetForm petDTO={{ name: 'looo', isSterilized: true }}/>}></Route>
+                    <Route path="/staff/applications" element={<Applications />}></Route>
                 </Routes>
             </Router>
         </Container>

@@ -57,7 +57,7 @@ public class ShelterManagementController {
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR).body(ErrorDTO.builder().code(101).message(ex.getMessage()).build());
 
-}
+    }
 
     @GetMapping("/shelters")
     public ResponseEntity<List<Shelter>> getAllShelters() {

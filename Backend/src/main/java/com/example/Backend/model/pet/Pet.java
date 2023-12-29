@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Pet {
     private int id;
-    private int speciesId;
+    private String speciesId;
     private String name;
     private Date birthDate;
     private Gender gender;

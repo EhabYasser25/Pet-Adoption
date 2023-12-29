@@ -97,4 +97,17 @@ public class ShelterDAO {
                 return null;
             }
     }
+    public Shelter getShelterById(int id) {
+        try {
+            BeanPropertyRowMapper<Shelter> rowMapper = new BeanPropertyRowMapper<>(Shelter.class);
+            Shelter shelter = this.jdbcTemplate.queryForObject(
+                    "SELECT * FROM shelter WHERE id = ?", rowMapper, id);
+            return shelter;
+        } catch (EmptyResultDataAccessException e) {
+            // Handle case where user is not found
+            System.out.println("Shelter not found with ID: " + id);
+            return null;
+        }
+    }
+
 }

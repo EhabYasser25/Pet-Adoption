@@ -2,8 +2,9 @@ package com.example.Backend.DAO.Pet;
 
 
 import com.example.Backend.model.pet.Pet;
+import com.example.Backend.model.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.*;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -19,6 +20,9 @@ import java.util.List;
 public class PetDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    PetTypeDAO petTypeDAO;
 
     public Pet getById(int id) {
         try {
@@ -73,4 +77,42 @@ public class PetDAO {
         }
     }
     
+
+    public boolean insertPet(Pet pet) {
+        try {
+            if (!petTypeDAO.existsPetType(pet.getSpeciesId())) {
+                petTypeDAO.insertPetType(pet.getSpeciesId());
+            }
+
+            String query = "INSERT INTO pet (species_id, name, birthdate, gender, is_sterilized, is_vaccinated, is_house_trained, image, breed, shelter, shelter_location_city, shelter_location_country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            int result = jdbcTemplate.update(query, pet.getSpeciesId(), pet.getName(), pet.getBirthDate(), pet.getGender().name(), pet.isSterilized(), pet.isVaccinated(), pet.isHouseTrained(), pet.getImage(), pet.getBreed(), pet.getShelterId(), pet.getShelterLocationCity(), pet.getShelterLocationCountry());
+            return result > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean editPet(Pet pet) {
+        try {
+            String query = "UPDATE pet SET name=?, is_sterilized=?, is_vaccinated=?, is_house_trained=? WHERE id=?";
+            int result = jdbcTemplate.update(query, pet.getName(), pet.isSterilized(), pet.isVaccinated(), pet.isHouseTrained(), pet.getId());
+            return result > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deletePet(int id) {
+        try {
+            String query = "DELETE FROM pet WHERE id = ?";
+            int result = jdbcTemplate.update(query, id);
+            return result > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

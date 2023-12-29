@@ -6,7 +6,7 @@ const StaffNavbar = () => {
   const navigate = useNavigate();
 
   const handleAddPetsClick = () => {
-    navigate('/staff/addpet');
+    navigate('/staff/add/pet');
   };
 
   const handleApplicationsClick = () => {
