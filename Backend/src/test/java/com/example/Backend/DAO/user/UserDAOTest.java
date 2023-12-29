@@ -1,19 +1,15 @@
 package com.example.Backend.DAO.user;
 
-import com.example.Backend.DTO.registrationAndAuth.StaffMemberDTO;
-import com.example.Backend.emum.Gender;
-import com.example.Backend.emum.Role;
+import com.example.Backend.enums.Gender;
+import com.example.Backend.enums.Role;
 import com.example.Backend.model.user.Admin;
 import com.example.Backend.model.user.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class UserDAOTest {

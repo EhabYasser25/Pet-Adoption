@@ -1,6 +1,7 @@
 package com.example.Backend.enums;
 
-public enum Genders {
-    MALE,
+public enum Gender {
     FEMALE,
+    MALE,
+    NO_GENDER
 }

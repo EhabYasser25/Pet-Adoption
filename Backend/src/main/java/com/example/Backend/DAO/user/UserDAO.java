@@ -1,7 +1,6 @@
 package com.example.Backend.DAO.user;
 
 
-import com.example.Backend.enums.Roles;
 import com.example.Backend.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -39,7 +38,6 @@ public class UserDAO {
             User user = this.jdbcTemplate.queryForObject(query, rowMapper, usernameOrEmail, usernameOrEmail);
             return user;
         } catch (EmptyResultDataAccessException e) {
-            System.out.println("User not found with username or email: " + usernameOrEmail);
             return null;
         }
     }
@@ -64,15 +62,6 @@ public class UserDAO {
         }
     }
 
-//    public void insertUser(User user) {
-//        try {
-//            String query = "INSERT INTO user (username, email, password) VALUES (?, ?, ?)";
-//            jdbcTemplate.update(query, user.getUsername(), user.getEmail(), user.getPassword());
-//        } catch (DataAccessException e) {
-//            System.out.println("unable to insert user");
-//            throw e;
-//        }
-//    }
 
     public boolean insertUser(User user) {
         try {

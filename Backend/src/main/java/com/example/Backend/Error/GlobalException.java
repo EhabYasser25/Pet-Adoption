@@ -1,19 +1,19 @@
 package com.example.Backend.Error;
 
 
-import com.example.Backend.enums.StatusCode;
+import com.example.Backend.enums.ErrorCode;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 @Data
 public class GlobalException extends Exception{
 
-    private StatusCode statusCode;
+    private ErrorCode errorCode;
     private HttpStatus httpStatus;
 
-    public GlobalException(StatusCode statusCode, HttpStatus httpStatus){
+    public GlobalException(ErrorCode errorCode, HttpStatus httpStatus){
         super("global exception");
-        this.statusCode = statusCode;
+        this.errorCode = errorCode;
         this.httpStatus = httpStatus;
     }
 }

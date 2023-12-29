@@ -1,7 +1,7 @@
 package com.example.Backend.model.user;
 
-import com.example.Backend.emum.Gender;
-import com.example.Backend.emum.Role;
+import com.example.Backend.enums.Gender;
+import com.example.Backend.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 

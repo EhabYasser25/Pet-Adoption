@@ -27,8 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         Admin admin = adminDAO.getByUsername(username);
 
-        System.out.println(admin.getPassword());
-        System.out.println(admin.getUsername());
+
         if (user == null && admin == null)
             throw new UsernameNotFoundException("User not found");
 
