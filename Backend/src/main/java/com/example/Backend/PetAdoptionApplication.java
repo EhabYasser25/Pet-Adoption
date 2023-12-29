@@ -39,9 +39,9 @@ public class PetAdoptionApplication {
 			Admin admin = adminService.getByUsername("User");
 			System.out.println(admin);
 
-			PetTypeService petTypeService = ctx.getBean(PetTypeService.class);
-			species species = petTypeService.getById(1);
-			System.out.println(species);
+//			PetTypeService petTypeService = ctx.getBean(PetTypeService.class);
+//			species species = petTypeService.getById(1);
+//			System.out.println(species);
 
 			PetService petService = ctx.getBean(PetService.class);
 			Pet pet = petService.getById(1);

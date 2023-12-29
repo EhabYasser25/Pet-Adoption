@@ -10,7 +10,7 @@ public class PetTypeService {
     @Autowired
     PetTypeDAO petTypeDAO;
 
-    public species getById(int id) {
-        return petTypeDAO.getById(id);
-    }
+//    public species getById(int id) {
+//        return petTypeDAO.getById(id);
+//    }
 }

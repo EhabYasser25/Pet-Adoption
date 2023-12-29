@@ -13,10 +13,6 @@ import org.springframework.stereotype.Repository;
 public class UserDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
-//
-//    @Autowired
-//    private UserRowMapper userRowMapper;
-
 
     public User getById(int id) {
         try {
