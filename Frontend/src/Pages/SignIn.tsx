@@ -9,8 +9,8 @@ import Row from "react-bootstrap/Row";
 import {Link, useNavigate} from "react-router-dom";
 import { httpRequest } from "../Controller/HttpProxy";
 import { clearCurrentSession, setJwtToken } from "../CurrentSession";
-import { LoginRequestDTO } from "../Controller/DTO/authentication/LoginRequestDTO";
-import { GenericResponseDTO } from "../Controller/DTO/GenericResponseDTO";
+import { LoginRequestDTO } from "../DTO/LoginRequestDTO";
+import { GenericResponseDTO } from "../DTO/GenericResponseDTO";
 
 export function SignIn() {
   const [validated, setValidated] = useState(false);
@@ -45,16 +45,16 @@ export function SignIn() {
 
     httpRequest('POST', 'auth/login', loginRequestDTO)
       .then((response) => {
-        const responseData = response.data as GenericResponseDTO
-        alert(responseData.message)
-        setJwtToken(responseData.data)
+        const responseData = response.data
+        alert(responseData)
+        setJwtToken(responseData)
         setValidated(true)
         navigate('/')
         console.log(responseData)
       })
       .catch((error) => {
         console.log(error)
-        alert("The email or password you entered is incorrect. Please re-check your credentials and try again.")
+        alert(error.response.data.message)
       })
   };
 

@@ -3,7 +3,7 @@ import {Container, Pagination} from "react-bootstrap";
 import { FaSearch, FaFilter } from "react-icons/fa";
 import StaffNavbar from "../../Components/staff/StaffNavbar";
 import PetCard from "../../Components/staff/PetCard";
-import {PetDTO} from "../../Controller/DTO/pets/PetDTO";
+import {PetDTO} from "../../DTO/PetDTO";
 
 const PETS_PER_PAGE = 20;
 

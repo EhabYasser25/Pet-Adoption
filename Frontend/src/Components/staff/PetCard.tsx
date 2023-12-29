@@ -1,7 +1,7 @@
 import {Card} from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import {PetDTO} from "../../Controller/DTO/pets/PetDTO";
+import {PetDTO} from "../../DTO/PetDTO";
 
 const PetCard = ({ pet }: { pet: PetDTO }) => {
   // Function to format the date in a more readable format

@@ -25,6 +25,7 @@ public class RegistrationController {
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@Valid @RequestBody  RegistrationRequestDTO request) throws JsonProcessingException, GlobalException {
+        System.out.println();
 
         String JWT = userRegistrationService.registerUser(request);
 

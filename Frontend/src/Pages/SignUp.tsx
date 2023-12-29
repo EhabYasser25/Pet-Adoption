@@ -4,11 +4,20 @@ import { Link, useNavigate } from "react-router-dom";
 import "react-phone-number-input/style.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDays, faEnvelope, faFileSignature, faGlobe, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCalendarDays,
+  faEnvelope,
+  faFileSignature,
+  faGlobe,
+  faLock,
+  faPhone,
+  faUser
+} from "@fortawesome/free-solid-svg-icons";
 import { httpRequest } from "../Controller/HttpProxy";
 import {clearCurrentSession, setJwtToken} from "../CurrentSession";
-import { RegistrationRequestDTO } from "../Controller/DTO/authentication/RegistrationRequestDTO";
-import { GenericResponseDTO } from "../Controller/DTO/GenericResponseDTO";
+import { RegistrationRequestDTO } from "../DTO/RegistrationRequestDTO";
+import { GenericResponseDTO } from "../DTO/GenericResponseDTO";
+import {isValidPhoneNumber} from "react-phone-number-input";
 
 export function SignUp() {
   const [validated, setValidated] = useState(false);
@@ -19,7 +28,8 @@ export function SignUp() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [birthDate, setBirthDate] = useState(null);
-  const [nationality, setNationality] = useState("");
+  const [gender, setGender] = useState('');
+  const [phoneNo, setPhoneNo] = useState("");
   const [leavedEmail, setLeavedEmail] = useState(false);
   const [leavedUsername, setLeavedUsername] = useState(false);
   const [leavedPassword, setLeavedPassword] = useState(false);
@@ -27,7 +37,8 @@ export function SignUp() {
   const [leavedFirstName, setLeavedFirstName] = useState(false);
   const [leavedLastName, setLeavedLastName] = useState(false);
   const [leavedBirthDate, setLeavedBirthDate] = useState(false);
-  const [leavedNationality, setLeavedNationality] = useState(false);
+  const [leavedGender, setLeavedGender] = useState(false);
+  const [leavedPhoneNo, setLeavedPhoneNo] = useState(false);
   const navigate = useNavigate();
 
   const isValidEmail = (email: string) => {
@@ -72,28 +83,29 @@ export function SignUp() {
 
     const registrationRequestDTO: RegistrationRequestDTO = {
       email: email,
-      userName: username,
+      username: username,
       password: password,
       firstName: firstName,
       lastName: lastName,
-      birthDate: birthDate,
-      nationality: nationality
+      gender: gender,
+      phoneNo: phoneNo,
+      birthdate: birthDate,
     }
 
     clearCurrentSession();
 
     httpRequest("POST", "auth/register", registrationRequestDTO)
       .then((response) => {
-        const responseData = response.data as GenericResponseDTO;
-        alert(responseData.message)
-        setJwtToken(responseData.data)
+        const responseData = response.data;
+        alert(responseData)
+        setJwtToken(responseData)
         setValidated(true)
         navigate('/')
         console.log(responseData)
       })
       .catch((error) => {
         console.log(error)
-        alert()
+        alert(error.response.data.message)
       })
   };
 
@@ -137,7 +149,7 @@ export function SignUp() {
                     }}
                   />
                 </Col>
-                <Col md={11}>
+                <Col md={10}>
                   <Form.Control
                     required
                     type="text"
@@ -167,7 +179,7 @@ export function SignUp() {
                     }}
                   />
                 </Col>
-                <Col md={11}>
+                <Col md={10}>
                   <Form.Control
                     required
                     type="text"
@@ -197,7 +209,7 @@ export function SignUp() {
                     }}
                   />
                 </Col>
-                <Col md={11}>
+                <Col md={10}>
                   <Form.Control
                     required
                     type="password"
@@ -227,7 +239,7 @@ export function SignUp() {
                     }}
                   />
                 </Col>
-                <Col md={11}>
+                <Col md={10}>
                   <Form.Control
                     required
                     type="password"
@@ -258,7 +270,7 @@ export function SignUp() {
                     }}
                   />
                 </Col>
-                <Col md={11}>
+                <Col md={10}>
                   <Form.Control
                     required
                     type="text"
@@ -288,7 +300,7 @@ export function SignUp() {
                     }}
                   />
                 </Col>
-                <Col md={11}>
+                <Col md={10}>
                   <Form.Control
                     required
                     type="text"
@@ -318,7 +330,7 @@ export function SignUp() {
                     }}
                   />
                 </Col>
-                <Col md={11}>
+                <Col md={10}>
                   <Form.Control
                     required
                     type="date"
@@ -333,13 +345,13 @@ export function SignUp() {
           </Form.Group>
         </Row>
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="validationNationality">
-            <Form.Label>Nationality</Form.Label>
-            <Container fluid style={{ padding: 0 }}>
+          <Form.Group as={Col} controlId="validationCustomPhone">
+            <Form.Label>Phone Number</Form.Label>
+            <Container fluid style={{padding: 0}}>
               <Row>
                 <Col md={1} style={{paddingTop: 8}}>
                   <FontAwesomeIcon
-                    icon={faGlobe}
+                    icon={faPhone}
                     style={{
                       color: "#0000FF",
                       fontSize: "20px",
@@ -347,24 +359,41 @@ export function SignUp() {
                     }}
                   />
                 </Col>
-                <Col md={11}>
+                <Col md={10}>
                   <Form.Control
                     required
                     type="text"
-                    placeholder="Enter your nationality"
-                    value={nationality}
-                    onChange={(e) => setNationality(e.target.value)}
-                    onBlur={() => setLeavedNationality(true)}
-                    isInvalid={leavedNationality && !isValidNationality(nationality)}
+                    placeholder="Enter your phone number"
+                    value={phoneNo}
+                    onChange={(e) => setPhoneNo(e.target.value)}
+                    onBlur={() => setLeavedPhoneNo(true)}
+                    isInvalid={leavedPhoneNo && !isValidPhoneNumber(phoneNo)}
                   />
                 </Col>
               </Row>
             </Container>
           </Form.Group>
         </Row>
+        <Row style={{ marginBottom: '15px' }}>
+          <Form.Group as={Col} controlId="validationCustomGender">
+            <Form.Label>Gender</Form.Label>
+            <Form.Control
+              as="select"
+              name="gender"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              required
+            >
+              <option value="">Choose...</option>
+              <option value="MALE">Male</option>
+              <option value="FEMALE">Female</option>
+              <option value="NO_GENDER">No Gender</option>
+            </Form.Control>
+          </Form.Group>
+        </Row>
         <div
           className="mb-1"
-          style={{ display: "flex", justifyContent: "center" }}
+          style={{display: "flex", justifyContent: "center"}}
         >
           <Button
             type="submit"
@@ -375,8 +404,7 @@ export function SignUp() {
               !isPasswordMatch(password, confirmPassword) ||
               !isValidFirstName(firstName) ||
               !isValidLastName(lastName) ||
-              !isValidBirthDate(birthDate) ||
-              !isValidNationality(nationality)
+              !isValidBirthDate(birthDate)
             }
             style={{
               width: "100%",
