@@ -1,7 +1,7 @@
 package com.example.Backend.DAO.user;
 
-import com.example.Backend.emum.Gender;
-import com.example.Backend.emum.Role;
+import com.example.Backend.enums.Gender;
+import com.example.Backend.enums.Role;
 import com.example.Backend.model.user.Admin;
 import com.example.Backend.model.user.User;
 import org.junit.jupiter.api.Test;

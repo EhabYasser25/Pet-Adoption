@@ -1,6 +1,6 @@
 package com.example.Backend.model.pet;
 
-import com.example.Backend.emum.Gender;
+import com.example.Backend.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

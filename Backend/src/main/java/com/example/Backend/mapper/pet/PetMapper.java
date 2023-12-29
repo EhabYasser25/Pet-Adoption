@@ -1,6 +1,6 @@
 package com.example.Backend.mapper.pet;
 
-import com.example.Backend.emum.Gender;
+import com.example.Backend.enums.Gender;
 import com.example.Backend.model.pet.Pet;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;

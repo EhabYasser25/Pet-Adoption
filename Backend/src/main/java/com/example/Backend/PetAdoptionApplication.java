@@ -1,13 +1,10 @@
 package com.example.Backend;
 
 import com.example.Backend.model.pet.Pet;
-import com.example.Backend.model.pet.PetType;
 import com.example.Backend.model.user.Admin;
 import com.example.Backend.model.user.User;
 import com.example.Backend.service.pet.PetService;
-import com.example.Backend.service.pet.PetTypeService;
 import com.example.Backend.service.user.AdminService;
-//import com.example.Backend.service.user.StaffService;
 import com.example.Backend.service.user.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,13 +27,17 @@ public class PetAdoptionApplication {
 			User user = userService.getById(3);
 			System.out.println(user);
 
+//			StaffService staffService = ctx.getBean(StaffService.class);
+//			Staff staff = staffService.getById(3);
+//			System.out.println(staff);
+
 			AdminService adminService = ctx.getBean(AdminService.class);
 			Admin admin = adminService.getByUsername("User");
 			System.out.println(admin);
 
-			PetTypeService petTypeService = ctx.getBean(PetTypeService.class);
-			PetType petType = petTypeService.getById(1);
-			System.out.println(petType);
+//			PetTypeService petTypeService = ctx.getBean(PetTypeService.class);
+//			species species = petTypeService.getById(1);
+//			System.out.println(species);
 
 			PetService petService = ctx.getBean(PetService.class);
 			Pet pet = petService.getById(1);

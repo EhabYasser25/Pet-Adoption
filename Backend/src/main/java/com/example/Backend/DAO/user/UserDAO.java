@@ -13,10 +13,6 @@ import org.springframework.stereotype.Repository;
 public class UserDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
-//
-//    @Autowired
-//    private UserRowMapper userRowMapper;
-
 
     public User getById(int id) {
         try {
@@ -38,21 +34,20 @@ public class UserDAO {
             User user = this.jdbcTemplate.queryForObject(query, rowMapper, usernameOrEmail, usernameOrEmail);
             return user;
         } catch (EmptyResultDataAccessException e) {
-            System.out.println("User not found with username or email: " + usernameOrEmail);
             return null;
         }
     }
 
 
     public boolean existsByEmail(String email) {
-            try {
-                String query = "SELECT COUNT(*) FROM user WHERE email = ?";
-                Integer count = jdbcTemplate.queryForObject(query, Integer.class, email);
-                return count != null && count > 0;
-            } catch (EmptyResultDataAccessException e) {
-                return false;
-            }
+        try {
+            String query = "SELECT COUNT(*) FROM user WHERE email = ?";
+            Integer count = jdbcTemplate.queryForObject(query, Integer.class, email);
+            return count != null && count > 0;
+        } catch (EmptyResultDataAccessException e) {
+            return false;
         }
+    }
     public boolean existsByUsername(String username) {
         try {
             String query = "SELECT COUNT(*) FROM user WHERE username = ?";
@@ -63,15 +58,6 @@ public class UserDAO {
         }
     }
 
-//    public void insertUser(User user) {
-//        try {
-//            String query = "INSERT INTO user (username, email, password) VALUES (?, ?, ?)";
-//            jdbcTemplate.update(query, user.getUsername(), user.getEmail(), user.getPassword());
-//        } catch (DataAccessException e) {
-//            System.out.println("unable to insert user");
-//            throw e;
-//        }
-//    }
 
     public boolean insertUser(User user) {
         try {

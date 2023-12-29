@@ -1,8 +1,6 @@
 package com.example.Backend.DAO.user;
 
-import com.example.Backend.mapper.user.AdminRowMapper;
 import com.example.Backend.model.user.Admin;
-import com.example.Backend.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -14,9 +12,6 @@ import org.springframework.stereotype.Repository;
 public class AdminDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    private AdminRowMapper adminRowMapper;
 
     public Admin getById(int id) {
         try {
@@ -37,7 +32,6 @@ public class AdminDAO {
             Admin admin = this.jdbcTemplate.queryForObject(query, rowMapper, username);
             return admin;
         } catch (EmptyResultDataAccessException e) {
-            System.out.println("Admin not found with username : " + username);
             return null;
         }
     }

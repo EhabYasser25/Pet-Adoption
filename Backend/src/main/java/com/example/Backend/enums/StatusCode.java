@@ -1,4 +1,4 @@
-package com.example.Backend.emum;
+package com.example.Backend.enums;
 
 import com.example.Backend.DTO.ErrorDTO;
 import lombok.Getter;
