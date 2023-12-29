@@ -1,4 +1,4 @@
-package com.example.Backend.emum;
+package com.example.Backend.enums;
 
 public enum Gender {
     FEMALE,

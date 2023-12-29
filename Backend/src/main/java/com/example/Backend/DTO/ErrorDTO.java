@@ -1,4 +1,4 @@
-package com.example.Backend.model.user;
+package com.example.Backend.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Staff {
-    private int userId;
-    private int shelterId;
+public class ErrorDTO {
 
-
+    private int code;
+    private String message;
 }
