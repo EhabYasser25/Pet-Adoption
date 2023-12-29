@@ -7,6 +7,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 
 @Repository
 public class PetDAO {
@@ -26,4 +27,31 @@ public class PetDAO {
             return null;
         }
     }
+    public List<Pet> getPetByQuery(String query) {
+        try {
+            BeanPropertyRowMapper<Pet> rowMapper = new BeanPropertyRowMapper<>(Pet.class);
+            List<Pet> result = this.jdbcTemplate.query(
+                    query, rowMapper);
+            System.out.println(result);
+            return result;
+        } catch (EmptyResultDataAccessException e) {
+            // Handle case where user is not found
+            System.out.println(query);
+            return null;
+        }
+    }
+    public List<String> getBreedBySpecies(String species) {
+        try {
+            BeanPropertyRowMapper<String> rowMapper = new BeanPropertyRowMapper<>(String.class);
+            List<String> result = this.jdbcTemplate.query(
+                    "SELECT breed FROM pet WHERE species= ?", rowMapper,species);
+            System.out.println(result);
+            return result;
+        } catch (EmptyResultDataAccessException e) {
+            // Handle case where user is not found
+            System.out.println("no breeds");
+            return null;
+        }
+    }
+    
 }
