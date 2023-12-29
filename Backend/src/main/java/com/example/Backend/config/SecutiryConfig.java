@@ -1,5 +1,7 @@
 package com.example.Backend.config;
 
+
+import com.example.Backend.enums.Role;
 import com.example.Backend.service.registrationAndAuth.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -39,15 +41,13 @@ public class SecutiryConfig {
                 }))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-                        .anyRequest().permitAll()
-//                        .requestMatchers(
-//                                "/auth/**" ,
-//                                "/config/**" ,
-//                                "/test/**")
-//                        .permitAll()
-//                        .requestMatchers("/user/**").hasAuthority(Roles.USER.name())
-//                        .requestMatchers("/admin/**").hasAuthority(Roles.ADMIN.name())
-//                        .requestMatchers("/staff/**").hasAuthority(Roles.STAFF.name())
+                        .requestMatchers(
+                                "/auth/**" ,
+                                "/test/**")
+                        .permitAll()
+                        .requestMatchers("/user/**").hasAuthority(Role.USER.name())
+                        .requestMatchers("/admin/**").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers("/staff/**").hasAuthority(Role.STAFF.name())
                 )
                 .sessionManagement((session) -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

@@ -31,15 +31,15 @@ public class ShelterManagementController {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorDTO> customizedExceptionn(Exception ex){
+    public ResponseEntity<ErrorDTO> customizedExceptionn(Exception ex) {
 
-        if (ex  instanceof GlobalException){
-            GlobalException exception = (GlobalException)  ex;
+        if (ex instanceof GlobalException) {
+            GlobalException exception = (GlobalException) ex;
             ErrorDTO error = exception.getErrorCode().getError();
             return ResponseEntity
                     .status(exception.getHttpStatus()).body(error);
         }
-        if (ex instanceof MethodArgumentNotValidException){
+        if (ex instanceof MethodArgumentNotValidException) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST).body(ErrorCode.EMAIL_ALREADY_EXIST.getError());
         }
@@ -48,10 +48,11 @@ public class ShelterManagementController {
         System.out.println(ex.getCause().toString());
         System.out.println(ex.getStackTrace().toString().toString());
         return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR).body(ErrorCode.UNHANDLED_EXCEPTION.getError());    }
+                .status(HttpStatus.INTERNAL_SERVER_ERROR).body(ErrorCode.UNHANDLED_EXCEPTION.getError());
+    }
 
     @GetMapping("/shelters")
-    public ResponseEntity<List<Shelter>> getAllShelters () {
+    public ResponseEntity<List<Shelter>> getAllShelters() {
         List<Shelter> shelters = shelterManagementService.getAllShelters();
         return ResponseEntity.ok(shelters);
     }
@@ -62,22 +63,22 @@ public class ShelterManagementController {
 //    }
 
     @PutMapping("/modify-shelter/{id}/{name}/{address}")
-    public ResponseEntity<Shelter> updateShelter (
-            @PathVariable (value = "id") int id,
-            @PathVariable (value = "name") String name,
-            @PathVariable (value = "address") String address
+    public ResponseEntity<Shelter> updateShelter(
+            @PathVariable(value = "id") int id,
+            @PathVariable(value = "name") String name,
+            @PathVariable(value = "address") String address
     ) {
         Shelter shelter = shelterManagementService.updateShelter(id, name, address);
         return ResponseEntity.ok(shelter);
     }
 
     @DeleteMapping("/delete-shelter/{id}")
-    public ResponseEntity<?> deleteShelter (@PathVariable (value = "id") int id) {
+    public ResponseEntity<?> deleteShelter(@PathVariable(value = "id") int id) {
         return ResponseEntity.ok(shelterManagementService.deleteShelter(id));
     }
 
     @GetMapping("/staff/{shelter_id}")
-    public ResponseEntity<List<Staff>> getAllShelterStaff (@PathVariable (value = "shelter_id") int shelterId) {
+    public ResponseEntity<List<Staff>> getAllShelterStaff(@PathVariable(value = "shelter_id") int shelterId) {
         List<Staff> staffList = shelterManagementService.getAllShelterStaff(shelterId);
         return ResponseEntity.ok(staffList);
     }
@@ -88,7 +89,7 @@ public class ShelterManagementController {
 //    }
 
     @DeleteMapping("/delete-staff/{staff-id}")
-    public ResponseEntity<?> deleteStaffMember (@PathVariable (value = "staff-id") int staffId) {
+    public ResponseEntity<?> deleteStaffMember(@PathVariable(value = "staff-id") int staffId) {
         return ResponseEntity.ok(shelterManagementService.deleteStaffMember(staffId));
     }
 }

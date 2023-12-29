@@ -9,3 +9,4 @@ public class Attachment {
     String title;
     String attachmentUrl;
 }
+
