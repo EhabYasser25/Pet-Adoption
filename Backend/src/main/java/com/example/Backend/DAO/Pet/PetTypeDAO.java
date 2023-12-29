@@ -1,7 +1,7 @@
 package com.example.Backend.DAO.Pet;
 
 import com.example.Backend.mapper.pet.PetTypeMapper;
-import com.example.Backend.model.pet.PetType;
+import com.example.Backend.model.pet.species;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,9 +15,9 @@ public class PetTypeDAO {
     @Autowired
     private PetTypeMapper petTypeMapper;
 
-    public PetType getById(int id) {
+    public species getById(int id) {
         try {
-            PetType result = this.jdbcTemplate.queryForObject(
+            species result = this.jdbcTemplate.queryForObject(
                     "SELECT * FROM pet_type WHERE id = ?", petTypeMapper, id);
             System.out.println(result);
             return result;

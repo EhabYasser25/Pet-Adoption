@@ -4,16 +4,16 @@ import com.example.Backend.emum.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @Builder
 @AllArgsConstructor
 public class Pet {
     private int id;
-    private int typeId;
+    private int speciesId;
     private String name;
     private Date birthDate;
     private Gender gender;
@@ -21,13 +21,16 @@ public class Pet {
     private boolean isVaccinated;
     private boolean isHouseTrained;
 
-    private Blob image; // TODO change if needed
+    private String image;
     private Timestamp releaseTimeStamp;
 
+    List<Attachment> attachments;
+    private String breed;
+
     public Pet(int id, int typeId, String name, Date birthDate,
-               Gender gender, boolean isVaccinated, Blob image, Timestamp releaseTimeStamp, boolean isSterilized, boolean isHouseTrained) {
+               Gender gender, boolean isVaccinated, String image, Timestamp releaseTimeStamp, boolean isSterilized, boolean isHouseTrained,String breed) {
         this.id = id;
-        this.typeId = typeId;
+        this.speciesId = typeId;
         this.name = name;
         this.birthDate = birthDate;
         this.gender = gender;
@@ -36,6 +39,7 @@ public class Pet {
         this.releaseTimeStamp = releaseTimeStamp;
         this.isSterilized = isSterilized;
         this.isHouseTrained = isHouseTrained;
+        this.breed=breed;
     }
 
     public int getId() {
@@ -46,13 +50,6 @@ public class Pet {
         this.id = id;
     }
 
-    public int getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
-    }
 
     public String getName() {
         return name;
@@ -84,14 +81,6 @@ public class Pet {
 
     public void setVaccination(boolean vaccination) {
         this.isVaccinated = vaccination;
-    }
-
-    public Blob getImage() {
-        return image;
-    }
-
-    public void setImage(Blob image) {
-        this.image = image;
     }
 
     public Timestamp getReleaseTimeStamp() {

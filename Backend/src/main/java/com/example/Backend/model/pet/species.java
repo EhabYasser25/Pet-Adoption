@@ -7,15 +7,14 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor
-public class PetType {
+public class species {
     private int id;
     private String species;
-    private String breed;
 
-    public PetType(int id, String species, String breed) {
+
+    public species(int id, String species, String breed) {
         this.id = id;
         this.species = species;
-        this.breed = breed;
     }
 
     public int getId() {
@@ -34,11 +33,4 @@ public class PetType {
         this.species = species;
     }
 
-    public String getBreed() {
-        return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
-    }
 }

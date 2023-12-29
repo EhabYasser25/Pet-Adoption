@@ -1,7 +1,7 @@
 package com.example.Backend;
 
 import com.example.Backend.model.pet.Pet;
-import com.example.Backend.model.pet.PetType;
+import com.example.Backend.model.pet.species;
 import com.example.Backend.model.user.Admin;
 import com.example.Backend.model.user.Staff;
 import com.example.Backend.model.user.User;
@@ -40,8 +40,8 @@ public class PetAdoptionApplication {
 			System.out.println(admin);
 
 			PetTypeService petTypeService = ctx.getBean(PetTypeService.class);
-			PetType petType = petTypeService.getById(1);
-			System.out.println(petType);
+			species species = petTypeService.getById(1);
+			System.out.println(species);
 
 			PetService petService = ctx.getBean(PetService.class);
 			Pet pet = petService.getById(1);
