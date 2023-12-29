@@ -11,4 +11,6 @@ public class Shelter {
     int id;
     String name;
     String address;
+    String locationCountry;
+    String locationCity;
 }
