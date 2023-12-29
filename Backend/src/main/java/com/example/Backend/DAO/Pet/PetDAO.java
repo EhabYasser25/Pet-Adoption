@@ -13,7 +13,6 @@ public class PetDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-
     public Pet getById(int id) {
         try {
             BeanPropertyRowMapper<Pet> rowMapper = new BeanPropertyRowMapper<>(Pet.class);

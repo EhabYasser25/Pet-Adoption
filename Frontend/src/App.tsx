@@ -1,37 +1,51 @@
-import { Routes, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { SignIn } from "./Pages/SignIn";
-import { SignUp } from "./Pages/SignUp";
 import "./App.css";
-import StaffHomePage from "./Pages/staff/StaffHomaPage";
-import AddPetForm from "./Components/staff/AddPetForm";
-import UserHomePage from "./Pages/user/UserHomePage";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Applications from "./Pages/Applications";
+import { SignIn } from "./Pages/SignIn";
+import UserHomePage from "./Pages/user/UserHomePage";
 import AdminHomePage from "./Pages/admin/AdminHomePage";
+import StaffHomePage from "./Pages/staff/StaffHomaPage";
+// import React from "react";
 
 function App() {
     return (
-      <Container
-        fluid
-        style={{
-            paddingLeft: 0,
-            paddingRight: 0,
-            marginLeft: 0,
-            marginRight: 0,
-        }}
-      >
-          <Routes>
-              <Route path="/" element={<UserHomePage/>}></Route>
-              <Route path="/signin" element={<SignIn />}></Route>
-              <Route path="/signup" element={<SignUp />}></Route>
-              <Route path="user/applications" element={<Applications/>}></Route>
-              <Route path="/admin/dashboard" element={<AdminHomePage />}></Route>
-              <Route path="/staff/dashboard" element={<StaffHomePage />}></Route>
-              <Route path="/staff/addpet" element={<AddPetForm />}></Route>
-              <Route path="/staff/applications" element={<Applications />}></Route>
-          </Routes>
-      </Container>
+        <Container
+            fluid
+            style={{
+                paddingLeft: 0,
+                paddingRight: 0,
+                marginLeft: 0,
+                marginRight: 0,
+            }}
+        >
+            <Router>
+                <Routes>
+                    <Route path="/" element={<UserHomePage/>}></Route>
+                    <Route path="/signin" element={<SignIn />}></Route>
+                    <Route path="user/applications" element={<Applications/>}></Route>
+                    <Route path="/admin/dashboard" element={<AdminHomePage />}></Route>
+                    <Route path="/staff/dashboard" element={<StaffHomePage />}></Route>
+                </Routes>
+            </Router>
+        </Container>
     );
 }
 
 export default App;
+
+    // You can manage user authentication state here if needed
+  // const [loggedIn, setLoggedIn] = useState(false);
+
+//   return (
+//       <div className="App">
+//           <Navbar />
+//           <div className="content">
+//               <UserHomePage />
+//           </div>
+//       </div>
+//   );
+// };
+//
+// export default App;
+

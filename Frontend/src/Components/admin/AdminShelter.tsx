@@ -4,12 +4,14 @@ import { FaTrash } from "react-icons/fa";
 import './AdminShelter.css';
 import { useState } from 'react';
 import EditShelterModal from './EditShelterModal';
+import React from 'react';
+import { httpRequest } from '../../Controller/HttpProxy';
 
 type AdminShelterProps = ShelterType & {
   onEdit?: (shelter: ShelterType) => void;
 };
 
-const AdminShelter: React.FC<AdminShelterProps> = ({ id, name, address }) => {
+const AdminShelter: React.FC<AdminShelterProps> = ({ id, name, address, locationCountry, locationCity, onEdit }) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   // Example: Fetching shelter details
@@ -28,25 +30,19 @@ const AdminShelter: React.FC<AdminShelterProps> = ({ id, name, address }) => {
     setShowEditModal(true);
   };
   
-  const handleSave = async (updatedShelter: ShelterType) => {
-    setShowEditModal(false);
-    console.log(updatedShelter)
-    try {
-      // Make API call to update the shelter
-      const response = await fetch(`/api/shelter/${updatedShelter.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedShelter),
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+
+    // Function to handle saving the edited shelter
+    const handleSave = async (updatedShelter: ShelterType) => {
+      try {
+        const response = await httpRequest('POST', `/admin/modify-shelter`, updatedShelter);
+        console.log('Update Response:', response);
+        onEdit(updatedShelter); // Call the passed onEdit function with the updated shelter
+        setShowEditModal(false)
+      } catch (error) {
+        console.error('Error updating shelter:', error);
       }
-    } catch (error) {
-      console.error('Error updating shelter:', error);
-    }
-  };
+    };
+
   
   // Example: Handling delete action
   const handleDelete = () => {
@@ -73,8 +69,8 @@ const AdminShelter: React.FC<AdminShelterProps> = ({ id, name, address }) => {
       <EditShelterModal
         show={showEditModal}
         onClose={() => setShowEditModal(false)}
-        shelter={{ id, name, address }}
-        onSave={handleSave}
+        shelter={{ id, name, address, locationCountry, locationCity }}
+        onSave={handleSave} // Pass handleSave as onSave
       />
     </div>
   );

@@ -45,8 +45,9 @@ public class SecutiryConfig {
                                 "/test/**")
                         .permitAll()
                         .requestMatchers("/user/**").hasAuthority(Role.USER.name())
-                        .requestMatchers("/admin/**").hasAuthority(Role.ADMIN.name())
+//                        .requestMatchers("/admin/**").hasAuthority(Role.ADMIN.name())
                         .requestMatchers("/staff/**").hasAuthority(Role.STAFF.name())
+                        .requestMatchers("/admin/**").permitAll()
                 )
                 .sessionManagement((session) -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

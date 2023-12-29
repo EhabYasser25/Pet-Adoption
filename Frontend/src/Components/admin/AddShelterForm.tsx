@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './AddShelterForm.css';
+import { httpRequest } from '../../Controller/HttpProxy';
 
 const AddShelterForm = () => {
   const [shelter, setShelter] = useState({
     name: '',
     address: '',
-    country: '',
-    city: ''
+    locationCountry: '',
+    locationCity: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -19,9 +20,12 @@ const AddShelterForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(shelter);
-    // Submit logic here
+    httpRequest("POST", "/admin/save-shelter", shelter).then((response) => {
+      if(response.data) alert("Shelter Saved Successfully")
+      else alert("Encountered Problem Saving Shelter")
+    });
   };
-
+  
   return (
     <form className="admin-add-shelter-form" onSubmit={handleSubmit}>
       <div className="admin-form-group">
@@ -45,27 +49,26 @@ const AddShelterForm = () => {
         />
       </div>
       <div className="admin-form-group">
-        <label htmlFor="country">Country</label>
+        <label htmlFor="locationCountry">Country</label>
         <select
-          id="country"
-          name="country"
-          value={shelter.country}
+          id="locationCountry"
+          name="locationCountry"
+          value={shelter.locationCountry}
           onChange={handleChange}
         >
           {/* List countries or use a library/package to populate this */}
           <option value="">Select Country</option>
-          <option value="Country 1">Country 1</option>
+          <option value="Country">Country 1</option>
           <option value="Country 2">Country 2</option>
-          {/* Add more countries */}
         </select>
       </div>
       <div className="admin-form-group">
-        <label htmlFor="city">City</label>
+        <label htmlFor="locationCity">City</label>
         <input
           type="text"
-          id="city"
-          name="city"
-          value={shelter.city}
+          id="locationCity"
+          name="locationCity"
+          value={shelter.locationCity}
           onChange={handleChange}
         />
       </div>

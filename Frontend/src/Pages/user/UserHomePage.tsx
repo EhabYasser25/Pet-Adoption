@@ -1,5 +1,5 @@
 import {useState} from "react";
-import Navbar from "../../Compnents/user/Navbar";
+import Navbar from "../../Components/user/Navbar";
 import './UserHomeStyle.css'
 
 const UserHomePage = () => {

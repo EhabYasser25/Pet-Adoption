@@ -46,8 +46,12 @@ public class ShelterManagementService {
         return shelterDAO.getAllShelters();
     }
 
-    public Shelter updateShelter(int id, String name, String address) {
-        return shelterDAO.updateShelterById(id, name, address);
+    public boolean saveShelter(Shelter shelter) {
+        return shelterDAO.addShelter(shelter);
+    }
+
+    public boolean updateShelter(Shelter shelter) {
+        return shelterDAO.updateShelterById(shelter);
     }
 
     public boolean deleteShelter(int id) {

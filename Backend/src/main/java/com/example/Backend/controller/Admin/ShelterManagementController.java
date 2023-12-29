@@ -69,14 +69,14 @@ public class ShelterManagementController {
 //
 //    }
 
-    @PutMapping("/modify-shelter/{id}/{name}/{address}")
-    public ResponseEntity<Shelter> updateShelter(
-            @PathVariable(value = "id") int id,
-            @PathVariable(value = "name") String name,
-            @PathVariable(value = "address") String address
-    ) {
-        Shelter shelter = shelterManagementService.updateShelter(id, name, address);
-        return ResponseEntity.ok(shelter);
+    @PostMapping("/save-shelter")
+    public ResponseEntity<?> saveShelter(@RequestBody Shelter shelter) {
+        return ResponseEntity.ok(shelterManagementService.saveShelter(shelter));
+    }
+
+    @PostMapping("/modify-shelter")
+    public ResponseEntity<?> updateShelter(@RequestBody Shelter shelter) {
+        return ResponseEntity.ok(shelterManagementService.updateShelter(shelter));
     }
 
     @DeleteMapping("/delete-shelter/{id}")
