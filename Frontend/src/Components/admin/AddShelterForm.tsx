@@ -58,7 +58,7 @@ const AddShelterForm = () => {
         >
           {/* List countries or use a library/package to populate this */}
           <option value="">Select Country</option>
-          <option value="Country">Country 1</option>
+          <option value="Country">Chad</option>
           <option value="Country 2">Country 2</option>
         </select>
       </div>

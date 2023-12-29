@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import './EditShelterModal.css';
 
 // Example static data. Replace with your actual data or API calls.
-const countries = ['Country', 'Country 2', 'Country 3'];
+const countries = ['Country', 'Chad', 'Country 3'];
 const cities = {
   'Country': ['Alexandria', 'City 1-2'],
-  'Country 2': ['City 2-1', 'City 2-2'],
+  'Chad': ['Abeche', 'City 2-2'],
   'Country 3': ['City 3-1', 'City 3-2'],
 };
 

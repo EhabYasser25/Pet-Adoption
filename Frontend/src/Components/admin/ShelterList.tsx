@@ -32,6 +32,10 @@ const SheltersList = () => {
     );
   };
 
+  const handleDeleteShelter = (shelterId: string) => {
+    setShelters(prevShelters => prevShelters.filter(shelter => shelter.id !== shelterId));
+  };
+
   // Get current shelters
   const indexOfLastShelter = currentPage * sheltersPerPage;
   const indexOfFirstShelter = indexOfLastShelter - sheltersPerPage;
@@ -51,10 +55,11 @@ const SheltersList = () => {
       <div className="admin-shelters-grid">
         {currentShelters.map((shelter, index) => (
           <AdminShelter
-            key={`${shelter.id}-${index}`} // Unique key for each shelter
+            key={`${shelter.id}-${index}`}
             {...shelter}
-            onEdit={updateShelterInList} // Pass the update function to AdminShelter
-          />
+            onEdit={updateShelterInList}
+            onDelete={handleDeleteShelter} // Pass the delete function to AdminShelter
+         />
         ))}
       </div>
 
