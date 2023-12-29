@@ -2,6 +2,7 @@ package com.example.Backend.DAO.user;
 
 import com.example.Backend.model.user.Staff;
 import com.example.Backend.model.user.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -10,9 +11,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+@RequiredArgsConstructor
 @Repository
 public class StaffDAO {
-
     @Autowired
     UserDAO userDAO;
 
@@ -50,4 +53,20 @@ public class StaffDAO {
             return false;
         }
     }
+
+    public List<Staff> getAllStaff (int shelterId) {
+        return jdbcTemplate.query("SELECT * FROM staff", new BeanPropertyRowMapper<>(Staff.class));
+    }
+
+    public boolean deleteStaff (int staffId) {
+        try {
+            String sql = "DELETE FROM staff WHERE id = ?";
+            int result = jdbcTemplate.update(sql, staffId);
+            return result > 0;
+        } catch (DataAccessException e) {
+            System.out.println("Error deleting staff with id: " + staffId);
+            return false;
+        }
+    }
+
 }

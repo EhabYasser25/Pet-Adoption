@@ -12,6 +12,4 @@ import lombok.NoArgsConstructor;
 public class Staff {
     private int userId;
     private int shelterId;
-
-
 }

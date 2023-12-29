@@ -19,7 +19,7 @@ const sectionsData: SectionsData = {
   addShelter: <AddShelterForm />,
 };
 
-const HomePage = () => {
+const AdminHomePage = () => {
   // Use the Section type for the activeSection state
   const [activeSection, setActiveSection] = useState<Section>('shelters');
   const [searchBy, setSearchBy] = useState('shelter name'); // Default search by Shelter
@@ -35,7 +35,7 @@ const HomePage = () => {
 
       <div className="amdin-search-bar">
         <input type="text" placeholder={placeholderText} />
-        <select value={searchBy} onChange={handleSearchByChange}>
+        <select value={searchBy} onChange={handleSearchByChange} className="admin-search-dropdown-list">
           <option value="shelter name">Shelter name</option>
           <option value="helter address">Shelter address</option>
           {/* Add more options as needed */}
@@ -63,4 +63,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default AdminHomePage;

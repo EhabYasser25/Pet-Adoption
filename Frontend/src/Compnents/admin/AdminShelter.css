@@ -17,17 +17,17 @@
   
   .admin-shelter-name p,
   .admin-shelter-address p {
-    overflow-wrap: break-word; /* Wrap long words */
-    margin: 0; /* Remove default paragraph margins */
-    font-size: 16px; /* Adjust font size as needed */
+    overflow-wrap: break-word; 
+    margin: 0;
+    font-size: 16px;
   }
   
   .admin-shelter-icon {
-    flex: 0 0 auto; /* Do not grow or shrink */
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 10px; /* Spacing from the address or content */
+    margin-left: 10px;
   }
   
   .admin-shelter-icon .fa-plus-circle {

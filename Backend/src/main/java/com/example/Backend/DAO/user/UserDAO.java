@@ -40,14 +40,14 @@ public class UserDAO {
 
 
     public boolean existsByEmail(String email) {
-            try {
-                String query = "SELECT COUNT(*) FROM user WHERE email = ?";
-                Integer count = jdbcTemplate.queryForObject(query, Integer.class, email);
-                return count != null && count > 0;
-            } catch (EmptyResultDataAccessException e) {
-                return false;
-            }
+        try {
+            String query = "SELECT COUNT(*) FROM user WHERE email = ?";
+            Integer count = jdbcTemplate.queryForObject(query, Integer.class, email);
+            return count != null && count > 0;
+        } catch (EmptyResultDataAccessException e) {
+            return false;
         }
+    }
     public boolean existsByUsername(String username) {
         try {
             String query = "SELECT COUNT(*) FROM user WHERE username = ?";

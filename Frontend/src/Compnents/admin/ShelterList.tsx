@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import './ShelterList.css';
-import './Shelter.css'
+import './AdminShelter.css'
 import '../../DTO/shelter-type'
-import AdminShelter from './Shelter';
+import AdminShelter from './AdminShelter';
 
 const SheltersList = () => {
     const [shelters, setShelters] = useState<ShelterType[]>([
@@ -68,9 +68,7 @@ const SheltersList = () => {
   const sheltersPerPage = 13;
 
   useEffect(() => {
-    // Fetch the list of shelters from the backend
     const fetchShelters = async () => {
-      // Replace with your actual fetch call
       const response = await fetch('/api/shelters');
       const data = await response.json();
       setShelters(data);
