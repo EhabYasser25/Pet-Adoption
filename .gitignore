@@ -29,5 +29,6 @@ replay_pid*
 Backend/mvnw
 Backend/mvnw.cmd
 Frontend/.eslintrc.cjs
+Frontend/.vite/*
 Frontend/vite.config.ts
 Frontend/src/vite-env.d.ts

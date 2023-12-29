@@ -21,10 +21,10 @@ const Navbar = () => {
                         color: "#faab02",
                         fontSize: 25,
                     }}
-                    onMouseEnter={(e:React.MouseEvent<HTMLElement>) => {
+                    onMouseEnter={(e: any) => {
                         e.target.style.color = "#917600"; // Change color on mouse enter
                     }}
-                    onMouseLeave={(e) => {
+                    onMouseLeave={(e: any) => {
                         e.target.style.color = "#faab02"; // Change back to original color on mouse leave
                     }}
                 ></i>

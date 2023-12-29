@@ -49,7 +49,6 @@ public class LoginController {
         }
 
         System.out.println(ex.getMessage());
-
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR).body(ErrorDTO.builder().code(101).message(ex.getMessage()).build());    }
 

@@ -1,9 +1,9 @@
 import { SetStateAction, useState } from 'react';
 import { FaHome, FaPaw } from 'react-icons/fa';
 import './AdminHomePage.css';
-import NavBarAdmin from '../../Compnents/admin/NavbarAdmin.tsx';
-import AddShelterForm from '../../Compnents/admin/AddShelterForm.tsx';
-import SheltersList from '../../Compnents/admin/ShelterList.tsx';
+import SheltersList from "../../Compnents/admin/ShelterList";
+import AddShelterForm from "../../Compnents/admin/AddShelterForm";
+import NavBarAdmin from "../../Compnents/admin/NavbarAdmin";
 
 // Define a type for the valid section keys
 type Section = 'shelters' | 'addShelter';
