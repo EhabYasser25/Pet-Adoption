@@ -10,17 +10,19 @@ interface AddEmployeeModalProps {
 }
 
 const AddEmployeeModal: React.FC<AddEmployeeModalProps> = ({ show, onClose, shelterId, onAdd }) => {
-  const [employeeData, setEmployeeData] = useState({
+  const initialEmployeeState = {
     username: '',
     email: '',
-    password: '', // Added field for password
+    password: '',
     firstName: '',
     lastName: '',
     middleName: '',
     birthdate: '',
     gender: '',
     phoneNo: ''
-  });
+  };
+
+  const [employeeData, setEmployeeData] = useState(initialEmployeeState);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setEmployeeData({ ...employeeData, [e.target.name]: e.target.value });
@@ -33,11 +35,13 @@ const AddEmployeeModal: React.FC<AddEmployeeModalProps> = ({ show, onClose, shel
       shelterId
     };
     onAdd(staffMemberDTO);
+    // Reset the form fields after submission
+    setEmployeeData(initialEmployeeState);
+    console.log(employeeData)
     onClose();
   };
 
   if (!show) return null;
-
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -55,7 +59,6 @@ const AddEmployeeModal: React.FC<AddEmployeeModalProps> = ({ show, onClose, shel
             <option value="">Select Gender</option>
             <option value="MALE">Male</option>
             <option value="FEMALE">Female</option>
-            <option value="OTHER">Other</option>
           </select>
           <input type="tel" name="phoneNo" placeholder="Phone Number" value={employeeData.phoneNo} onChange={handleChange} />
           <div className="modal-actions">

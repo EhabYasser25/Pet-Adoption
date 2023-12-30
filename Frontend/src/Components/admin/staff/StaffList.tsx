@@ -38,26 +38,9 @@ const StaffList: React.FC<StaffListProps> = ({ shelterId }) => {
   };
 
   const handleAddEmployee = async (employeeData) => {
+    console.log(employeeData)
     try {
-        const registrationRequestDTO = {
-            email: employeeData.email,
-            password: employeeData.password, // Assuming you have a password field
-            username: employeeData.username,
-            firstName: employeeData.firstName,
-            lastName: employeeData.lastName,
-            middleName: employeeData.middleName,
-            birthdate: employeeData.birthdate, // Make sure this is formatted as LocalDate (YYYY-MM-DD)
-            gender: employeeData.gender, // Map to the Gender enum of your backend
-            phoneNo: employeeData.phoneNo
-          };
-      
-          // Construct StaffMemberDTO
-          const staffMemberDTO = {
-            staffDetails: registrationRequestDTO,
-            shelterId: parseInt(employeeData.shelterId) // Assuming shelterId is part of userData
-          };
-      // Assuming your API endpoint for adding a new employee looks something like this
-      const response = await httpRequest('POST', `/admin/add-staf-member`, staffMemberDTO);
+      const response = await httpRequest('POST', '/admin/add-staff-member', employeeData);
       const addedEmployee = response.data;
   
       if (addedEmployee) {
@@ -71,11 +54,9 @@ const StaffList: React.FC<StaffListProps> = ({ shelterId }) => {
         setStaffMembers(prevStaffMembers => [...prevStaffMembers, addedEmployee]);
       } else {
         console.error('Failed to add employee');
-        alert('Failed to add employee');
       }
     } catch (error) {
       console.error('Error adding employee:', error);
-      alert('Error occurred while adding employee');
     }
   };
   
