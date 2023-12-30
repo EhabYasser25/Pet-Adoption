@@ -14,7 +14,10 @@ import Applications from "./Pages/Applications";
 import { SignIn } from "./Pages/SignIn";
 import UserHomePage from "./Pages/user/UserHomePage";
 import AdminHomePage from "./Pages/admin/AdminHomePage";
+import {SignUp} from "./Pages/SignUp";
 import StaffHomePage from "./Pages/staff/StaffHomaPage";
+import AddPetForm from "./Components/staff/AddPetForm";
+import EditPetForm from "./Components/staff/EditPetForm";
 
 // import React from "react";
 
@@ -32,12 +35,18 @@ function App() {
             <Router>
                 <Routes>
                     <Route path="/" element={<SignIn />}></Route>
+                    <Route path="/signin" element={<SignIn />}></Route>
+                    <Route path="/signup" element={<SignUp />}></Route>
+
                     <Route path="/user/homePage" element={<UserHomePage/>}></Route>
                     <Route path="/userSearch" element={<SearchScreen/>}></Route>
                     
                     <Route path="user/applications" element={<Applications/>}></Route>
                     <Route path="/admin/dashboard" element={<AdminHomePage />}></Route>
                     <Route path="/staff/dashboard" element={<StaffHomePage />}></Route>
+                    <Route path="/staff/add/pet" element={<AddPetForm />}></Route>
+                    <Route path="/staff/edit/pet" element={<EditPetForm petDTO={{ name: 'max', isSterilized: true }}/>}></Route>
+                    <Route path="/staff/applications" element={<Applications />}></Route>
                 </Routes>
             </Router>
         </Container>

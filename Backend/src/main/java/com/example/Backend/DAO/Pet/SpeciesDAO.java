@@ -32,6 +32,28 @@ public class SpeciesDAO {
 
     }
 
+    public boolean speciesExists(String species) {
+        try {
+            BeanPropertyRowMapper<String> rowMapper = new BeanPropertyRowMapper<>(String.class);
+            List<String> result = this.jdbcTemplate.query(
+                    "SELECT * FROM species WHERE species = ?", rowMapper, species);
+            System.out.println(result);
+            return result.size() > 0;
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("no species");
+            return false;
+        }
+    }
 
+    public boolean insertSpecies(String species) {
+        try {
+            String query = "INSERT INTO species (species) VALUES (?)";
+            int result = jdbcTemplate.update(query, species);
+            return result > 0;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 
 }

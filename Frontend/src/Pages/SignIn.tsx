@@ -21,7 +21,9 @@ export function SignIn() {
   const navigate = useNavigate();
 
   const isValidEmail = (email: string) => {
+
     return true;
+
   };
 
   const isValidPassword = (password: string | any[]) => {

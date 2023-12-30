@@ -20,30 +20,4 @@ public class PetAdoptionApplication {
 		SpringApplication.run(PetAdoptionApplication.class, args);
 	}
 
-	// -------------- TESTING ------------------
-	@Bean
-	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-		return args -> {
-			UserService userService = ctx.getBean(UserService.class);
-			User user = userService.getById(3);
-			System.out.println(user);
-
-//			StaffService staffService = ctx.getBean(StaffService.class);
-//			Staff staff = staffService.getById(3);
-//			System.out.println(staff);
-
-			AdminService adminService = ctx.getBean(AdminService.class);
-			Admin admin = adminService.getByUsername("User");
-			System.out.println(admin);
-
-//			PetTypeService petTypeService = ctx.getBean(PetTypeService.class);
-//			species species = petTypeService.getById(1);
-//			System.out.println(species);
-
-			PetService petService = ctx.getBean(PetService.class);
-			Pet pet = petService.getById(1);
-			System.out.println(pet);
-		};
-	}
-
 }
