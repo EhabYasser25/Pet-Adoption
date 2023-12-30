@@ -1,0 +1,175 @@
+.admin-homepage {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+    height: 100vh; /* Full viewport height */
+  }
+
+  .amdin-search-bar {
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .amdin-search-bar input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #0056b3;
+    border-radius: 5px;
+  }
+  
+  .search-main-content {
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    border-bottom: 1px solid #f2f2f2;
+    background-color: #0056b3;
+    display: flex;
+    float: left;
+    flex-direction: column;
+    flex: 1; 
+
+  }
+  .aside {
+    /* display: inline-block; */
+    float: left;
+    height: 100vh;
+    /* or use float: left; */
+    /* or use flexbox/grid properties */
+  }
+  .criteria-box {
+    width: 200px;
+    height: 25%;
+    background-color: rgba(255, 255, 255, 0.8); /* White background with opacity */
+    border-radius: 15px; /* Rounded corners */
+    padding: 15px; /* Padding of 15 pixels */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift effect */
+    margin: 5px;
+  }
+  /* Styles for the button */
+.button {
+  width: 235px;
+  height: 25%;
+  display: inline-block;
+  padding: 15px; 
+  font-size: 16px;
+  margin: 5px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.8); /* White background with opacity */
+  border-radius: 15px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s, color #faab02, border-color 0.3s;
+}
+
+/* Hover styles for the button */
+.button:hover {
+  background-color: #faab02;
+  color: #fff;
+ 
+}
+
+  .select {
+    /* padding: 10px; */
+    font-size: 16px;
+    width: 95%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  .select-title {
+    color: #000; /* White text color */
+    font-size: 1.5rem; /* Adjust font size as needed */
+    font-weight: bold; /* Set font weight to bold if desired */
+    margin: 0%;
+    margin-bottom: 10px;
+    /* Add any other styles you need for your header */
+  }
+  /* Styles for the container holding the checkbox and label */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Styles for the actual checkbox input */
+.checkbox-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/* Styles for the checkbox when checked */
+.checkbox-input:checked {
+  background-color: #007bff; /* Change background color when checked */
+  border-color: #007bff; /* Change border color when checked */
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Styles for the actual checkbox input */
+.checkbox-input {
+  margin-right: 8px;
+}
+
+/* Styles for the label next to the checkbox */
+.checkbox-label {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+  
+  
+  .amdin-sidebar {
+    width: 250px;
+    background-color: #3e8de2;
+    padding: 20px;
+    color: #fff;
+  }
+  
+  .amdin-sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .amdin-sidebar ul li {
+    padding: 20px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #fff;
+    display: flex;
+    align-items: center;
+  }
+  
+  .amdin-sidebar ul li:hover {
+    background-color: hsl(206, 15%, 72%);
+  }
+  
+  .admin-icon {
+    margin-right: 10px;
+    font-size: 24px;
+  }
+  
+  .admin-content {
+    flex: 1; /* Grow to use available space */
+    padding: 20px;
+    background-color: #eceff1;
+    color: #546e7a;
+    overflow-y: auto; /* Add scroll for overflow content */
+  }
+  
+  /* Add responsive design rules if needed */
+  

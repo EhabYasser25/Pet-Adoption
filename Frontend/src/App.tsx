@@ -6,6 +6,7 @@ import Applications from "./Pages/Applications.tsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from "./Pages/admin/AdminHomePage.tsx";
 import PetGridSearch from "./Compnents/searchAndFilter/PetGridSearch.tsx";
+import SearchScreen from "./Compnents/user/searchScreen.tsx";
 // import React from "react";
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
         >
             <Router>
                 <Routes>
-                    <Route path="/" element={<PetGridSearch/>}></Route>
+                    <Route path="/" element={<SearchScreen/>}></Route>
                     <Route path="/signin" element={<SignIn />}></Route>
                     <Route path="user/applications" element={<Applications/>}></Route>
                     <Route path="/admin/dashboard" element={<HomePage />}></Route>

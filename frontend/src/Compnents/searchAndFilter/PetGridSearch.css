@@ -1,26 +1,9 @@
 .pet-grid {
     display: grid;
-    grid-template-columns:  repeat(3, 1fr); /* Adjust as needed */
+    grid-template-columns:  repeat(5, 1fr); /* Adjust as needed */
     gap: 10px; /* Reduce the gap between grid items */
     grid-auto-rows: minMax(100px, auto)
 
-}
-
-.pet-row {
-    /*display: grid;*/
-    display: flex;
-    /*grid-auto-flow: row;    !*grid-template-columns: repeat(3, 1fr); !* Adjust number of columns as needed *!*!*/
-    gap: 1px; /* Reduce the gap between columns */
-}
-
-.pet-column {
-    /*display: flex;*/
-    /*display: flex;*/
-    /*grid-auto-flow: column;*/
-    width: 200px; /* Fixed width */
-    height: 250px; /* Fixed height */
-    border: 1px solid #ccc;
-    overflow: hidden; /* Ensure content doesn't overflow */
 }
 
 .pet-content {
