@@ -1,8 +1,11 @@
 package com.example.Backend.DAO;
 
 import com.example.Backend.model.Shelter; // Assume you have a Shelter model class
+import com.example.Backend.model.pet.Pet;
+import com.example.Backend.model.pet.PetSummary;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
@@ -20,6 +23,20 @@ public class ShelterDAO {
     public List<Shelter> getAllShelters() {
         return jdbcTemplate.query("SELECT * FROM shelter", new BeanPropertyRowMapper<>(Shelter.class));
     }
+    public Shelter getShelterById(int shelterId) {
+        try {
+            BeanPropertyRowMapper<Shelter> rowMapper = new BeanPropertyRowMapper<>(Shelter.class);
+            Shelter result = this.jdbcTemplate.queryForObject(
+                    "SELECT * FROM pet WHERE id = ?", rowMapper, shelterId);
+            System.out.println(result);
+            return result;
+        } catch (EmptyResultDataAccessException e) {
+            // Handle case where user is not found
+            System.out.println("Pet not found with id: " + shelterId);
+            return null;
+        }
+    }
+
 
     public boolean updateShelterById(Shelter shelter) {
         try {
@@ -68,5 +85,18 @@ public class ShelterDAO {
             e.printStackTrace();
             return false;
         }
+    }
+    public List<Shelter> getShelterByQuery(String query){
+            try {
+                BeanPropertyRowMapper<Shelter> rowMapper = new BeanPropertyRowMapper<>(Shelter.class);
+                List<Shelter> result = this.jdbcTemplate.query(
+                        query, rowMapper);
+                System.out.println(result);
+                return result;
+            } catch (EmptyResultDataAccessException e) {
+                // Handle case where user is not found
+                System.out.println(query);
+                return null;
+            }
     }
 }

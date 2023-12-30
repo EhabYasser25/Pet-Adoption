@@ -54,9 +54,14 @@ public class PetQueryBuilder {
     void nameCriteria(String name) {
         query.append("name =").append(name).append(" AND ");
     }
+    void sortCriteria(String sortCriteria,String order){
+        query.append("ORDER BY ").append(sortCriteria).append(" ").append(order);
+    }
+    void endSelect(){
+        query.delete(query.length() - 4, query.length());
+    }
 
     public String build() {
-        query.delete(query.length() - 4, query.length());
         query.append("LIMIT ").append(this.pageSize).append(" OFFSET ").append(pageNumber);
         return query.toString();
     }

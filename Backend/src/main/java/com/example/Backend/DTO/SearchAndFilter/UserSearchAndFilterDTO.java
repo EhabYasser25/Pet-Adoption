@@ -4,7 +4,7 @@ import com.example.Backend.enums.Gender;
 import lombok.Data;
 
 @Data
-public class SearchAndFilterUserDTO {
+public class UserSearchAndFilterDTO {
     private String species;
     private String breed;
     private Gender gender;
@@ -16,6 +16,9 @@ public class SearchAndFilterUserDTO {
 
 
     private int pageNumber;
+
+    private String sortCriteria;
+    private String order="DESC";
 
 
 }

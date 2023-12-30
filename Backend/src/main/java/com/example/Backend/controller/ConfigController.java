@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("fetch")
+@RequestMapping("/fetch")
 public class ConfigController {
     @Autowired
     ConfigService configService;
@@ -28,7 +28,8 @@ public class ConfigController {
         return configService.getAllSpecies();
     }
 
-    @GetMapping("/breeds")
+
+    @GetMapping("/breed")
     public List<String> getBreeds(String species){
         return configService.getBreeds(species);
     }

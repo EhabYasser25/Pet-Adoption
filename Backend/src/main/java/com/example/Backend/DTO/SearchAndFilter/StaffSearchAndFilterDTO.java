@@ -3,7 +3,7 @@ package com.example.Backend.DTO.SearchAndFilter;
 import lombok.Data;
 
 @Data
-public class SearchAndFilterStaffDTO {
+public class StaffSearchAndFilterDTO {
         private String species;
         private String breed ;
         private String name;

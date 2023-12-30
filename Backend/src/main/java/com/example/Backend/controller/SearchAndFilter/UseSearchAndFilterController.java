@@ -1,6 +1,6 @@
 package com.example.Backend.controller.SearchAndFilter;
 
-import com.example.Backend.DTO.SearchAndFilter.SearchAndFilterUserDTO;
+import com.example.Backend.DTO.SearchAndFilter.UserSearchAndFilterDTO;
 import com.example.Backend.model.pet.Pet;
 import com.example.Backend.model.pet.PetSummary;
 import com.example.Backend.service.searchAndFilter.UserSearchAndFilterService;
@@ -19,15 +19,13 @@ public class UseSearchAndFilterController {
     private UserSearchAndFilterService userSearchAndFilterService;
 
     @GetMapping("/search")
-    List<PetSummary> searchAndFilter(SearchAndFilterUserDTO searchAndFilterUserDTO){
+    List<PetSummary> searchAndFilter(UserSearchAndFilterDTO userSearchAndFilterDTO){
+        return userSearchAndFilterService.searchAndFilter(userSearchAndFilterDTO);
 
-        return null;
     }
-    List<PetSummary> sortPets(String sortCriteria){
-
-        return null;
-    }
+    @GetMapping("pet-profile")
     Pet viewPet(int perId){
+        userSearchAndFilterService.viewPet(perId);
         return null;
     }
 }

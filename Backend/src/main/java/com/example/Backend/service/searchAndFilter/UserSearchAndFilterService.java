@@ -1,44 +1,43 @@
 package com.example.Backend.service.searchAndFilter;
 
+import com.example.Backend.DAO.Pet.PetDAO;
 import com.example.Backend.DAO.Pet.PetSummaryDAO;
-import com.example.Backend.DTO.SearchAndFilter.SearchAndFilterUserDTO;
-import com.example.Backend.enums.Gender;
+import com.example.Backend.DTO.SearchAndFilter.UserSearchAndFilterDTO;
 import com.example.Backend.model.pet.Pet;
 import com.example.Backend.model.pet.PetSummary;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserSearchAndFilterService {
     @Autowired
     private PetSummaryDAO petSummaryDAO;
+    @Autowired
+    PetDAO petDAO;
 
     private static final int PAGE_SIZE = 20;
     
-    Page<PetSummary> searchAndFilter(SearchAndFilterUserDTO searchAndFilterUserDTO){
-        PetQueryBuilder query=new PetQueryBuilder(searchAndFilterUserDTO.getPageNumber(),PAGE_SIZE);
-        if(searchAndFilterUserDTO.isHouseTrained()) query.isHouseTrainedCriteria(searchAndFilterUserDTO.isHouseTrained());
-        if(searchAndFilterUserDTO.isSterilized()) query.isSterilizedCriteria(searchAndFilterUserDTO.isSterilized());
-        if(searchAndFilterUserDTO.isVaccinated()) query.isVaccinatedCriteria(searchAndFilterUserDTO.isVaccinated());
-        if(searchAndFilterUserDTO.getBreed()!=null) query.breedCriteria(searchAndFilterUserDTO.getBreed());
-        if(searchAndFilterUserDTO.getCountry()!=null) query.countryCriteria(searchAndFilterUserDTO.getCountry());
-        if(searchAndFilterUserDTO.getCity()!=null) query.cityCriteria(searchAndFilterUserDTO.getCity());
-        if(searchAndFilterUserDTO.getSpecies()!=null) query.speciesCriteria(searchAndFilterUserDTO.getSpecies());
-        if(searchAndFilterUserDTO.getGender()!=null) query.genderCriteria(searchAndFilterUserDTO.getGender());
+    public List<PetSummary> searchAndFilter(UserSearchAndFilterDTO userSearchAndFilterDTO){
+        PetQueryBuilder query=new PetQueryBuilder(userSearchAndFilterDTO.getPageNumber(),PAGE_SIZE);
+        if(userSearchAndFilterDTO.isHouseTrained()) query.isHouseTrainedCriteria(userSearchAndFilterDTO.isHouseTrained());
+        if(userSearchAndFilterDTO.isSterilized()) query.isSterilizedCriteria(userSearchAndFilterDTO.isSterilized());
+        if(userSearchAndFilterDTO.isVaccinated()) query.isVaccinatedCriteria(userSearchAndFilterDTO.isVaccinated());
+        if(userSearchAndFilterDTO.getBreed()!=null) query.breedCriteria(userSearchAndFilterDTO.getBreed());
+        if(userSearchAndFilterDTO.getCountry()!=null) query.countryCriteria(userSearchAndFilterDTO.getCountry());
+        if(userSearchAndFilterDTO.getCity()!=null) query.cityCriteria(userSearchAndFilterDTO.getCity());
+        if(userSearchAndFilterDTO.getSpecies()!=null) query.speciesCriteria(userSearchAndFilterDTO.getSpecies());
+        if(userSearchAndFilterDTO.getGender()!=null) query.genderCriteria(userSearchAndFilterDTO.getGender());
+        query.endSelect();
+        if(userSearchAndFilterDTO.getSortCriteria()!=null) query.sortCriteria(userSearchAndFilterDTO.getSortCriteria(), userSearchAndFilterDTO.getOrder());
 
-        petSummaryDAO.getPetSummaryByQuery(query.build());
+        return petSummaryDAO.getPetSummaryByQuery(query.build());
 
-
-        return null;
     }
-    Page<PetSummary> sortPets(String sortCriteria){
 
-        return null;
-    }
-    Pet viewPet(int perId){
-        return null;
+    public Pet viewPet(int perId){
+        return petDAO.getById(perId);
     }
 
 }
