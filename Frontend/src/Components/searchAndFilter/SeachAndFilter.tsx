@@ -58,7 +58,7 @@ const SeachAndFilter = ({
     // { image: 'src\\assets\\img.png', name: 'Rex', description: 'A loyal German Shepherd.' },
     // { image: 'src\\assets\\img.png', name: 'Rex', description: 'A loyal German Shepherd.' },
 ];
-  const applySearchAndFilterCriteria = () => {
+  const applySearchAndFilterCriteria = async () => {
     console.log("breed",breed);
     console.log("gender",gender);
     console.log("isVaccinated",isVaccinated);
@@ -81,7 +81,7 @@ const SeachAndFilter = ({
 
     };
 
-    httpRequest('POST', 'user/search', SearchAndFilterUserDTO)
+    await httpRequest('POST', 'user/search', SearchAndFilterUserDTO)
       .then((response) => {
         const responseData = response.data
         updateSearchResult(responseData);

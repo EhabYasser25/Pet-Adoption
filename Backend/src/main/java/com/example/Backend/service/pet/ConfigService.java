@@ -19,6 +19,7 @@ public class ConfigService {
 
     public List<String> getAllCountries() {
         return locationDAO.getCountries();
+
     }
 
     public List<String> getCities(String country) {

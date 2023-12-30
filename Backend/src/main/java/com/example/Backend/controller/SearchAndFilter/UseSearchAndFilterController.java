@@ -6,9 +6,7 @@ import com.example.Backend.model.pet.PetSummary;
 import com.example.Backend.service.searchAndFilter.UserSearchAndFilterService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +16,10 @@ public class UseSearchAndFilterController {
     @Autowired
     private UserSearchAndFilterService userSearchAndFilterService;
 
-    @GetMapping("/search")
-    List<PetSummary> searchAndFilter(UserSearchAndFilterDTO userSearchAndFilterDTO){
+    @PostMapping("/search")
+    List<PetSummary> searchAndFilter(@RequestBody UserSearchAndFilterDTO userSearchAndFilterDTO){
+        System.out.println(userSearchAndFilterDTO.toString());
+        System.out.println(userSearchAndFilterDTO.getCountry());
         return userSearchAndFilterService.searchAndFilter(userSearchAndFilterDTO);
 
     }

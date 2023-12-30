@@ -1,10 +1,19 @@
 package com.example.Backend.DTO.SearchAndFilter;
 
 import com.example.Backend.enums.Gender;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.WithBy;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class UserSearchAndFilterDTO {
+
+
     private String species;
     private String breed;
     private Gender gender;

@@ -27,5 +27,5 @@ public class Pet {
     private int shelterId;
     private int shelterLocationCity;
     private int shelterLocationCountry;
-    private String description;
+
 }

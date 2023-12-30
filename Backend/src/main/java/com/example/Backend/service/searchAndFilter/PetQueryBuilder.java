@@ -12,7 +12,7 @@ public class PetQueryBuilder {
     public PetQueryBuilder(int pageNumber, int pageSize) {
         this.pageNumber = pageNumber;
         this.pageSize = pageSize;
-        this.query = new StringBuilder("SELECT image,description,name FROM pet WHERE ");
+        this.query = new StringBuilder("SELECT image,name FROM pet WHERE ");
     }
 
     void isVaccinatedCriteria(boolean isVaccinated) {
@@ -36,11 +36,11 @@ public class PetQueryBuilder {
     }
 
     void cityCriteria(String city) {
-        query.append("city =").append(city).append(" AND ");
+        query.append("shelter_location_city =").append(city).append(" AND ");
     }
 
     void countryCriteria(String country) {
-        query.append("country =").append(country).append(" AND ");
+        query.append("shelter_location_country =").append(country).append(" AND ");
     }
 
     void genderCriteria(Gender gender) {

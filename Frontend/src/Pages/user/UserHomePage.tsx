@@ -18,50 +18,84 @@ const UserHomePage = () => {
         // Add more options as needed
     ];
     const [species, setSpecies] = useState([]);
-    const [cities, setCities] = useState([]);
-    const [ countries, setCountries] = useState([]);
+    const [cities, setCities] = useState(["mariam","menna"]);
+    const [ countries, setCountries] = useState(["mariam","menna"]);
 
-    const [specie, setSpecie] = useState([]);
-    const [city, setCity] = useState([]);
-    const [ country, setCountry] = useState([]);
+    const [specie, setSpecie] = useState('');
+    const [city, setCity] = useState('');
+    const [ country, setCountry] = useState('');
     const [ isCountryNotSelected, setIsCountryNotSelected] = useState(true);
     const navigate = useNavigate();
 
+    // useEffect(() => {
+
+    //     const fetchCountries = async () => {    
+    //       httpRequest("GET","fetch/countries").then((response) => {
+    //         const responseData = response.data
+    //         setCountries(responseData);
+    //       })
+    //       .catch((error) => {
+    //         console.log(error)
+    //         alert(error.response.data.message)
+    //       });
+    //     };
+
+    //     const fetchSpecies = async () => {    
+    //         httpRequest("GET","fetch/species").then((response) => {
+    //           const responseData = response.data
+    //           setCities(responseData);
+    //         })
+    //         .catch((error) => {
+    //           console.log(error)
+    //           alert(error.response.data.message)
+    //         });
+    //       };
+    
+    //     fetchCountries();
+    //     fetchSpecies();
+    //     console.log(cities);
+
+    //   }, []);
+
+      
+
+
     useEffect(() => {
-
-        const fetchCountries = async () => {    
-          httpRequest("GET","fetch/countries").then((response) => {
-            const responseData = response.data
-            setCountries(responseData);
-          })
-          .catch((error) => {
-            console.log(error)
-            alert(error.response.data.message)
-          });
+        const fetchData = async () => {
+          try {
+            const countriesResponse = await httpRequest("GET", "fetch/countries");
+            const speciesResponse = await httpRequest("GET", "fetch/species");
+      
+            const countriesData = countriesResponse.data;
+            const speciesData = speciesResponse.data;
+      
+            console.log("Before setCountries", countries); // Logging the previous state
+            setCountries([...countriesData]);  // Use spread operator for immutable update
+            console.log("After setCountries", countries); // Logging the previous state
+      
+            console.log("Before setSpecies", species); // Logging the previous state
+            setSpecies([...speciesData]);  // Use spread operator for immutable update
+            console.log("After setSpecies", species); // Logging the previous state
+      
+            console.log("haaaaaa", species);
+            console.log("countriesData", countriesData);
+            console.log("speciesData", speciesData);
+          } catch (error) {
+            console.error(error);
+            alert(error.response?.data?.message || "An error occurred");
+          }
         };
-
-        const fetchSpecies = async () => {    
-            httpRequest("GET","fetch/species").then((response) => {
-              const responseData = response.data
-              setCities(responseData);
-            })
-            .catch((error) => {
-              console.log(error)
-              alert(error.response.data.message)
-            });
-          };
-    
-        fetchCountries();
-        fetchSpecies();
-
-      }, []);
-    
+      
+        fetchData();
+        console.log("end",species);
+      }, []); // Empty dependency array means this effect runs once on mount
+      
 
     const handleCountrySelection = (event:any) => {
         setCountry(event.target.value);
         const fetchCities = async () => {   
             setIsCountryNotSelected(true); 
-            await httpRequest("GET","fetch/cities",null,country).then((response) => {
+            await httpRequest("GET","fetch/cities",null,{country:country}).then((response) => {
               const responseData = response.data
               setCities(responseData);
               setIsCountryNotSelected(false);
@@ -99,10 +133,12 @@ const UserHomePage = () => {
         console.log(species,countries,cities);
         // Logic to set search for specific animal
         const searchDTO ={
-            species:species,
+            species:specie,
             country:country,
             city:city,
         };
+
+        console.log("searchDTO",searchDTO);
         httpRequest("POST","user/search",searchDTO).then((response) => {
             const responseData = response.data;
             const passedDTO ={
@@ -134,15 +170,16 @@ const UserHomePage = () => {
                 <div className="search-section">
                     <select
                         className="select-bar"
-                        value={species}
+                        // value={species}
                         onChange={(event:any) => {
                             setSpecie(event.target.value);
                           }}
                     >
                         <option value="" >Select Species</option>
                         {species.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
+                            
+                            <option key={option} value={option}>
+                                {option}
                             </option>
                         ))}
                     </select>
@@ -150,10 +187,10 @@ const UserHomePage = () => {
                         className="select-bar"
                         onChange={handleCountrySelection}
                     >
-                        <option value="species" >Select Country</option>
+                        <option value="" >Select Country</option>
                         {countries.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
+                            <option key={option} value={option}>
+                                {option}
                             </option>
                         ))}
                     </select>
@@ -166,8 +203,8 @@ const UserHomePage = () => {
                     >
                         <option value="" >Select City</option>
                         {cities.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
+                            <option key={option} value={option}>
+                                {option}
                             </option>
                         ))}
                     </select>

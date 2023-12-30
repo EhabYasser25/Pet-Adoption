@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class SpeciesDAO {
         try {
             BeanPropertyRowMapper<String> rowMapper = new BeanPropertyRowMapper<>(String.class);
             List<String> result = this.jdbcTemplate.query(
-                    "SELECT * FROM species", rowMapper);
+                    "SELECT * FROM species", new SingleColumnRowMapper<>(String.class));
             System.out.println(result);
             return result;
         } catch (EmptyResultDataAccessException e) {

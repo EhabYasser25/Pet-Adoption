@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> customizedExceptionn(Exception ex){
-//        if (ex.)
-//        ErrorDTO error = ex.getErrorCode().getError();
-        System.out.println("heyyyyy");
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST).body("errorrrrr");    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<String> customizedExceptionn(Exception ex){
+////        if (ex.)
+////        ErrorDTO error = ex.getErrorCode().getError();
+//        System.out.println("heyyyyy");
+//        return ResponseEntity
+//                .status(HttpStatus.BAD_REQUEST).body("errorrrrr");    }
 
 //    @ExceptionHandler(MethodArgumentNotValidException.class)
 //    public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
