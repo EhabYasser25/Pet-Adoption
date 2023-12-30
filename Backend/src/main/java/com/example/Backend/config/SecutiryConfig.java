@@ -46,7 +46,6 @@ public class SecutiryConfig {
                                 "/api/**",
                                 "/test/**")
                         .permitAll()
-                        .requestMatchers("/staff/**").permitAll()   //TODO Remove this line
                         .requestMatchers("/user/**").hasAuthority(Role.USER.name())
 //                        .requestMatchers("/admin/**").hasAuthority(Role.ADMIN.name())
                         .requestMatchers("/staff/**").hasAuthority(Role.STAFF.name())

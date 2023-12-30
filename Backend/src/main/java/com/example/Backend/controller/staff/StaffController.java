@@ -53,7 +53,7 @@ public class StaffController {
     @PostMapping("/add/pet")
     public ResponseEntity<String> addPet(@RequestBody Pet pet) {
         System.out.println();
-        staffService.addPet(pet, 50);
+        staffService.addPet(pet, 50);  //TODO: change shelterId to dynamic
         return ResponseEntity.ok("Pet added successfully");
     }
 
@@ -65,9 +65,21 @@ public class StaffController {
     }
 
     @GetMapping("view/applications")
-    public ResponseEntity<List<Application>> viewApplications() {
-        List<Application> applications = staffService.getAllApplications();
+    public ResponseEntity<List<Application>> viewApplications(@AuthenticationPrincipal String username) {
+        List<Application> applications = staffService.getAllApplications(username);
         return ResponseEntity.ok(applications);
+    }
+
+    @PutMapping("/approve/application/{id}")
+    public ResponseEntity<String> approveApplication(@AuthenticationPrincipal String username, @PathVariable int id) {
+        staffService.approveApplication(username, id);
+        return ResponseEntity.ok("Application approved successfully");
+    }
+
+    @PutMapping("/reject/application/{id}")
+    public ResponseEntity<String> rejectApplication(@AuthenticationPrincipal String username, @PathVariable int id) {
+        staffService.rejectApplication(username, id);
+        return ResponseEntity.ok("Application declined successfully");
     }
 
     @DeleteMapping("/delete/pet/{id}")

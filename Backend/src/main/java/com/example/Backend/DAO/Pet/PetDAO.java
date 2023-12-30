@@ -81,12 +81,12 @@ public class PetDAO {
 
     public boolean insertPet(Pet pet) {
         try {
-            if (!speciesDAO.speciesExists(pet.getSpeciesId())) {
-                speciesDAO.insertSpecies(pet.getSpeciesId());
+            if (!speciesDAO.speciesExists(pet.getSpecies())) {
+                speciesDAO.insertSpecies(pet.getSpecies());
             }
 
             String query = "INSERT INTO pet (species_id, name, birthdate, gender, is_sterilized, is_vaccinated, is_house_trained, image, breed, shelter, shelter_location_city, shelter_location_country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            int result = jdbcTemplate.update(query, pet.getSpeciesId(), pet.getName(), pet.getBirthDate(), pet.getGender().name(), pet.isSterilized(), pet.isVaccinated(), pet.isHouseTrained(), pet.getImage(), pet.getBreed(), pet.getShelterId(), pet.getShelterLocationCity(), pet.getShelterLocationCountry());
+            int result = jdbcTemplate.update(query, pet.getSpecies(), pet.getName(), pet.getBirthDate(), pet.getGender().name(), pet.isSterilized(), pet.isVaccinated(), pet.isHouseTrained(), pet.getImage(), pet.getBreed(), pet.getShelterId(), pet.getShelterLocationCity(), pet.getShelterLocationCountry());
             return result > 0;
         } catch (Exception e) {
             e.printStackTrace();

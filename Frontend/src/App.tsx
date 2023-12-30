@@ -14,6 +14,7 @@ import Applications from "./Pages/Applications";
 import { SignIn } from "./Pages/SignIn";
 import UserHomePage from "./Pages/user/UserHomePage";
 import AdminHomePage from "./Pages/admin/AdminHomePage";
+import {SignUp} from "./Pages/SignUp";
 import StaffHomePage from "./Pages/staff/StaffHomaPage";
 
 // import React from "react";
@@ -32,6 +33,8 @@ function App() {
             <Router>
                 <Routes>
                     <Route path="/" element={<SignIn />}></Route>
+                    <Route path="/signin" element={<SignIn />}></Route>
+
                     <Route path="/user/homePage" element={<UserHomePage/>}></Route>
                     <Route path="/userSearch" element={<SearchScreen/>}></Route>
                     

@@ -4,9 +4,11 @@ import com.example.Backend.DAO.*;
 import com.example.Backend.DAO.Pet.*;
 import com.example.Backend.DAO.application.*;
 import com.example.Backend.DAO.user.*;
+import com.example.Backend.enums.*;
 import com.example.Backend.model.*;
 import com.example.Backend.model.application.*;
 import com.example.Backend.model.pet.*;
+import com.example.Backend.model.user.*;
 import lombok.*;
 import org.springframework.stereotype.*;
 
@@ -18,6 +20,7 @@ import java.util.*;
 public class StaffService {
 
     private final StaffDAO staffDAO;
+    private final UserDAO userDAO;
     private final PetDAO petDAO;
     private final ApplicationDAO applicationDAO;
     private final ShelterDAO shelterDAO;
@@ -51,8 +54,31 @@ public class StaffService {
         }
     }
 
-    public List<Application> getAllApplications() {
-        return applicationDAO.getAll();
+    public List<Application> getAllApplications(String username) {
+        User user = userDAO.getByUsernameOrEmail(username);
+        Staff staff = staffDAO.getById(user.getId());
+        return applicationDAO.getAllByShelterId(staff.getShelterId());
     }
 
+    public void approveApplication(String username, int applicationId) {
+        User staff = userDAO.getByUsernameOrEmail(username);
+        Application application = applicationDAO.getById(applicationId);
+        application.setStatus(ApplicationStatus.APPROVED.getStatus());
+        application.setStaffId(staff.getId());
+        if (applicationDAO.updateApplication(application))
+            System.out.println("Application approved successfully");
+        else
+            throw new RuntimeException("Application not approved");
+    }
+
+    public void rejectApplication(String username, int applicationId) {
+        User staff = userDAO.getByUsernameOrEmail(username);
+        Application application = applicationDAO.getById(applicationId);
+        application.setStatus(ApplicationStatus.DENIED.getStatus());
+        application.setStaffId(staff.getId());
+        if (applicationDAO.updateApplication(application))
+            System.out.println("Application rejected successfully");
+        else
+            throw new RuntimeException("Application not rejected");
+    }
 }

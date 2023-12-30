@@ -29,7 +29,7 @@ const PetCard = ({ pet }: { pet: PetDTO }) => {
         <Col md={9}>
           <Card.Body style={{ overflowY: 'auto', maxHeight: '20vh' }}>
             <Card.Title><h1>{pet.name}</h1></Card.Title>
-            <Card.Text><strong>Species:</strong> {pet.speciesId}</Card.Text>
+            <Card.Text><strong>Species:</strong> {pet.species}</Card.Text>
             <Card.Text><strong>Breed:</strong> {pet.breed}</Card.Text>
             <Card.Text><strong>Birthdate:</strong> {formatDate(pet.birthDate)}</Card.Text>
             <Card.Text><strong>Gender:</strong> {pet.gender}</Card.Text>

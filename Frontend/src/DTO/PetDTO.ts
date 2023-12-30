@@ -1,6 +1,6 @@
 export type PetDTO = {
   id: number;
-  speciesId: number;
+  species: string;
   name: string;
   birthDate: string; // Assuming the format is a string
   gender: 'FEMALE' | 'MALE' | 'NO_GENDER'; // Assuming you have an enumeration for Gender
@@ -12,8 +12,8 @@ export type PetDTO = {
   attachments: AttachmentDTO[]; // Assuming you have a type for attachments
   breed: string;
   shelterId: number;
-  shelterLocationCity: number; // Assuming you store city as an ID or number
-  shelterLocationCountry: number; // Assuming you store country as an ID or number
+  shelterLocationCity: string; // Assuming you store city as an ID or number
+  shelterLocationCountry: string; // Assuming you store country as an ID or number
 };
 
 // Define AttachmentDTO if it's a complex object
