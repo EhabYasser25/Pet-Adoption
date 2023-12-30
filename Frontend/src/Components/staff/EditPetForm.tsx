@@ -25,6 +25,13 @@ const EditPetForm = ({ petDTO }) => {
       setError(false);
       setSubmitted(true);
       httpRequest('POST', '/staff/edit/pet', petData)
+        .then((response) => {
+          console.log(response.data)
+          alert(response.data)
+        })
+        .catch((error) => {
+          console.log(error.response.data.message)
+        })
     }
   };
 

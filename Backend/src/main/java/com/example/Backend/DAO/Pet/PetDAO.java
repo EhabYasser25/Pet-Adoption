@@ -22,7 +22,7 @@ public class PetDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    PetTypeDAO petTypeDAO;
+    SpeciesDAO speciesDAO;
 
     public Pet getById(int id) {
         try {
@@ -80,8 +80,8 @@ public class PetDAO {
 
     public boolean insertPet(Pet pet) {
         try {
-            if (!petTypeDAO.existsPetType(pet.getSpeciesId())) {
-                petTypeDAO.insertPetType(pet.getSpeciesId());
+            if (!speciesDAO.speciesExists(pet.getSpeciesId())) {
+                speciesDAO.insertSpecies(pet.getSpeciesId());
             }
 
             String query = "INSERT INTO pet (species_id, name, birthdate, gender, is_sterilized, is_vaccinated, is_house_trained, image, breed, shelter, shelter_location_city, shelter_location_country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

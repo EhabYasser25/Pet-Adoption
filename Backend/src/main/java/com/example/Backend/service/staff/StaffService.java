@@ -10,6 +10,7 @@ import com.example.Backend.model.pet.*;
 import lombok.*;
 import org.springframework.stereotype.*;
 
+import java.sql.*;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -26,6 +27,7 @@ public class StaffService {
         pet.setShelterId(shelterId);
         pet.setShelterLocationCity(shelter.getLocationCity());
         pet.setShelterLocationCity(shelter.getLocationCity());
+        pet.setReleaseTimeStamp(new Timestamp(System.currentTimeMillis()));
         if (petDAO.insertPet(pet)) {
             System.out.println("Pet added successfully");
         } else {

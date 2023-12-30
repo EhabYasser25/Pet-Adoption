@@ -25,7 +25,7 @@ public class Pet {
     List<Attachment> attachments;
     private String breed;
     private int shelterId;
-    private int shelterLocationCity;
-    private int shelterLocationCountry;
-
+    private String shelterLocationCity;
+    private String shelterLocationCountry;
+    private String description;
 }
