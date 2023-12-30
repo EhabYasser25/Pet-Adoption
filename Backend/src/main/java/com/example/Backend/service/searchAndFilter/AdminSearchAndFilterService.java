@@ -18,6 +18,7 @@ public class AdminSearchAndFilterService {
         if(adminSearchAndFilterDTO.getShelterName()!=null) query.nameCriteria(adminSearchAndFilterDTO.getShelterName());
         if(adminSearchAndFilterDTO.getCountry()!=null) query.countryCriteria(adminSearchAndFilterDTO.getCountry());
         if(adminSearchAndFilterDTO.getCity()!=null) query.cityCriteria(adminSearchAndFilterDTO.getCity());
+        System.out.println(query.toString());
         return shelterDAO.getShelterByQuery(query.build());
     }
     public Shelter viewShelterProfile(int shelterId){

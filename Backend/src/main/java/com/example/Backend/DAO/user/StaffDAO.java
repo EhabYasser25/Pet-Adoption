@@ -68,5 +68,15 @@ public class StaffDAO {
             return false;
         }
     }
+    public Integer getShelterIdByUserID(int userId) {
+        try {
+            return this.jdbcTemplate.queryForObject(
+                    "SELECT shelter_id FROM staff WHERE user_id = ?", Integer.class, userId);
+        } catch (EmptyResultDataAccessException e) {
+            // Handle case where user is not found
+            System.out.println("User not found with ID: " + userId);
+            return null;
+        }
+    }
 
 }

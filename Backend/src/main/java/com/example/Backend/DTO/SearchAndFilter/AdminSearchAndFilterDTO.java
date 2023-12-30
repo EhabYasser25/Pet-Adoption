@@ -8,5 +8,4 @@ public class AdminSearchAndFilterDTO {
     private String city;
     private String country;
 
-    private int pageNumber;
 }
