@@ -46,18 +46,4 @@ function App() {
 
 export default App;
 
-    // You can manage user authentication state here if needed
-  // const [loggedIn, setLoggedIn] = useState(false);
-
-//   return (
-//       <div className="App">
-//           <Navbar />
-//           <div className="content">
-//               <UserHomePage />
-//           </div>
-//       </div>
-//   );
-// };
-//
-// export default App;
 

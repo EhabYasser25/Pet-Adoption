@@ -17,22 +17,25 @@ const SheltersList: React.FC<SheltersListProps> = ({ searchQuery, searchBy, onVi
   const sheltersPerPage = 13;
 
   useEffect(() => {
-    console.log(searchBy)
-    console.log(searchQuery)
-    // Define the function to fetch shelters based on search criteria
+    console.log(searchBy, searchQuery);
+  
     const fetchShelters = async () => {
-      let endpoint = '/admin/shelters';
-      if (searchQuery) {
-        endpoint += `?searchBy=${encodeURIComponent(searchBy)}&searchQuery=${encodeURIComponent(searchQuery)}`;
-      }
-      
-      const response = await httpRequest("GET", endpoint);
-      // Assuming your API returns an array of shelters
+      let endpoint = '/admin/search';
+      const adminSearchAndFilterDTO = {
+        shelterName: searchBy === 'shelter name' ? searchQuery : '',
+        city: searchBy === 'shelter city' ? searchQuery : '',
+        country: searchBy === 'shelter country' ? searchQuery : ''
+      };
+  
+      const response = await httpRequest("POST", endpoint, adminSearchAndFilterDTO);
       setShelters(response.data);
     };
-
-    fetchShelters();
-  }, [searchQuery, searchBy]); // Re-fetch when search parameters change
+  
+    if (searchQuery) {
+      fetchShelters();
+    }
+  }, [searchQuery, searchBy]);
+   // Re-fetch when search parameters change
   const updateShelterInList = (updatedShelter: ShelterType) => {
     setShelters(prevShelters =>
       prevShelters.map(shelter =>

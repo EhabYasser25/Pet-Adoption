@@ -168,7 +168,7 @@ const StaffList: React.FC<StaffListProps> = ({ shelterId }) => {
       <div className="staff-cards-container">
         {currentStaff.map((staff) => (
           <div className="staff-card" key={staff.id}>
-            <img src="https://res.cloudinary.com/dvnf3jmrz/image/upload/v1703766127/OIP_4_brupxn.jpg" alt={staff.username} className="staff-image" />
+            <img src={staff.image} alt={staff.username} className="staff-image" />
             <div className="staff-info">
               <h3>{`${staff.firstName} ${staff.middleName ? staff.middleName + ' ' : ''}${staff.lastName}`}</h3>
               <p data-label="Username:">{staff.username}</p>
