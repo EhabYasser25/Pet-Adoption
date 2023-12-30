@@ -21,11 +21,11 @@ export function SignIn() {
   const navigate = useNavigate();
 
   const isValidEmail = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.com$/.test(email);
+    return true;
   };
 
   const isValidPassword = (password: string | any[]) => {
-    return password.length >= 8;
+    return password.length >= 4;
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -49,7 +49,20 @@ export function SignIn() {
         alert(responseData)
         setJwtToken(responseData)
         setValidated(true)
-        navigate('/user/homePage')
+        console.log(responseData)
+        const role = JSON.parse(atob(responseData.split(".")[1])).role;
+        console.log("role" +role);
+        if (role === "ADMIN"){
+          
+            navigate('/admin/dashboard');
+        }
+        else if (role === "staff"){
+            navigate('/staff/dashboard');
+        }
+        else{
+          navigate('/user/homePage');
+        }
+        
         console.log(responseData)
       })
       .catch((error) => {

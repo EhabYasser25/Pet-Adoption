@@ -1,6 +1,7 @@
 .buttonSmall {
     /* Your other button styles */
   
+    background-color: ;
     pointer-events: none;
     /* Hover effect for all buttons */
     &:hover {

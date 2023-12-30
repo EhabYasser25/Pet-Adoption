@@ -130,17 +130,17 @@ const SeachAndFilter = ({
       <div className="criteria-box">
       <h5 className="select-title">Sort</h5>
       <select className="select" aria-label="Default select example" onChange={(event:any) => {
-          if (event.target.value == "age1"){
+          if (event.target.value === "age1"){
             setsortCriteriaOrder("ASC");
             setSortCriteria("age");
           } 
-          if (event.target.value == "age2"){
+          if (event.target.value=== "age2"){
             setsortCriteriaOrder("DESC");
             setSortCriteria("age");
           } 
-          else{
-            setSortCriteria(event.target.value);
-          }
+          // else{
+          //   setSortCriteria(event.target.value);
+          // }
           
         }}>
         <option value="" selected>Sort by...</option>

@@ -16,19 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/pet")
 public class ImageController {
 
-    @Autowired
-    private PetDAO petDAO;
-    @GetMapping("/img")
-    public ResponseEntity<byte[]> getRoomImage(@RequestParam("id") int petID) {
-
-        byte[] imageData = petDAO.getImageById(petID);
-
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_JPEG);
-
-        return new ResponseEntity<>(imageData, headers, HttpStatus.OK);
-    }
+//    @Autowired
+//    private PetDAO petDAO;
+//    @GetMapping("/img")
+//    public ResponseEntity<byte[]> getRoomImage(@RequestParam("id") int petID) {
+//
+//        byte[] imageData = petDAO.getImageById(petID);
+//
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.IMAGE_JPEG);
+//
+//        return new ResponseEntity<>(imageData, headers, HttpStatus.OK);
+//    }
 //    @GetMapping("/pdf")
 //    public ResponseEntity<byte[]> getHotelImage(@RequestParam("id") UUID imageId) {
 //        Optional<HotelImage> optionalImage = hotelImageRepository.findById(imageId);
