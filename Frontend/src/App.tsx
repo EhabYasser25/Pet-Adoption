@@ -1,12 +1,20 @@
 import { Container } from "react-bootstrap";
 import "./App.css";
-import SignIn from "./Pages/SignIn";
+
+// import SignIn from "./Pages/SignIn";
 // import UserHomePage from "./Pages/user/UserHomePage.tsx";
-import Applications from "./Pages/Applications.tsx";
+// import Applications from "./Pages/Applications.tsx";
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import UserHomePage from "./Pages/user/UserHomePage";
+import PetGridSearch from "./Components/searchAndFilter/PetGridSearch";
+import SearchScreen from "./Components/user/SearchScreen";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from "./Pages/admin/AdminHomePage.tsx";
-import PetGridSearch from "./Compnents/searchAndFilter/PetGridSearch.tsx";
-import SearchScreen from "./Compnents/user/searchScreen.tsx";
+import Applications from "./Pages/Applications";
+import { SignIn } from "./Pages/SignIn";
+import UserHomePage from "./Pages/user/UserHomePage";
+import AdminHomePage from "./Pages/admin/AdminHomePage";
+import StaffHomePage from "./Pages/staff/StaffHomaPage";
+
 // import React from "react";
 
 function App() {
@@ -25,7 +33,8 @@ function App() {
                     <Route path="/" element={<SearchScreen/>}></Route>
                     <Route path="/signin" element={<SignIn />}></Route>
                     <Route path="user/applications" element={<Applications/>}></Route>
-                    <Route path="/admin/dashboard" element={<HomePage />}></Route>
+                    <Route path="/admin/dashboard" element={<AdminHomePage />}></Route>
+                    <Route path="/staff/dashboard" element={<StaffHomePage />}></Route>
                 </Routes>
             </Router>
         </Container>

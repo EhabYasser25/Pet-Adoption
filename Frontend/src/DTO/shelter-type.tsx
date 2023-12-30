@@ -3,4 +3,6 @@ type ShelterType = {
     id: string;
     name: string;
     address: string;
+    locationCountry: string;
+    locationCity: string;
 };
