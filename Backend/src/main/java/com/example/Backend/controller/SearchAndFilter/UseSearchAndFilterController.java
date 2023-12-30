@@ -11,21 +11,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/test/user")
 public class UseSearchAndFilterController {
     @Autowired
     private UserSearchAndFilterService userSearchAndFilterService;
 
-    @PostMapping("/search")
+
+    @GetMapping("/search")
     List<PetSummary> searchAndFilter(@RequestBody UserSearchAndFilterDTO userSearchAndFilterDTO){
-        System.out.println(userSearchAndFilterDTO.toString());
-        System.out.println(userSearchAndFilterDTO.getCountry());
         return userSearchAndFilterService.searchAndFilter(userSearchAndFilterDTO);
 
     }
     @GetMapping("pet-profile")
-    Pet viewPet(int perId){
-        userSearchAndFilterService.viewPet(perId);
-        return null;
+    Pet viewPet(@RequestParam int perId){
+        return userSearchAndFilterService.viewPet(perId);
     }
 }

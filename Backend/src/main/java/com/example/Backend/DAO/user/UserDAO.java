@@ -7,7 +7,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class UserDAO {
@@ -26,6 +29,17 @@ public class UserDAO {
             return null;
         }
     }
+    public Integer getUserIdByUserName(String userName){
+        try {
+            return this.jdbcTemplate.queryForObject(
+                    "SELECT id FROM user WHERE username = ?", Integer.class, userName);
+        } catch (EmptyResultDataAccessException e) {
+            // Handle case where user is not found
+            System.out.println("User not found with username: " + userName);
+            return null;
+        }
+    }
+
 
     public User getByUsernameOrEmail(String usernameOrEmail) {
         try {

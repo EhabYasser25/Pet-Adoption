@@ -10,15 +10,15 @@ public class ShelterQueryBuilder {
     }
 
     void cityCriteria(String city) {
-        query.append("city =").append(city).append(" AND ");
+        query.append("location_city = '").append(city).append("' AND ");
     }
 
     void countryCriteria(String country) {
-        query.append("country =").append(country).append(" AND ");
+        query.append("location_country = '").append(country).append("' AND ");
     }
 
     void nameCriteria(String name) {
-        query.append("name =").append(name).append(" AND ");
+        query.append("name = '").append(name).append("' AND ");
     }
 
 

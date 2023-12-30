@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -21,6 +22,18 @@ public class PetDAO {
                     "SELECT * FROM pet WHERE id = ?", rowMapper, id);
             System.out.println(result);
             return result;
+        } catch (EmptyResultDataAccessException e) {
+            // Handle case where user is not found
+            System.out.println("Pet not found with id: " + id);
+            return null;
+        }
+    }
+    public byte[] getImageById(int id) {
+        try {
+            BeanPropertyRowMapper<byte[]> rowMapper = new BeanPropertyRowMapper<>(byte[].class);
+            return this.jdbcTemplate.queryForObject(
+                    "SELECT image FROM pet WHERE id = ?", rowMapper, id);
+
         } catch (EmptyResultDataAccessException e) {
             // Handle case where user is not found
             System.out.println("Pet not found with id: " + id);
@@ -44,7 +57,7 @@ public class PetDAO {
         try {
             BeanPropertyRowMapper<String> rowMapper = new BeanPropertyRowMapper<>(String.class);
             List<String> result = this.jdbcTemplate.query(
-                    "SELECT breed FROM pet WHERE species= ?", rowMapper,species);
+                    "SELECT * FROM species WHERE species= ?", new SingleColumnRowMapper<>(String.class),species);
             System.out.println(result);
             return result;
         } catch (EmptyResultDataAccessException e) {
