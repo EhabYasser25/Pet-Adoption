@@ -51,9 +51,9 @@ public class StaffController {
     }
 
     @PostMapping("/add/pet")
-    public ResponseEntity<String> addPet(@RequestBody Pet pet) {
+    public ResponseEntity<String> addPet(@AuthenticationPrincipal String username, @RequestBody Pet pet) {
         System.out.println();
-        staffService.addPet(pet, 50);  //TODO: change shelterId to dynamic
+        staffService.addPet(pet, username);
         return ResponseEntity.ok("Pet added successfully");
     }
 

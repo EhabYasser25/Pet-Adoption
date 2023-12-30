@@ -85,7 +85,7 @@ public class PetDAO {
                 speciesDAO.insertSpecies(pet.getSpecies());
             }
 
-            String query = "INSERT INTO pet (species_id, name, birthdate, gender, is_sterilized, is_vaccinated, is_house_trained, image, breed, shelter, shelter_location_city, shelter_location_country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO pet (species, name, birthdate, gender, is_sterilized, is_vaccinated, is_house_trained, image, breed, shelter_id, shelter_location_city, shelter_location_country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             int result = jdbcTemplate.update(query, pet.getSpecies(), pet.getName(), pet.getBirthDate(), pet.getGender().name(), pet.isSterilized(), pet.isVaccinated(), pet.isHouseTrained(), pet.getImage(), pet.getBreed(), pet.getShelterId(), pet.getShelterLocationCity(), pet.getShelterLocationCountry());
             return result > 0;
         } catch (Exception e) {

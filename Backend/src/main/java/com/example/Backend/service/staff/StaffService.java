@@ -25,9 +25,11 @@ public class StaffService {
     private final ApplicationDAO applicationDAO;
     private final ShelterDAO shelterDAO;
 
-    public void addPet(Pet pet, int shelterId) {
-        Shelter shelter = shelterDAO.getShelterById(shelterId);
-        pet.setShelterId(shelterId);
+    public void addPet(Pet pet, String username) {
+        User user = userDAO.getByUsernameOrEmail(username);
+        Staff staff = staffDAO.getById(user.getId());
+        Shelter shelter = shelterDAO.getShelterById(staff.getShelterId());
+        pet.setShelterId(staff.getShelterId());
         pet.setShelterLocationCity(shelter.getLocationCity());
         pet.setShelterLocationCity(shelter.getLocationCity());
         pet.setReleaseTimeStamp(new Timestamp(System.currentTimeMillis()));

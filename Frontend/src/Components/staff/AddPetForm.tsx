@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 const AddPetForm = () => {
   const [petData, setPetData] = useState({
     name: '',
-    speciesId: '',
+    species: '',
     breed: '',
     birthDate: '',
     gender: '',
@@ -21,7 +21,6 @@ const AddPetForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
   const [tempImageUrl, setTempImageUrl] = useState('');
-  const [imageFile, setImageFile] = useState(null)
   const [uploadedFileName, setUploadedFileName] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -38,20 +37,14 @@ const AddPetForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (Object.values(petData).some(field => field === '' || field === null)) {
-      setError(true);
-    } else {
-      setError(false);
-      setSubmitted(true);
-      httpRequest('POST', '/staff/add/pet', petData)
-        .then((response) => {
-          console.log(response.data)
-          navigate('/staff/dashboard')
-        })
-        .catch((error) => {
-          console.log(error.response.data.message)
-        })
-    }
+    httpRequest('POST', '/staff/add/pet', petData)
+      .then((response) => {
+        console.log(response.data)
+        navigate('/staff/dashboard')
+      })
+      .catch((error) => {
+        console.log(error.response.data.message)
+      })
   };
 
   const formStyle = {
@@ -71,76 +64,6 @@ const AddPetForm = () => {
   const inputStyle = {
     marginBottom: '15px'
   };
-
-  const uploadImage = async () => {
-    if (!(imageFile instanceof File)) {
-      console.error("The imageFile is not an instance of File.");
-      return;
-    }
-
-    setIsUploading(true);
-
-    const formData = new FormData();
-    formData.append("file", imageFile);
-    formData.append("upload_preset", "ml_default");
-    formData.append("api_key", "941432731188379");
-
-    // Log the file data
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-
-    try {
-      const uploadResponse = await axios.post(
-        "https://api.cloudinary.com/v1_1/dvnf3jmrz/image/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
-        }
-      );
-      setIsUploading(false); // Stop loading on success
-      console.log(uploadResponse.data.secure_url + " before..")
-      return uploadResponse.data;
-    } catch (error) {
-      if (error.response) {
-        console.error(error.response.data);
-        console.error(error.response.status);
-        console.error(error.response.headers);
-      } else if (error.request) {
-        console.error(error.request);
-      } else {
-        console.error('Error', error.message);
-      }
-      throw error;
-    }
-  };
-
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const fileName = e.target.files[0].name;
-      setUploadedFileName(fileName);
-      console.log("Selected file:", e.target.files[0]);
-      setTempImageUrl(URL.createObjectURL(e.target.files[0]));
-      setImageFile(e.target.files[0]);
-    } else {
-      console.error("No file selected");
-    }
-  };
-
-  const VisuallyHiddenStyle ={
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-  }
 
   return (
     <div style={formStyle}>
@@ -163,8 +86,8 @@ const AddPetForm = () => {
           <label style={labelStyle}>Species</label>
           <input
             type="text"
-            name="speciesId"
-            value={petData.speciesId}
+            name="species"
+            value={petData.species}
             onChange={handleInputChange}
             placeholder="Enter species"
             style={{ width: '100%', padding: '10px' }}
@@ -230,15 +153,6 @@ const AddPetForm = () => {
             name="isHouseTrained"
             checked={petData.isHouseTrained}
             onChange={handleInputChange}
-          />
-        </div>
-        <div style={inputStyle}>
-          <label style={labelStyle}>Image</label>
-          <input
-            type="file"
-            name="image"
-            onChange={handleImageChange}
-            style={{ width: '100%', padding: '10px' }}
           />
         </div>
         <button type="submit" className="form-button" disabled={isUploading} style={{
