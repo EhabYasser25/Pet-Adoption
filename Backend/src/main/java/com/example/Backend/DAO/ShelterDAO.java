@@ -23,19 +23,6 @@ public class ShelterDAO {
     public List<Shelter> getAllShelters() {
         return jdbcTemplate.query("SELECT * FROM shelter", new BeanPropertyRowMapper<>(Shelter.class));
     }
-    public Shelter getShelterById(int shelterId) {
-        try {
-            BeanPropertyRowMapper<Shelter> rowMapper = new BeanPropertyRowMapper<>(Shelter.class);
-            Shelter result = this.jdbcTemplate.queryForObject(
-                    "SELECT * FROM pet WHERE id = ?", rowMapper, shelterId);
-            System.out.println(result);
-            return result;
-        } catch (EmptyResultDataAccessException e) {
-            // Handle case where user is not found
-            System.out.println("Pet not found with id: " + shelterId);
-            return null;
-        }
-    }
 
 
     public boolean updateShelterById(Shelter shelter) {

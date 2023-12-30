@@ -13,7 +13,7 @@ public class LocationService {
     private final LocationDAO locationDAO;
 
     public List<String> getAllCountries() {
-        return locationDAO.getAllCountries();
+        return locationDAO.getCountries();
     }
 
     public List<String> getCities(String country) {
