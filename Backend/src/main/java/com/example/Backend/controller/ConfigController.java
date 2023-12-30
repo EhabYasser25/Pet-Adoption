@@ -14,21 +14,21 @@ public class ConfigController {
     @Autowired
     ConfigService configService;
 
-    @GetMapping("countries")
+    @GetMapping("/countries")
     public List<String> getAllCountries(){
         return configService.getAllCountries();
     }
-    @GetMapping("cities")
+    @GetMapping("/cities")
     public List<String> getCities(String country){
         return configService.getCities(country);
 
     }
-    @GetMapping("species")
+    @GetMapping("/species")
     public List<String> getAllSpecies(){
         return configService.getAllSpecies();
     }
 
-    @GetMapping("breed")
+    @GetMapping("/breeds")
     public List<String> getBreeds(String species){
         return configService.getBreeds(species);
     }
