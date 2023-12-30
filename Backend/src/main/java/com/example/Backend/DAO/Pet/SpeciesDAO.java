@@ -21,8 +21,8 @@ public class SpeciesDAO {
         try {
             BeanPropertyRowMapper<String> rowMapper = new BeanPropertyRowMapper<>(String.class);
             List<String> result = this.jdbcTemplate.query(
-                    "SELECT * FROM species", new SingleColumnRowMapper<>(String.class));
-            System.out.println(result);
+                    "SELECT species FROM species", new SingleColumnRowMapper<>(String.class));
+            System.out.println(result.toString());
             return result;
         } catch (EmptyResultDataAccessException e) {
             // Handle case where user is not found

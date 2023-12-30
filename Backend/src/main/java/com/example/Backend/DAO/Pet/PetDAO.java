@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class PetDAO {
         try {
             BeanPropertyRowMapper<String> rowMapper = new BeanPropertyRowMapper<>(String.class);
             List<String> result = this.jdbcTemplate.query(
-                    "SELECT breed FROM pet WHERE species= ?", rowMapper,species);
+                    "SELECT breed FROM pet WHERE species= ?",  new SingleColumnRowMapper<>(String.class),species);
             System.out.println(result);
             return result;
         } catch (EmptyResultDataAccessException e) {

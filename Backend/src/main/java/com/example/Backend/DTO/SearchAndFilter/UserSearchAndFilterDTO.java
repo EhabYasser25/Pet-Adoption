@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.WithBy;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class UserSearchAndFilterDTO {
@@ -16,7 +15,7 @@ public class UserSearchAndFilterDTO {
 
     private String species;
     private String breed;
-    private Gender gender;
+    private String gender;
     private String city;
     private String country;
     private boolean isSterilized;

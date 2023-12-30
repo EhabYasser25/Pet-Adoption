@@ -43,7 +43,7 @@ public class PetQueryBuilder {
         query.append("shelter_location_country = '").append(country).append("' AND ");
     }
 
-    void genderCriteria(Gender gender) {
+    void genderCriteria(String gender) {
         query.append("gender = '").append(gender).append("' AND ");
     }
 

@@ -24,13 +24,13 @@ public class UserSearchAndFilterService {
         if(userSearchAndFilterDTO.isHouseTrained()) query.isHouseTrainedCriteria(userSearchAndFilterDTO.isHouseTrained());
         if(userSearchAndFilterDTO.isSterilized()) query.isSterilizedCriteria(userSearchAndFilterDTO.isSterilized());
         if(userSearchAndFilterDTO.isVaccinated()) query.isVaccinatedCriteria(userSearchAndFilterDTO.isVaccinated());
-        if(userSearchAndFilterDTO.getBreed()!=null) query.breedCriteria(userSearchAndFilterDTO.getBreed());
-        if(userSearchAndFilterDTO.getCountry()!=null) query.countryCriteria(userSearchAndFilterDTO.getCountry());
-        if(userSearchAndFilterDTO.getCity()!=null) query.cityCriteria(userSearchAndFilterDTO.getCity());
-        if(userSearchAndFilterDTO.getSpecies()!=null) query.speciesCriteria(userSearchAndFilterDTO.getSpecies());
-        if(userSearchAndFilterDTO.getGender()!=null) query.genderCriteria(userSearchAndFilterDTO.getGender());
+        if(userSearchAndFilterDTO.getBreed()!=null && userSearchAndFilterDTO.getBreed()!="") query.breedCriteria(userSearchAndFilterDTO.getBreed());
+        if(userSearchAndFilterDTO.getCountry()!=null && userSearchAndFilterDTO.getCountry()!="") query.countryCriteria(userSearchAndFilterDTO.getCountry());
+        if(userSearchAndFilterDTO.getCity()!=null && userSearchAndFilterDTO.getCity()!="") query.cityCriteria(userSearchAndFilterDTO.getCity());
+        if(userSearchAndFilterDTO.getSpecies()!=null && userSearchAndFilterDTO.getSpecies()!="") query.speciesCriteria(userSearchAndFilterDTO.getSpecies());
+        if(userSearchAndFilterDTO.getGender()!=null && userSearchAndFilterDTO.getGender()!="") query.genderCriteria(userSearchAndFilterDTO.getGender());
         query.endSelect();
-        if(userSearchAndFilterDTO.getSortCriteria()!=null) query.sortCriteria(userSearchAndFilterDTO.getSortCriteria(), userSearchAndFilterDTO.getOrder());
+        if(userSearchAndFilterDTO.getSortCriteria()!=null && userSearchAndFilterDTO.getSortCriteria()!="") query.sortCriteria(userSearchAndFilterDTO.getSortCriteria(), userSearchAndFilterDTO.getOrder());
 
         return petSummaryDAO.getPetSummaryByQuery(query.build());
 

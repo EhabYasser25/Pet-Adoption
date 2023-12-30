@@ -20,11 +20,12 @@ public class UseSearchAndFilterController {
     List<PetSummary> searchAndFilter(@RequestBody UserSearchAndFilterDTO userSearchAndFilterDTO){
         System.out.println(userSearchAndFilterDTO.toString());
         System.out.println(userSearchAndFilterDTO.getCountry());
+//        System.out.println(userSearchAndFilterDTO.isSterilized());
         return userSearchAndFilterService.searchAndFilter(userSearchAndFilterDTO);
 
     }
     @GetMapping("pet-profile")
-    Pet viewPet(int perId){
+    Pet viewPet(@RequestParam("petId") int perId){
         userSearchAndFilterService.viewPet(perId);
         return null;
     }

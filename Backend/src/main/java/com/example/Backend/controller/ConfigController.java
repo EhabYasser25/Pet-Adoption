@@ -30,7 +30,7 @@ public class ConfigController {
 
 
     @GetMapping("/breed")
-    public List<String> getBreeds(String species){
+    public List<String> getBreeds(@RequestParam("species") String species){
         return configService.getBreeds(species);
     }
 
