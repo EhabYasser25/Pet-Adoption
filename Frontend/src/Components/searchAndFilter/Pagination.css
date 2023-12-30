@@ -1,0 +1,18 @@
+.buttonSmall {
+    /* Your other button styles */
+  
+    pointer-events: none;
+    /* Hover effect for all buttons */
+    &:hover {
+        pointer-events: none;
+      /* Your hover styles for all buttons */
+    }
+  
+    /* Hover effect for disabled buttons */
+    &:disabled:hover {
+      pointer-events: none; /* Disable pointer events for the disabled button */
+      /* Optionally, you can add styles specific to the disabled hover state */
+      background-color: #888;
+      color: #888;
+    }
+  }

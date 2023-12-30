@@ -19,6 +19,8 @@ public class PetSummaryDAO {
     public List<PetSummary> getPetSummaryByQuery(String query) {
         try {
             BeanPropertyRowMapper<PetSummary> rowMapper = new BeanPropertyRowMapper<>(PetSummary.class);
+            System.out.println("the query");
+            System.out.println(query);
             List<PetSummary> result = this.jdbcTemplate.query(
                     query, rowMapper);
             System.out.println(result);

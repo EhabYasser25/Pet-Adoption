@@ -1,13 +1,21 @@
 package com.example.Backend.DTO.SearchAndFilter;
 
 import com.example.Backend.enums.Gender;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.WithBy;
 
 @Data
-public class SearchAndFilterUserDTO {
+@AllArgsConstructor
+@Builder
+public class UserSearchAndFilterDTO {
+
+
     private String species;
     private String breed;
-    private Gender gender;
+    private String gender;
     private String city;
     private String country;
     private boolean isSterilized;
@@ -16,6 +24,9 @@ public class SearchAndFilterUserDTO {
 
 
     private int pageNumber;
+
+    private String sortCriteria;
+    private String order="DESC";
 
 
 }

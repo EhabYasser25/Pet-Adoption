@@ -49,7 +49,7 @@ export function SignIn() {
         alert(responseData)
         setJwtToken(responseData)
         setValidated(true)
-        navigate('/')
+        navigate('/user/homePage')
         console.log(responseData)
       })
       .catch((error) => {

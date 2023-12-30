@@ -42,6 +42,8 @@ public class SecutiryConfig {
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers(
                                 "/auth/**" ,
+                                "/fetch/**",
+                                "/api/**",
                                 "/test/**")
                         .permitAll()
                         .requestMatchers("/user/**").hasAuthority(Role.USER.name())

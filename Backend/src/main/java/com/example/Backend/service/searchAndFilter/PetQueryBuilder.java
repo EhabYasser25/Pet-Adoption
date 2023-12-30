@@ -12,7 +12,7 @@ public class PetQueryBuilder {
     public PetQueryBuilder(int pageNumber, int pageSize) {
         this.pageNumber = pageNumber;
         this.pageSize = pageSize;
-        this.query = new StringBuilder("SELECT image,description,name FROM pet WHERE ");
+        this.query = new StringBuilder("SELECT id,name FROM pet WHERE ");
     }
 
     void isVaccinatedCriteria(boolean isVaccinated) {
@@ -28,23 +28,23 @@ public class PetQueryBuilder {
     }
 
     void breedCriteria(String breed) {
-        query.append("breed=").append(breed).append(" AND ");
+        query.append("breed= '").append(breed).append("' AND ");
     }
 
     void speciesCriteria(String species) {
-        query.append("species =").append(species).append(" AND ");
+        query.append("species = '").append(species).append("' AND ");
     }
 
     void cityCriteria(String city) {
-        query.append("city =").append(city).append(" AND ");
+        query.append("shelter_location_city = '").append(city).append("' AND ");
     }
 
     void countryCriteria(String country) {
-        query.append("country =").append(country).append(" AND ");
+        query.append("shelter_location_country = '").append(country).append("' AND ");
     }
 
-    void genderCriteria(Gender gender) {
-        query.append("gender =").append(gender).append(" AND ");
+    void genderCriteria(String gender) {
+        query.append("gender = '").append(gender).append("' AND ");
     }
 
     void shelterIDCriteria(int shelterId) {
@@ -52,11 +52,16 @@ public class PetQueryBuilder {
     }
 
     void nameCriteria(String name) {
-        query.append("name =").append(name).append(" AND ");
+        query.append("name = '").append(name).append("' AND ");
+    }
+    void sortCriteria(String sortCriteria,String order){
+        query.append("ORDER BY ").append(sortCriteria).append(" ").append(order);
+    }
+    void endSelect(){
+        query.delete(query.length() - 4, query.length());
     }
 
     public String build() {
-        query.delete(query.length() - 4, query.length());
         query.append("LIMIT ").append(this.pageSize).append(" OFFSET ").append(pageNumber);
         return query.toString();
     }
