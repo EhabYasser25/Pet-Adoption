@@ -64,11 +64,12 @@ public class ApplicationDAO {
         try {
             jdbcTemplate.execute("BEGIN");
 
-            String checkQuery = "SELECT COUNT(*) FROM application WHERE pet_id = ? AND status = 'APPROVED'";
-            int count = jdbcTemplate.queryForObject(checkQuery, new Object[]{application.getPetId()}, Integer.class);
-            if (count > 0 && application.getStatus().equals(ApplicationStatus.APPROVED.getStatus())) {
+            String checkQuery = "SELECT is_adopted FROM pet WHERE id = ?";
+            Integer res = jdbcTemplate.queryForObject(checkQuery, new Object[]{application.getPetId()}, Integer.class);
+            boolean isAdopted = (res != null && res == 1);
+            if (isAdopted && application.getStatus().equals(ApplicationStatus.APPROVED.getStatus())) {
                 jdbcTemplate.execute("ROLLBACK");
-                throw new RuntimeException("This pet has already been approved in another application.");
+                throw new RuntimeException("This pet has already been adopted by another user.");
             }
 
             String lockQuery = "SELECT * FROM application WHERE pet_id = ? FOR UPDATE";
@@ -77,8 +78,8 @@ public class ApplicationDAO {
             String updateQuery = "UPDATE application SET status = ?, staff_id = ? WHERE id = ?";
             int result = jdbcTemplate.update(updateQuery, application.getStatus(), application.getStaffId(), application.getId());
 
-            String callProcedureQuery = "CALL decline_pending_applications(?)";
-            jdbcTemplate.update(callProcedureQuery, application.getPetId());
+            String updatePetQuery = "UPDATE pet SET is_adopted = ? WHERE id = ?";
+            int result2 = jdbcTemplate.update(updatePetQuery, application.getStatus().equals(ApplicationStatus.APPROVED.getStatus()) ? 1 : 0, application.getPetId());
 
             jdbcTemplate.execute("COMMIT");
 
@@ -86,6 +87,17 @@ public class ApplicationDAO {
         } catch (Exception e) {
             jdbcTemplate.execute("ROLLBACK");
             throw new RuntimeException("Application not updated: " + e.getMessage());
+        }
+    }
+
+    public boolean rejectOtherApplications(int petId){
+        try {
+            String callProcedureQuery = "CALL decline_pending_applications(?)";
+            jdbcTemplate.update(callProcedureQuery, petId);
+
+            return true;
+        } catch (Exception e) {
+            throw new RuntimeException("Applications not rejected: " + e.getMessage());
         }
     }
 

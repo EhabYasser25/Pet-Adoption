@@ -65,10 +65,15 @@ public class StaffService {
         Application application = applicationDAO.getById(applicationId);
         application.setStatus(ApplicationStatus.APPROVED.getStatus());
         application.setStaffId(staff.getId());
-        if (applicationDAO.updateApplication(application))
+        if (applicationDAO.updateApplication(application)) {
             System.out.println("Application approved successfully");
-        else
+            if (applicationDAO.rejectOtherApplications(application.getPetId()))
+                System.out.println("Other applications rejected successfully");
+            else
+                throw new RuntimeException("Other applications not rejected");
+        } else {
             throw new RuntimeException("Application not approved");
+        }
     }
 
     public void rejectApplication(String username, int applicationId) {
