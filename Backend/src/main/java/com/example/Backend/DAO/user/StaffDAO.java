@@ -1,5 +1,6 @@
 package com.example.Backend.DAO.user;
 
+import com.example.Backend.DTO.registrationAndAuth.StaffMemberDTO;
 import com.example.Backend.model.user.Staff;
 import com.example.Backend.model.user.User;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -54,13 +56,25 @@ public class StaffDAO {
         }
     }
 
-    public List<Staff> getAllStaff (int shelterId) {
-        return jdbcTemplate.query("SELECT * FROM staff", new BeanPropertyRowMapper<>(Staff.class));
+    public List<User> getAllStaff(int shelterId) {
+        String sql = "SELECT user_id FROM staff WHERE shelter_id = ?";
+        List<User> users = new ArrayList<>();
+
+        List<Integer> userIds = jdbcTemplate.queryForList(sql, Integer.class, shelterId);
+
+        for (Integer userId : userIds) {
+            User user = userDAO.getById(userId);
+            if (user != null) {
+                users.add(user);
+            }
+        }
+
+        return users;
     }
 
     public boolean deleteStaff (int staffId) {
         try {
-            String sql = "DELETE FROM staff WHERE id = ?";
+            String sql = "DELETE FROM staff WHERE user_id = ?";
             int result = jdbcTemplate.update(sql, staffId);
             return result > 0;
         } catch (DataAccessException e) {
@@ -68,5 +82,38 @@ public class StaffDAO {
             return false;
         }
     }
+
+    public boolean updateStaffMember(StaffMemberDTO staffMember) {
+        try {
+            String email = staffMember.getStaffDetails().getEmail();
+            // Fetch the User object from the database
+            User user = userDAO.getByUsernameOrEmail(email);
+            if (user == null) {
+                System.out.println("User not found with Email: " + email);
+                return false;
+            }
+
+            user.setEmail(staffMember.getStaffDetails().getEmail());
+            user.setGender(staffMember.getStaffDetails().getGender());
+            user.setFirstName(staffMember.getStaffDetails().getFirstName());
+            user.setMiddleName(staffMember.getStaffDetails().getMiddleName());
+            user.setLastName(staffMember.getStaffDetails().getLastName());
+//            user.setFullName(staffMember.getStaffDetails().getFullName());
+            user.setPhoneNo(staffMember.getStaffDetails().getPhoneNo());
+            user.setUsername(staffMember.getStaffDetails().getUsername());
+            user.setBirthdate(staffMember.getStaffDetails().getBirthdate());
+
+            // Update the User object in the database
+            return userDAO.updateUser(user);
+
+        } catch (DataAccessException e) {
+            String email = staffMember.getStaffDetails().getEmail();
+            System.out.println("Error updating staff member with user email: " + email);
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
 
 }

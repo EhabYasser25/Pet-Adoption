@@ -23,13 +23,11 @@ public class ShelterDAO {
 
     public boolean updateShelterById(Shelter shelter) {
         try {
-            String updateSql = "UPDATE shelter SET name = ?, address = ?, location_country = ?, location_city = ? WHERE id = ?";
+            String updateSql = "UPDATE shelter SET name = ?, address = ? WHERE id = ?";
             int result = jdbcTemplate.update(
                     updateSql,
                     shelter.getName(),
                     shelter.getAddress(),
-                    shelter.getLocationCity(),
-                    shelter.getLocationCountry(),
                     shelter.getId());
             return  result > 0;
         } catch (DataAccessException e) {

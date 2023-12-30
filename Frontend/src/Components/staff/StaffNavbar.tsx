@@ -1,5 +1,4 @@
 import {Navbar} from "react-bootstrap";
-import React from "react";
 import {useNavigate} from "react-router-dom";
 import {clearCurrentSession} from "../../CurrentSession";
 

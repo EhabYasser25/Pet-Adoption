@@ -1,0 +1,113 @@
+.staff-list {
+    padding: 20px;
+  }
+  
+  .staff-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
+    grid-gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .staff-card {
+    background: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute space vertically */
+    height: 350px; /* Set a fixed height */
+  }
+  
+  .staff-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .staff-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 20px auto 0; /* Center the image horizontally, 20px from the top */
+    border: 4px solid white; /* To create a white border around the image */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+  }
+  
+  .staff-info {
+    padding: 20px;
+    flex-grow: 1; /* Allows this section to grow and push buttons to the bottom */
+  }
+  
+  .staff-info h3 {
+    color: #333;
+    font-size: 1.2rem;
+  }
+  
+  .staff-info p {
+    color: #666;
+    margin: 5px 0;
+    word-wrap: break-word; /* Ensure the text breaks to prevent overflow */
+  }
+  
+  /* Add some styling for the labels */
+  .staff-info p:before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+  }
+  
+  /* Style for the role to make it stand out */
+  .role-user {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 3px 10px;
+    border-radius: 15px;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+  /* Pagination styling */
+  .pagination button {
+    background-color: #85c1e9;
+    /* ... other styles ... */
+  }
+  
+  .pagination button:hover {
+    background-color: #3498db;
+  }
+  
+  /* Style for the edit button */
+  .staff-card button {
+    margin: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .staff-card button:hover {
+    background-color: #08228b;
+  }
+  
+
+  .delete-button {
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .delete-button:hover {
+    background-color: #ff7875;
+  }
+  

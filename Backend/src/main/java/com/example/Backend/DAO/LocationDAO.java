@@ -1,5 +1,4 @@
 package com.example.Backend.DAO;
-
 import com.example.Backend.model.pet.PetSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -19,7 +18,7 @@ public class LocationDAO {
         try {
             BeanPropertyRowMapper<String> rowMapper = new BeanPropertyRowMapper<>(String.class);
             List<String> result = this.jdbcTemplate.query(
-                    "SELECT country FROM location", rowMapper);
+                    "SELECT DISTINCT country FROM location", rowMapper);
             System.out.println(result);
             return result;
         } catch (EmptyResultDataAccessException e) {

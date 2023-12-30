@@ -8,6 +8,7 @@ import com.example.Backend.enums.ErrorCode;
 
 import com.example.Backend.model.Shelter;
 import com.example.Backend.model.user.Staff;
+import com.example.Backend.model.user.User;
 import com.example.Backend.service.Admin.ShelterManagementService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,11 +65,6 @@ public class ShelterManagementController {
         return ResponseEntity.ok(shelters);
     }
 
-//    @PostMapping("/add-shelter")
-//    public ResponseEntity<Shelter> addShelter (@RequestBody Staff staff) {
-//
-//    }
-
     @PostMapping("/save-shelter")
     public ResponseEntity<?> saveShelter(@RequestBody Shelter shelter) {
         return ResponseEntity.ok(shelterManagementService.saveShelter(shelter));
@@ -84,19 +80,19 @@ public class ShelterManagementController {
         return ResponseEntity.ok(shelterManagementService.deleteShelter(id));
     }
 
-    @GetMapping("/staff/{shelter_id}")
-    public ResponseEntity<List<Staff>> getAllShelterStaff(@PathVariable(value = "shelter_id") int shelterId) {
-        List<Staff> staffList = shelterManagementService.getAllShelterStaff(shelterId);
+    @GetMapping("/shelters/{shelter_id}/staff")
+    public ResponseEntity<List<User>> getAllShelterStaff(@PathVariable(value = "shelter_id") int shelterId) {
+        List<User> staffList = shelterManagementService.getAllShelterStaff(shelterId);
         return ResponseEntity.ok(staffList);
     }
 
-//    @PutMapping("/update-staff")
-//    public ResponseEntity<Staff> updateStaffMember (@RequestBody Staff staff) {
-//
-//    }
-
-    @DeleteMapping("/delete-staff/{staff-id}")
+    @DeleteMapping("/staff/delete/{staff-id}")
     public ResponseEntity<?> deleteStaffMember(@PathVariable(value = "staff-id") int staffId) {
         return ResponseEntity.ok(shelterManagementService.deleteStaffMember(staffId));
+    }
+
+    @PostMapping("/modify-staff")
+    public ResponseEntity<?> updateStaffMember(@RequestBody StaffMemberDTO staffMember) {
+        return ResponseEntity.ok(shelterManagementService.updateStaffMember(staffMember));
     }
 }

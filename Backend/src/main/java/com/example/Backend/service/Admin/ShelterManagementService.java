@@ -58,12 +58,16 @@ public class ShelterManagementService {
         return shelterDAO.deleteShelterById(id);
     }
 
-    public List<Staff> getAllShelterStaff (int shelterId) {
+    public List<User> getAllShelterStaff (int shelterId) {
         return staffDAO.getAllStaff(shelterId);
     }
 
     public boolean deleteStaffMember (int staffId) {
         return staffDAO.deleteStaff(staffId);
+    }
+
+    public boolean updateStaffMember (StaffMemberDTO staffMember) {
+        return staffDAO.updateStaffMember(staffMember);
     }
 
 }

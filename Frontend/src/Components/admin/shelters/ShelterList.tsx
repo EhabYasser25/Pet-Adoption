@@ -1,29 +1,38 @@
 import { useState, useEffect } from 'react';
 import './ShelterList.css';
 import './AdminShelter.css'
-import '../../DTO/shelter-type'
+import '../../../DTO/shelter-type'
 import AdminShelter from './AdminShelter';
-import { httpRequest } from '../../Controller/HttpProxy';
+import { httpRequest } from '../../../Controller/HttpProxy';
 
-const SheltersList = () => {
+interface SheltersListProps {
+  searchQuery: string;
+  searchBy: string;
+  onViewStaff: (shelterId: string) => void; // Add this line
+}
+
+const SheltersList: React.FC<SheltersListProps> = ({ searchQuery, searchBy, onViewStaff }) => {
   const [shelters, setShelters] = useState<ShelterType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const sheltersPerPage = 13;
 
   useEffect(() => {
-    // Fetch shelters
+    console.log(searchBy)
+    console.log(searchQuery)
+    // Define the function to fetch shelters based on search criteria
     const fetchShelters = async () => {
-      const response = await httpRequest("GET", '/admin/shelters').then ((response) => {
-        setShelters(response.data);
-      }).catch((error) => {
-        console.log(error)
-      })
+      let endpoint = '/admin/shelters';
+      if (searchQuery) {
+        endpoint += `?searchBy=${encodeURIComponent(searchBy)}&searchQuery=${encodeURIComponent(searchQuery)}`;
+      }
       
+      const response = await httpRequest("GET", endpoint);
+      // Assuming your API returns an array of shelters
+      setShelters(response.data);
     };
 
     fetchShelters();
-  }, []);
-
+  }, [searchQuery, searchBy]); // Re-fetch when search parameters change
   const updateShelterInList = (updatedShelter: ShelterType) => {
     setShelters(prevShelters =>
       prevShelters.map(shelter =>
@@ -31,6 +40,12 @@ const SheltersList = () => {
       )
     );
   };
+
+  const handleDeleteShelter = (shelterId: string) => {
+    setShelters(prevShelters => prevShelters.filter(shelter => shelter.id !== shelterId));
+  };
+
+  
 
   // Get current shelters
   const indexOfLastShelter = currentPage * sheltersPerPage;
@@ -51,9 +66,11 @@ const SheltersList = () => {
       <div className="admin-shelters-grid">
         {currentShelters.map((shelter, index) => (
           <AdminShelter
-            key={`${shelter.id}-${index}`} // Unique key for each shelter
+            key={`${shelter.id}-${index}`}
             {...shelter}
-            onEdit={updateShelterInList} // Pass the update function to AdminShelter
+            onEdit={updateShelterInList}
+            onDelete={handleDeleteShelter} // Pass the delete function to AdminShelter
+            onViewStaff={onViewStaff} // Pass the callback here
           />
         ))}
       </div>
