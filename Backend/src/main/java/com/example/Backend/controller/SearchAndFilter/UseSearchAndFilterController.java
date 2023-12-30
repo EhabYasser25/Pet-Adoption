@@ -19,11 +19,14 @@ public class UseSearchAndFilterController {
 
     @GetMapping("/search")
     List<PetSummary> searchAndFilter(@RequestBody UserSearchAndFilterDTO userSearchAndFilterDTO){
+
         return userSearchAndFilterService.searchAndFilter(userSearchAndFilterDTO);
 
     }
-    @GetMapping("pet-profile")
+    @GetMapping("/pet-profile")
     Pet viewPet(@RequestParam("petId") int perId){
-       return userSearchAndFilterService.viewPet(perId);
+        Pet result =userSearchAndFilterService.viewPet(perId);
+        System.out.println(result.getImage().length);
+       return result;
     }
 }
