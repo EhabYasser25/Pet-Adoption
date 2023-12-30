@@ -44,7 +44,8 @@ public class SecutiryConfig {
                                 "/auth/**" ,
                                 "/fetch/**",
                                 "/api/**",
-                                "/test/**")
+                                "/test/**",
+                                "/admin/**")
                         .permitAll()
                         .requestMatchers("/user/**").hasAuthority(Role.USER.name())
                         .requestMatchers("/admin/**").hasAuthority(Role.ADMIN.name())

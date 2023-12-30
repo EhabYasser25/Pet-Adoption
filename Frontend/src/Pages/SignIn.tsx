@@ -58,7 +58,7 @@ export function SignIn() {
           
             navigate('/admin/dashboard');
         }
-        else if (role === "staff"){
+        else if (role === "STAFF"){
             navigate('/staff/dashboard');
         }
         else{

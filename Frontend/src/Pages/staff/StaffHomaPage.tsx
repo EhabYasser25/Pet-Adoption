@@ -4,7 +4,8 @@ import { FaSearch, FaFilter } from "react-icons/fa";
 import StaffNavbar from "../../Components/staff/StaffNavbar";
 import PetCard from "../../Components/staff/PetCard";
 import {PetDTO} from "../../DTO/PetDTO";
-
+import PetGridSearch from "../../Components/searchAndFilter/PetGridSearch";
+import { httpRequest } from '../../Controller/HttpProxy';
 const PETS_PER_PAGE = 20;
 
 const StaffHomePage = () => {
@@ -23,22 +24,30 @@ const StaffHomePage = () => {
   );
 
   useEffect(() => {
-    const fetchPets = async () => {
-      try {
-        const response = await fetch('/staff/view/pets');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setPets(data);
-      } catch (error) {
-        console.error('Error fetching pets:', error);
-      }
+
+    const dto ={
+
+    }
+
+    const fetchPets = async () => {   
+      
+      await httpRequest("POST","staff/search",dto).then((response) => {
+         const responseData = response.data;
+        console.log(responseData);
+        setPets(responseData);
+        
+      })
+      .catch((error) => {
+        console.log(error)
+        alert(error.response.message)
+      });
     };
 
     fetchPets();
+
   }, []);
 
+ 
   return (
     <Container style={{backgroundColor: "white", color: "blue", padding: "20px"}}>
       <StaffNavbar/>
@@ -70,9 +79,8 @@ const StaffHomePage = () => {
           <FaFilter style={{color: "blue"}}/>
         </button>
       </div>
-      {petsToShow.map((pet) => (
-        <PetCard key={pet.id} pet={pet} />
-      ))}
+     <PetGridSearch searchResult={pets}/>
+      
       <Pagination>
         {[...Array(totalPages).keys()].map((page) => (
           <Pagination.Item

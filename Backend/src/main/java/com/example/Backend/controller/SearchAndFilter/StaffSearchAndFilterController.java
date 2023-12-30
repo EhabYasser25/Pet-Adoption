@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("test/staff")
+@RequestMapping("/staff")
 public class StaffSearchAndFilterController {
 
     @Autowired
     private StaffSearchAndFilterService staffSearchAndFilterService;
 
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     List<PetSummary> searchAndFilter(@AuthenticationPrincipal String userName, @RequestBody StaffSearchAndFilterDTO staffSearchAndFilterDTO){
         System.out.println(staffSearchAndFilterDTO.getName());
         return staffSearchAndFilterService.searchAndFilter(staffSearchAndFilterDTO,userName);

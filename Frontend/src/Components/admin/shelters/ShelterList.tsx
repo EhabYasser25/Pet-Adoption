@@ -17,24 +17,72 @@ const SheltersList: React.FC<SheltersListProps> = ({ searchQuery, searchBy, onVi
   const sheltersPerPage = 13;
 
   useEffect(() => {
-    console.log(searchBy, searchQuery);
-  
+    console.log(searchBy)
+    console.log(searchQuery)
+
+    let dto:any;
+    if (searchBy == "shelter name"){
+      dto = {
+        shelterName:searchQuery
+      }
+    }
+    else if (searchBy == "shelter coutry"){
+      dto = {
+        country:searchQuery
+      }
+
+    }
+    else{
+      dto = {
+        city:searchQuery
+      }
+
+    }
+
+    const fetchShelters = async () => {    
+      await httpRequest("POST","admin/search",dto).then((response) => {
+         const responseData = response.data;
+        console.log(responseData);
+        setShelters(responseData);
+      
+      })
+      .catch((error) => {
+        console.log(error)
+        alert(error.response.message)
+      });
+    };
+    // Define the function to fetch shelters based on search criteria    
+    fetchShelters();
+  }, [searchQuery, searchBy]); // Re-fetch when search parameters change
+
+  useEffect(() => {
+    console.log(searchBy)
+    console.log(searchQuery)
+
+
+    // Define the function to fetch shelters based on search criteria
     const fetchShelters = async () => {
-      let endpoint = '/admin/search';
-      const adminSearchAndFilterDTO = {
-        shelterName: searchBy === 'shelter name' ? searchQuery : '',
-        city: searchBy === 'shelter city' ? searchQuery : '',
-        country: searchBy === 'shelter country' ? searchQuery : ''
-      };
-  
-      const response = await httpRequest("POST", endpoint, adminSearchAndFilterDTO);
+      let endpoint = '/admin/shelters';
+      if (searchQuery) {
+        endpoint += `?searchBy=${encodeURIComponent(searchBy)}&searchQuery=${encodeURIComponent(searchQuery)}`;
+      }
+      else{
+        
+      }
+
+      
+      
+      const response = await httpRequest("GET", endpoint);
+      // Assuming your API returns an array of shelters
       setShelters(response.data);
     };
+
+    fetchShelters();
+  }, [searchQuery, searchBy]); // Re-fetch when search parameters change
+
+
   
-    if (searchQuery) {
-      fetchShelters();
-    }
-  }, [searchQuery, searchBy]);
+ 
    // Re-fetch when search parameters change
   const updateShelterInList = (updatedShelter: ShelterType) => {
     setShelters(prevShelters =>

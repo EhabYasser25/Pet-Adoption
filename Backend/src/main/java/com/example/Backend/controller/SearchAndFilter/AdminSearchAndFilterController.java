@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/test/admin/")
+@RequestMapping("/admin/")
 public class AdminSearchAndFilterController {
 
     @Autowired
     private AdminSearchAndFilterService adminSearchAndFilterService;
 
-    @GetMapping("search")
+    @PostMapping("search")
     public List<Shelter> searchForShelter(@RequestBody AdminSearchAndFilterDTO adminSearchAndFilterDTO){
         System.out.println(adminSearchAndFilterDTO.getCity());
         return adminSearchAndFilterService.searchForShelter(adminSearchAndFilterDTO);

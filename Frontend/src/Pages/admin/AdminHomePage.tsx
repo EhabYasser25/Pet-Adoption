@@ -52,6 +52,8 @@ const AdminHomePage = () => {
 
   const handleSearch = () => {
     setSearchQuery(inputValue);
+
+    
   };
 
   const placeholderText = `Search by ${searchBy}...`;
