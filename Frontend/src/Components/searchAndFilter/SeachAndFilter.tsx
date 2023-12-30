@@ -21,21 +21,22 @@ const SeachAndFilter = ({
   const [isSterilized, setIsSterilized] = useState(false);
   const [isHouseTrained, setisHouseTrained] = useState(false);
   const [sortCriteria, setSortCriteria] = useState("")
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [currPageSize, setCurrPageSize] = useState(10);
   const [sortCriteriaOrder, setsortCriteriaOrder] = useState("");
   const [breedsList, setBreedsList] = useState([]);
   useEffect(() => {
 
     const fetchBreeds = async () => {    
-      httpRequest("GET","fetch/breeds",null,species).then((response) => {
-        const responseData = response.data
+      await httpRequest("GET","fetch/breed",null,{species:species}).then((response) => {
+         const responseData = response.data;
+        console.log(responseData);
         setBreedsList(responseData);
         setCurrPageSize(responseData.length);
       })
       .catch((error) => {
         console.log(error)
-        alert(error.response.data.message)
+        alert(error.response.message)
       });
     };
 
@@ -59,12 +60,7 @@ const SeachAndFilter = ({
     // { image: 'src\\assets\\img.png', name: 'Rex', description: 'A loyal German Shepherd.' },
 ];
   const applySearchAndFilterCriteria = async () => {
-    console.log("breed",breed);
-    console.log("gender",gender);
-    console.log("isVaccinated",isVaccinated);
-    console.log("isSterilized",isSterilized);
-    console.log("isHouseTrained",isHouseTrained);
-    console.log("sortCriteria",sortCriteria);
+    
 
     const SearchAndFilterUserDTO = {
       species:species,
@@ -81,9 +77,13 @@ const SeachAndFilter = ({
 
     };
 
+    console.log("sent data ", SearchAndFilterUserDTO);
+
     await httpRequest('POST', 'user/search', SearchAndFilterUserDTO)
       .then((response) => {
         const responseData = response.data
+        console.log("returned data");
+        console.log(responseData);
         updateSearchResult(responseData);
         setCurrPageSize(responseData.length);
         console.log(responseData)

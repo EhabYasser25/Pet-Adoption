@@ -33,7 +33,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<SignIn />}></Route>
                     <Route path="/user/homePage" element={<UserHomePage/>}></Route>
-                    {/* <Route path="/userSearch" element={<SearchScreen/>}></Route> */}
+                    <Route path="/userSearch" element={<SearchScreen/>}></Route>
                     
                     <Route path="user/applications" element={<Applications/>}></Route>
                     <Route path="/admin/dashboard" element={<AdminHomePage />}></Route>

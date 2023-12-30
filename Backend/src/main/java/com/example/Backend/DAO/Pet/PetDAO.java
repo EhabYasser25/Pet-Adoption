@@ -57,7 +57,7 @@ public class PetDAO {
         try {
             BeanPropertyRowMapper<String> rowMapper = new BeanPropertyRowMapper<>(String.class);
             List<String> result = this.jdbcTemplate.query(
-                    "SELECT * FROM species WHERE species= ?", new SingleColumnRowMapper<>(String.class),species);
+                    "SELECT breed FROM pet WHERE species= ?",  new SingleColumnRowMapper<>(String.class),species);
             System.out.println(result);
             return result;
         } catch (EmptyResultDataAccessException e) {

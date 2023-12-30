@@ -92,11 +92,14 @@ const UserHomePage = () => {
       
 
     const handleCountrySelection = (event:any) => {
+        console.log("handle country selectio ")
         setCountry(event.target.value);
+        
         const fetchCities = async () => {   
             setIsCountryNotSelected(true); 
-            await httpRequest("GET","fetch/cities",null,{country:country}).then((response) => {
+            await httpRequest("GET","fetch/cities",null,{country:event.target.value}).then((response) => {
               const responseData = response.data
+              console.log("cities ",responseData);
               setCities(responseData);
               setIsCountryNotSelected(false);
             })

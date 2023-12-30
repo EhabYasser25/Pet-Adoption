@@ -28,23 +28,23 @@ public class PetQueryBuilder {
     }
 
     void breedCriteria(String breed) {
-        query.append("breed=").append(breed).append(" AND ");
+        query.append("breed= '").append(breed).append("' AND ");
     }
 
     void speciesCriteria(String species) {
-        query.append("species =").append(species).append(" AND ");
+        query.append("species = '").append(species).append("' AND ");
     }
 
     void cityCriteria(String city) {
-        query.append("shelter_location_city =").append(city).append(" AND ");
+        query.append("shelter_location_city = '").append(city).append("' AND ");
     }
 
     void countryCriteria(String country) {
-        query.append("shelter_location_country =").append(country).append(" AND ");
+        query.append("shelter_location_country = '").append(country).append("' AND ");
     }
 
-    void genderCriteria(Gender gender) {
-        query.append("gender =").append(gender).append(" AND ");
+    void genderCriteria(String gender) {
+        query.append("gender = '").append(gender).append("' AND ");
     }
 
     void shelterIDCriteria(int shelterId) {
@@ -52,7 +52,7 @@ public class PetQueryBuilder {
     }
 
     void nameCriteria(String name) {
-        query.append("name =").append(name).append(" AND ");
+        query.append("name = '").append(name).append("' AND ");
     }
     void sortCriteria(String sortCriteria,String order){
         query.append("ORDER BY ").append(sortCriteria).append(" ").append(order);

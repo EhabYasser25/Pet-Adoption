@@ -23,7 +23,7 @@ public class UseSearchAndFilterController {
 
     }
     @GetMapping("pet-profile")
-    Pet viewPet(@RequestParam int perId){
-        return userSearchAndFilterService.viewPet(perId);
+    Pet viewPet(@RequestParam("petId") int perId){
+       return userSearchAndFilterService.viewPet(perId);
     }
 }
