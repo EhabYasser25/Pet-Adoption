@@ -27,13 +27,14 @@ public class UseSearchAndFilterController {
 
     @PostMapping("/search")
     List<PetSummary> searchAndFilter(@RequestBody UserSearchAndFilterDTO userSearchAndFilterDTO){
-        System.out.println(userSearchAndFilterDTO.toString());
         return userSearchAndFilterService.searchAndFilter(userSearchAndFilterDTO);
 
     }
-    @GetMapping("pet-profile")
+    @GetMapping("/pet-profile")
     Pet viewPet(@RequestParam("petId") int perId){
-       return userSearchAndFilterService.viewPet(perId);
+        Pet result =userSearchAndFilterService.viewPet(perId);
+        System.out.println(result.getImage().length);
+       return result;
     }
 
 

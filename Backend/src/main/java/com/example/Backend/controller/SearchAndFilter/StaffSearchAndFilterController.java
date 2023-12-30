@@ -1,5 +1,6 @@
 package com.example.Backend.controller.SearchAndFilter;
 
+import com.example.Backend.DAO.Pet.PetDAO;
 import com.example.Backend.DTO.SearchAndFilter.StaffSearchAndFilterDTO;
 import com.example.Backend.model.pet.Pet;
 import com.example.Backend.model.pet.PetSummary;
@@ -16,6 +17,8 @@ public class StaffSearchAndFilterController {
 
     @Autowired
     private StaffSearchAndFilterService staffSearchAndFilterService;
+    @Autowired
+    private PetDAO petDAO;
 
 
     @PostMapping("/search")
@@ -24,8 +27,9 @@ public class StaffSearchAndFilterController {
         return staffSearchAndFilterService.searchAndFilter(staffSearchAndFilterDTO,userName);
 
     }
-    @GetMapping("pet-profile")
+    @GetMapping("/pet-profile")
     Pet viewPet(@RequestParam int perId){
         return staffSearchAndFilterService.viewPet(perId);
     }
+
 }
