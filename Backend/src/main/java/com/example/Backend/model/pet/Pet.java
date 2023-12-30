@@ -1,7 +1,10 @@
 package com.example.Backend.model.pet;
 
-import com.example.Backend.enums.Gender;
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -16,11 +19,11 @@ public class Pet {
     private String species;
     private String name;
     private Date birthDate;
-    private Gender gender;
+    private String gender;
     private boolean isSterilized;
     private boolean isVaccinated;
     private boolean isHouseTrained;
-    private String image;
+    private byte[] image;
     private Timestamp releaseTimeStamp;
     List<Attachment> attachments;
     private String breed;
