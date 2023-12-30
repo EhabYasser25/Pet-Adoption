@@ -92,8 +92,7 @@ public class ShelterManagementController {
     }
 
     @PostMapping("/modify-staff")
-    public ResponseEntity<?> updateStaffMember(@RequestBody User updatedUser) {
-        return ResponseEntity.ok(shelterManagementService.updateStaffMember(updatedUser));
+    public ResponseEntity<?> updateStaffMember(@RequestBody StaffMemberDTO staffMember) {
+        return ResponseEntity.ok(shelterManagementService.updateStaffMember(staffMember));
     }
-
 }

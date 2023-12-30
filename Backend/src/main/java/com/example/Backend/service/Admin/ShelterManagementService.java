@@ -66,8 +66,8 @@ public class ShelterManagementService {
         return staffDAO.deleteStaff(staffId);
     }
 
-    public boolean updateStaffMember (User updatedUser) {
-        return staffDAO.updateStaffMember(updatedUser);
+    public boolean updateStaffMember (StaffMemberDTO staffMember) {
+        return staffDAO.updateStaffMember(staffMember);
     }
 
 }

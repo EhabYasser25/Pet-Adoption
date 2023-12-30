@@ -1,5 +1,6 @@
 package com.example.Backend.DAO.user;
 
+import com.example.Backend.DTO.registrationAndAuth.StaffMemberDTO;
 import com.example.Backend.model.user.Staff;
 import com.example.Backend.model.user.User;
 import lombok.RequiredArgsConstructor;
@@ -82,32 +83,32 @@ public class StaffDAO {
         }
     }
 
-    public boolean updateStaffMember(User updatedUser) {
+    public boolean updateStaffMember(StaffMemberDTO staffMember) {
         try {
-            int userId = updatedUser.getId();
+            String email = staffMember.getStaffDetails().getEmail();
             // Fetch the User object from the database
-            User user = userDAO.getById(userId);
+            User user = userDAO.getByUsernameOrEmail(email);
             if (user == null) {
-                System.out.println("User not found with ID: " + userId);
+                System.out.println("User not found with Email: " + email);
                 return false;
             }
 
-            user.setEmail(updatedUser.getEmail());
-            user.setGender(updatedUser.getGender());
-            user.setFirstName(updatedUser.getFirstName());
-            user.setMiddleName(updatedUser.getMiddleName());
-            user.setLastName(updatedUser.getLastName());
-            user.setFullName(updatedUser.getFullName());
-            user.setPhoneNo(updatedUser.getPhoneNo());
-            user.setUsername(updatedUser.getUsername());
-            user.setBirthdate(updatedUser.getBirthdate());
+            user.setEmail(staffMember.getStaffDetails().getEmail());
+            user.setGender(staffMember.getStaffDetails().getGender());
+            user.setFirstName(staffMember.getStaffDetails().getFirstName());
+            user.setMiddleName(staffMember.getStaffDetails().getMiddleName());
+            user.setLastName(staffMember.getStaffDetails().getLastName());
+//            user.setFullName(staffMember.getStaffDetails().getFullName());
+            user.setPhoneNo(staffMember.getStaffDetails().getPhoneNo());
+            user.setUsername(staffMember.getStaffDetails().getUsername());
+            user.setBirthdate(staffMember.getStaffDetails().getBirthdate());
 
             // Update the User object in the database
             return userDAO.updateUser(user);
 
         } catch (DataAccessException e) {
-            int userId = updatedUser.getId();
-            System.out.println("Error updating staff member with user ID: " + userId);
+            String email = staffMember.getStaffDetails().getEmail();
+            System.out.println("Error updating staff member with user email: " + email);
             e.printStackTrace();
             return false;
         }

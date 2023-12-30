@@ -12,4 +12,21 @@ interface StaffType {
     gender: string;
     birthdate: string; // LocalDate mapped to a string format (e.g., 'YYYY-MM-DD')
     role: string;
-  }
+}
+
+interface StaffMemberDTO {
+    shelterId: number;
+    staffDetails: StaffMemberDetail
+}
+
+interface StaffMemberDetail {
+    email: string;
+    password: string;
+    username: string;
+    firstName: string;
+    lastName: string;
+    middleName: string;
+    birthdate: string;
+    gender: string;
+    phoneNo: string;
+}

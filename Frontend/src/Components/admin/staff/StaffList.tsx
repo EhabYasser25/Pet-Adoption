@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './StaffList.css'; // Make sure to create a corresponding CSS file
 import { httpRequest } from '../../../Controller/HttpProxy';
 import EditStaffModal from './StaffEditModal';
-import AddEmployeeModal from './AssignEmployeeModal';
+import AddEmployeeModal from './AssignStaffModal';
 
 interface User {
   id: number;
@@ -37,11 +37,48 @@ const StaffList: React.FC<StaffListProps> = ({ shelterId }) => {
     setShowAddModal(true);
   };
 
-  const handleAddEmployee = (employeeData: any) => {
-    // API call to add employee
-    // Optionally update the staff list state after adding
+  const handleAddEmployee = async (employeeData) => {
+    try {
+        const registrationRequestDTO = {
+            email: employeeData.email,
+            password: employeeData.password, // Assuming you have a password field
+            username: employeeData.username,
+            firstName: employeeData.firstName,
+            lastName: employeeData.lastName,
+            middleName: employeeData.middleName,
+            birthdate: employeeData.birthdate, // Make sure this is formatted as LocalDate (YYYY-MM-DD)
+            gender: employeeData.gender, // Map to the Gender enum of your backend
+            phoneNo: employeeData.phoneNo
+          };
+      
+          // Construct StaffMemberDTO
+          const staffMemberDTO = {
+            staffDetails: registrationRequestDTO,
+            shelterId: parseInt(employeeData.shelterId) // Assuming shelterId is part of userData
+          };
+      // Assuming your API endpoint for adding a new employee looks something like this
+      const response = await httpRequest('POST', `/admin/add-staf-member`, staffMemberDTO);
+      const addedEmployee = response.data;
+  
+      if (addedEmployee) {
+        console.log('Employee added successfully');
+        alert('Employee added successfully');
+  
+        // Close the Add Employee Modal
+        setShowAddModal(false);
+  
+        // Update the staff list with the newly added employee
+        setStaffMembers(prevStaffMembers => [...prevStaffMembers, addedEmployee]);
+      } else {
+        console.error('Failed to add employee');
+        alert('Failed to add employee');
+      }
+    } catch (error) {
+      console.error('Error adding employee:', error);
+      alert('Error occurred while adding employee');
+    }
   };
-
+  
 
   useEffect(() => {
     httpRequest("GET", `/admin/shelters/${shelterId}/staff`)
@@ -66,7 +103,25 @@ const StaffList: React.FC<StaffListProps> = ({ shelterId }) => {
  // StaffList component
  const handleSave = async (updatedStaff: User) => {
     try {
-      const response = await httpRequest('POST', '/admin/modify-staff', updatedStaff);
+        const registrationRequestDTO = {
+            email: updatedStaff.email,
+            password: updatedStaff.password, // Assuming you have a password field
+            username: updatedStaff.username,
+            firstName: updatedStaff.firstName,
+            lastName: updatedStaff.lastName,
+            middleName: updatedStaff.middleName,
+            birthdate: updatedStaff.birthdate, // Make sure this is formatted as LocalDate (YYYY-MM-DD)
+            gender: updatedStaff.gender, // Map to the Gender enum of your backend
+            phoneNo: updatedStaff.phoneNo
+          };
+      
+          // Construct StaffMemberDTO
+          const staffMemberDTO = {
+            staffDetails: registrationRequestDTO,
+            shelterId: parseInt(shelterId) // Assuming shelterId is part of userData
+          };
+          console.log(staffMemberDTO.staffDetails)
+      const response = await httpRequest('POST', '/admin/modify-staff', staffMemberDTO);
       if (response.data) {
         console.log('Staff updated successfully');
         alert('Staff updated successfully');
@@ -136,7 +191,6 @@ const StaffList: React.FC<StaffListProps> = ({ shelterId }) => {
             <div className="staff-info">
               <h3>{`${staff.firstName} ${staff.middleName ? staff.middleName + ' ' : ''}${staff.lastName}`}</h3>
               <p data-label="Username:">{staff.username}</p>
-              <p data-label="Full Name:">{staff.fullName}</p>
               <p data-label="Email:">{staff.email}</p>
               <p data-label="Phone:">{staff.phoneNo}</p>
               <p data-label="Gender:">{staff.gender}</p>
