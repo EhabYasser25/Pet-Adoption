@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './AddShelterForm.css';
-import { httpRequest } from '../../Controller/HttpProxy';
+import { httpRequest } from '../../../Controller/HttpProxy';
 
 const AddShelterForm = () => {
   const [shelter, setShelter] = useState({

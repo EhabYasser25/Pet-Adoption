@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -54,13 +55,25 @@ public class StaffDAO {
         }
     }
 
-    public List<Staff> getAllStaff (int shelterId) {
-        return jdbcTemplate.query("SELECT * FROM staff", new BeanPropertyRowMapper<>(Staff.class));
+    public List<User> getAllStaff(int shelterId) {
+        String sql = "SELECT user_id FROM staff WHERE shelter_id = ?";
+        List<User> users = new ArrayList<>();
+
+        List<Integer> userIds = jdbcTemplate.queryForList(sql, Integer.class, shelterId);
+
+        for (Integer userId : userIds) {
+            User user = userDAO.getById(userId);
+            if (user != null) {
+                users.add(user);
+            }
+        }
+
+        return users;
     }
 
     public boolean deleteStaff (int staffId) {
         try {
-            String sql = "DELETE FROM staff WHERE id = ?";
+            String sql = "DELETE FROM staff WHERE user_id = ?";
             int result = jdbcTemplate.update(sql, staffId);
             return result > 0;
         } catch (DataAccessException e) {

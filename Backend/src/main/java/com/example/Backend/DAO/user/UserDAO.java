@@ -85,14 +85,13 @@ public class UserDAO {
 
     public boolean updateUser(User user) {
         try {
-            String sql = "UPDATE user SET first_name = ?, middle_name = ?, last_name = ?, username = ?, password = ?, email = ?, phone_no = ?, birthdate = ? WHERE id = ?";
+            String sql = "UPDATE user SET first_name = ?, middle_name = ?, last_name = ?, username = ?, email = ?, phone_no = ?, birthdate = ? WHERE id = ?";
 
             int rowsAffected = jdbcTemplate.update(sql,
                     user.getFirstName(),
                     user.getMiddleName(),
                     user.getLastName(),
                     user.getUsername(),
-                    user.getPassword(),
                     user.getEmail(), // TODO check regex
                     user.getPhoneNo(),
                     user.getBirthdate(),

@@ -1,24 +1,11 @@
 import { SetStateAction, useState } from 'react';
 import { FaHome, FaPaw } from 'react-icons/fa';
 import './AdminHomePage.css';
-import SheltersList from "../../Components/admin/ShelterList";
-import AddShelterForm from "../../Components/admin/AddShelterForm";
-import NavBarAdmin from "../../Components/admin/NavbarAdmin";
+import SheltersList from "../../Components/admin/shelters/ShelterList";
+import AddShelterForm from "../../Components/admin/shelters/AddShelterForm";
+import NavBarAdmin from "../../Components/admin/shelters/NavbarAdmin";
+import StaffList from '../../Components/admin/staff/StaffList';
 
-// Define a type for the valid section keys
-type Section = 'shelters' | 'addShelter';
-
-// Define a function to return the sections with props
-const getSectionComponent = (section: Section, searchQuery: string, searchBy: string) => {
-  switch (section) {
-    case 'shelters':
-      return <SheltersList searchQuery={searchQuery} searchBy={searchBy} />;
-    case 'addShelter':
-      return <AddShelterForm />;
-    default:
-      return null;
-  }
-};
 
 const AdminHomePage = () => {
   // Use the Section type for the activeSection state
@@ -26,6 +13,34 @@ const AdminHomePage = () => {
   const [searchBy, setSearchBy] = useState('shelter name'); // Default search by Shelter
   const [searchQuery, setSearchQuery] = useState('');
   const [inputValue, setInputValue] = useState(''); // State to hold the input value
+  const [selectedShelterId, setSelectedShelterId] = useState<string | null>(null);
+  
+  // Define a type for the valid section keys
+  type Section = 'shelters' | 'addShelter' | 'viewStaff';
+
+  // Define a function to return the sections with props
+  const getSectionComponent = (section: Section, searchQuery: string, searchBy: string) => {
+    switch (section) {
+      case 'shelters':
+        return <SheltersList 
+        searchQuery={searchQuery} 
+        searchBy={searchBy} 
+        onViewStaff={handleViewStaff}
+        />;
+      case 'addShelter':
+        return <AddShelterForm />;
+      case 'viewStaff':
+        console.log(selectedShelterId)
+        return selectedShelterId ? <StaffList shelterId={selectedShelterId} /> : null;
+      default:
+        return null;
+    }
+  };
+
+  const handleViewStaff = (shelterId: string) => {
+    setSelectedShelterId(shelterId);
+    setActiveSection('viewStaff');
+  };
 
   const handleSearchByChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     setSearchBy(event.target.value);

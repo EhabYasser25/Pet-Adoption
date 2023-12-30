@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import './ShelterList.css';
 import './AdminShelter.css'
-import '../../DTO/shelter-type'
+import '../../../DTO/shelter-type'
 import AdminShelter from './AdminShelter';
-import { httpRequest } from '../../Controller/HttpProxy';
+import { httpRequest } from '../../../Controller/HttpProxy';
 
 interface SheltersListProps {
   searchQuery: string;
   searchBy: string;
+  onViewStaff: (shelterId: string) => void; // Add this line
 }
 
-const SheltersList: React.FC<SheltersListProps> = ({ searchQuery, searchBy }) => {
+const SheltersList: React.FC<SheltersListProps> = ({ searchQuery, searchBy, onViewStaff }) => {
   const [shelters, setShelters] = useState<ShelterType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const sheltersPerPage = 13;
@@ -44,6 +45,8 @@ const SheltersList: React.FC<SheltersListProps> = ({ searchQuery, searchBy }) =>
     setShelters(prevShelters => prevShelters.filter(shelter => shelter.id !== shelterId));
   };
 
+  
+
   // Get current shelters
   const indexOfLastShelter = currentPage * sheltersPerPage;
   const indexOfFirstShelter = indexOfLastShelter - sheltersPerPage;
@@ -67,6 +70,7 @@ const SheltersList: React.FC<SheltersListProps> = ({ searchQuery, searchBy }) =>
             {...shelter}
             onEdit={updateShelterInList}
             onDelete={handleDeleteShelter} // Pass the delete function to AdminShelter
+            onViewStaff={onViewStaff} // Pass the callback here
           />
         ))}
       </div>
