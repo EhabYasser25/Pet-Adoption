@@ -3,9 +3,10 @@ import PetGridSearch from "../searchAndFilter/PetGridSearch";
 import SeachAndFilter from "../searchAndFilter/SeachAndFilter";
 import "./SearchAndFilter.css";
 import Navbar from "./Navbar";
-import {useState} from "react";
-const SearchScreen = (/*{ initialSearchResult }:{ initialSearchResult :any}*/) => {
+import {useEffect, useState} from "react";
+const SearchScreen = ({ initialSearchResult }:{ initialSearchResult :any}) => {
 
+    console.log("initial search result",initialSearchResult);
     const [searchResult, setSearchResult] = useState( /*initialSearchResult*/
         [
             { image: 'src\\assets\\img.png', name: 'Fluffy', description: 'A fluffy white cat.' },
@@ -24,6 +25,12 @@ const SearchScreen = (/*{ initialSearchResult }:{ initialSearchResult :any}*/) =
   const updateSearchResult = (result:any) => {
     setSearchResult(result);
   };
+
+  useEffect(() => {
+    console.log(initialSearchResult);
+  },[]);
+
+  
 
   const pets:Array<any> = [
     { image: 'src\\assets\\img.png', name: 'Fluffy', description: 'A fluffy white cat.' },

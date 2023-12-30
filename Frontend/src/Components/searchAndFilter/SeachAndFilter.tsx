@@ -2,6 +2,7 @@ import React from 'react'
 import {useState, useEffect} from "react";
 import "./SearchAndFilter.css";
 import Pagination from './Pagination';
+import { httpRequest } from '../../Controller/HttpProxy';
 const SeachAndFilter = ({
   updateSearchResult,
   species,
@@ -23,7 +24,24 @@ const SeachAndFilter = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [currPageSize, setCurrPageSize] = useState(10);
   const [sortCriteriaOrder, setsortCriteriaOrder] = useState("");
-  
+  const [breedsList, setBreedsList] = useState([]);
+  useEffect(() => {
+
+    const fetchBreeds = async () => {    
+      httpRequest("GET","fetch/breeds",null,species).then((response) => {
+        const responseData = response.data
+        setBreedsList(responseData);
+        setCurrPageSize(responseData.length);
+      })
+      .catch((error) => {
+        console.log(error)
+        alert(error.response.data.message)
+      });
+    };
+
+    fetchBreeds();
+
+  }, []);
     
   const onPageChange = (pageNumber:any) => {
       setCurrentPage(pageNumber);
@@ -63,7 +81,20 @@ const SeachAndFilter = ({
 
     };
 
-    console.log(SearchAndFilterUserDTO);
+    httpRequest('POST', 'user/search', SearchAndFilterUserDTO)
+      .then((response) => {
+        const responseData = response.data
+        updateSearchResult(responseData);
+        setCurrPageSize(responseData.length);
+        console.log(responseData)
+      })
+      .catch((error) => {
+        console.log(error)
+        alert(error.response.data.message)
+      });
+ 
+
+    
 
     // sent DTO to backend
 
@@ -71,7 +102,7 @@ const SeachAndFilter = ({
 
     //update search result
     
-    updateSearchResult(pets)
+    // updateSearchResult(pets)
     
     // update the currPageSize
   };
@@ -89,7 +120,7 @@ const SeachAndFilter = ({
         setBreed( event.target.value);
   }}>
         <option value="" selected>Sort by...</option>
-        {breadOptions.map((option) => (
+        {breedsList.map((option) => (
           <option value={option}>
            {option}
             </option>
