@@ -41,7 +41,9 @@ public class SecutiryConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers(
-                                "/auth/**" ,"/fetch/**",
+                                "/auth/**" ,
+                                "/fetch/**",
+                                "/api/**",
                                 "/test/**")
                         .permitAll()
                         .requestMatchers("/user/**").hasAuthority(Role.USER.name())

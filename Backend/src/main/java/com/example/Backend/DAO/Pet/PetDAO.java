@@ -6,8 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.stereotype.Repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -28,18 +33,19 @@ public class PetDAO {
             return null;
         }
     }
-    public byte[] getImageById(int id) {
-        try {
-            BeanPropertyRowMapper<byte[]> rowMapper = new BeanPropertyRowMapper<>(byte[].class);
-            return this.jdbcTemplate.queryForObject(
-                    "SELECT image FROM pet WHERE id = ?", rowMapper, id);
+//    public ArrayList<Byte> getImageById(int id) {
+//        try {
+//            BeanPropertyRowMapper<ArrayList<Byte>> rowMapper = new BeanPropertyRowMapper<>(ArrayList<Byte>.class);
+//            return this.jdbcTemplate.queryForObject(
+//                    "SELECT image FROM pet WHERE id = ?", rowMapper, id);
+//
+//        } catch (EmptyResultDataAccessException e) {
+//            // Handle case where user is not found
+//            System.out.println("Pet not found with id: " + id);
+//            return null;
+//        }
+//    }
 
-        } catch (EmptyResultDataAccessException e) {
-            // Handle case where user is not found
-            System.out.println("Pet not found with id: " + id);
-            return null;
-        }
-    }
     public List<Pet> getPetByQuery(String query) {
         try {
             BeanPropertyRowMapper<Pet> rowMapper = new BeanPropertyRowMapper<>(Pet.class);

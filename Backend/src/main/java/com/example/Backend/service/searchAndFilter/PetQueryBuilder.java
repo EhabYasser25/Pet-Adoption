@@ -12,7 +12,7 @@ public class PetQueryBuilder {
     public PetQueryBuilder(int pageNumber, int pageSize) {
         this.pageNumber = pageNumber;
         this.pageSize = pageSize;
-        this.query = new StringBuilder("SELECT image,name FROM pet WHERE ");
+        this.query = new StringBuilder("SELECT id,name FROM pet WHERE ");
     }
 
     void isVaccinatedCriteria(boolean isVaccinated) {
