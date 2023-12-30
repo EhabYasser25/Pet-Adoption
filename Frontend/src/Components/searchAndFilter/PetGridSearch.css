@@ -1,0 +1,30 @@
+.pet-grid {
+    display: grid;
+    grid-template-columns:  repeat(5, 1fr); /* Adjust as needed */
+    gap: 10px; /* Reduce the gap between grid items */
+    grid-auto-rows: minMax(100px, auto)
+
+}
+
+.pet-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-color: #0056b3;
+    border-width: 2px;
+    /*border-color: #0056b3;*/
+}
+
+.pet-content img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Maintain aspect ratio */
+}
+
+.pet-content h3,
+.pet-content p {
+    margin: 5px;
+    text-align: center;
+}
